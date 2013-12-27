@@ -59,19 +59,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\DotNetExtensions45\DateTimeExtensions.cs">
+    <Compile Include="..\SharpExtensions45\DateTimeExtensions.cs">
       <Link>DateTimeExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\DotNetExtensions45\EnumExtensions.cs">
+    <Compile Include="..\SharpExtensions45\EnumExtensions.cs">
       <Link>EnumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\DotNetExtensions45\IUrlFormatable.cs">
+    <Compile Include="..\SharpExtensions45\IUrlFormatable.cs">
       <Link>IUrlFormatable.cs</Link>
     </Compile>
-    <Compile Include="..\DotNetExtensions45\StringExtensions.cs">
+    <Compile Include="..\SharpExtensions45\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\DotNetExtensions45\UriExtensions.cs">
+    <Compile Include="..\SharpExtensions45\UriExtensions.cs">
       <Link>UriExtensions.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
