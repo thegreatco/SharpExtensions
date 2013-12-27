@@ -2,26 +2,45 @@
 using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
-using SharpExtensions;
 
-namespace DotNetExtensions
+namespace SharpExtensions
 {
     public static partial class UriExtensions
     {
+        /// <summary>
+        /// Generates a Uri from the supplied string and any string format parameters.
+        /// </summary>
+        /// <param name="string"> The string to convert to a Uri. </param>
+        /// <param name="args"> The parameters to format into the string using string.format. </param>
+        /// <returns> A <see cref="Uri"/>. </returns>
         [StringFormatMethod("format")]
         public static Uri ToUri(this string @string, params object[] args)
         {
+            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+
             return new UriBuilder(@string.With(args)).Uri;
         }
 
+        /// <summary>
+        /// Generates a Uri from the supplied string, any string format parameters, and the supplied <see cref="IUrlFormatable"/> object.
+        /// </summary>
+        /// <param name="string"> The string to convert to a Uri. </param>
+        /// <param name="obj"> The <see cref="IUrlFormatable"/> object to be added as Url parameters. </param>
+        /// <param name="args"> The parameters to format into the string using string.format. </param>
+        /// <returns></returns>
         [StringFormatMethod("format")]
         public static Uri ToUri(this string @string, IUrlFormatable obj, params object[] args)
         {
+            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+            if (obj == null) throw new ArgumentNullException("obj");
+
             return obj.FormatForUri(@string.With(args));
         }
 
-        private static Uri FormatForUri<T>(this T obj, string baseString) where T : IUrlFormatable
+        private static Uri FormatForUri<T>(this T obj, string @string) where T : IUrlFormatable
         {
+            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+
             var allNull = true;
             var props = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach (var prop in props)
@@ -37,29 +56,29 @@ namespace DotNetExtensions
                 var stringArray = val as string[];
                 if (stringArray != null)
                 {
-                    if (baseString.Contains("?")) baseString += "&{0}={1}".With(propName, stringArray.ValidatedJoin(","));
-                    else baseString += "?{0}={1}".With(propName, stringArray.ValidatedJoin(","));
+                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, stringArray.ValidatedJoin(","));
+                    else @string += "?{0}={1}".With(propName, stringArray.ValidatedJoin(","));
                 }
                 else if (val is Enum)
                 {
-                    if (baseString.Contains("?")) baseString += "&{0}={1}".With(propName, val.ToString().ToLower());
-                    else baseString += "?{0}={1}".With(propName, val.ToString().ToLower());
+                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, val.ToString().ToLower());
+                    else @string += "?{0}={1}".With(propName, val.ToString().ToLower());
                 }
                 else if (val is bool)
                 {
-                    if (baseString.Contains("?")) baseString += "&{0}={1}".With(propName, val.ToString().ToLower());
-                    else baseString += "?{0}={1}".With(propName, val.ToString().ToLower());
+                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, val.ToString().ToLower());
+                    else @string += "?{0}={1}".With(propName, val.ToString().ToLower());
                 }
                 else
                 {
-                    if (baseString.Contains("?")) baseString += "&{0}={1}".With(propName, val);
-                    else baseString += "?{0}={1}".With(propName, val);
+                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, val);
+                    else @string += "?{0}={1}".With(propName, val);
                 }
             }
 
             if (allNull) throw new ArgumentException("All the properties of the object are null.  At least one property must have a value. ");
 
-            return baseString.ToUri();
+            return @string.ToUri();
         }
 
         private static string FormatUriParameter(this string @string, string delimeter)

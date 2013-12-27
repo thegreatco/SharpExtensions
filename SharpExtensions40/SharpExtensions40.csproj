@@ -68,6 +68,9 @@
     <Compile Include="..\SharpExtensions45\IUrlFormatable.cs">
       <Link>IUrlFormatable.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45\StringCase.cs">
+      <Link>StringCase.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
     </Compile>
