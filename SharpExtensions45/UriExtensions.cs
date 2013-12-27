@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace DotNetExtensions
 {
-    public static class UriExtensions
+    public static partial class UriExtensions
     {
         [StringFormatMethod("format")]
         public static Uri ToUri(this string @string, params object[] args)

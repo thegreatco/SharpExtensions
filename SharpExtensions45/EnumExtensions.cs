@@ -2,7 +2,7 @@
 
 namespace DotNetExtensions
 {
-    public static class EnumExtensions
+    public static partial class EnumExtensions
     {
         public static string EnumToString(this Enum val)
         {

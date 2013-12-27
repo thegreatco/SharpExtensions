@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNetExtensions
 {
-    public static class TaskExtensions
+    public static partial class TaskExtensions
     {
         public static async Task WithTimeout(this Task task, long timeout)
         {

@@ -2,7 +2,7 @@
 
 namespace DotNetExtensions
 {
-    public static class DateTimeExtensions
+    public static partial class DateTimeExtensions
     {
         public static DateTime FromUnixTime(this long val)
         {
