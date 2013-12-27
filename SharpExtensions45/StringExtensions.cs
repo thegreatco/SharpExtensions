@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace DotNetExtensions
+namespace SharpExtensions
 {
     public static partial class StringExtensions
     {

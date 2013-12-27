@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotNetExtensions
+namespace SharpExtensions
 {
     public static partial class EnumExtensions
     {

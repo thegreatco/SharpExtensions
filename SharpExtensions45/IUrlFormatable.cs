@@ -1,4 +1,4 @@
-﻿namespace DotNetExtensions
+﻿namespace SharpExtensions
 {
     public partial interface IUrlFormatable
     {

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace DotNetExtensions
+namespace SharpExtensions
 {
     public static partial class TaskExtensions
     {

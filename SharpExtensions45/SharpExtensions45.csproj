@@ -7,8 +7,8 @@
     <ProjectGuid>{BDB26656-0058-4DD6-A9EC-C27B71461874}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DotNetExtensions</RootNamespace>
-    <AssemblyName>DotNetExtensions</AssemblyName>
+    <RootNamespace>SharpExtensions</RootNamespace>
+    <AssemblyName>SharpExtensions45</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
