@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace SharpExtensions
 {
-    public static partial class UriExtensions
+    internal static partial class UriExtensions
     {
         /// <summary>
         /// Generates a Uri from the supplied string and any string format parameters.

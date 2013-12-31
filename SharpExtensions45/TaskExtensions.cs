@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SharpExtensions
 {
-    public static partial class TaskExtensions
+    internal static partial class TaskExtensions
     {
         /// <summary>
         /// Run a task with a timeout.

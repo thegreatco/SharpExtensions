@@ -61,24 +61,32 @@
   <ItemGroup>
     <Compile Include="..\SharpExtensions45\DateTimeExtensions.cs">
       <Link>DateTimeExtensions.cs</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="..\SharpExtensions45\EnumExtensions.cs">
       <Link>EnumExtensions.cs</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="..\SharpExtensions45\IUrlFormatable.cs">
       <Link>IUrlFormatable.cs</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="..\SharpExtensions45\StringCase.cs">
       <Link>StringCase.cs</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="..\SharpExtensions45\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="..\SharpExtensions45\UriExtensions.cs">
       <Link>UriExtensions.cs</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskExtensions.cs" />
+    <Compile Include="TaskExtensions.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -96,4 +104,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="CopyLinkedContentFiles" BeforeTargets="Build">
+    <Copy SourceFiles="%(Content.Identity)" DestinationFiles="%(Content.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Condition="'%(Content.Link)' != ''" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release "C:\Program Files (x86)\LINQPad4\LPRun.exe" "$(SolutionDir)..\NuGet Packages\PrepForNuget.linq" "$(ProjectDir)bin\$(ConfigurationName)" "$(SolutionDir)NuGet Files\$(ProjectName)" "SharpExtensions"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
