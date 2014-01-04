@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace SharpExtensions
 {
-    internal static partial class StringExtensions
+    public static partial class StringExtensions
     {
         [StringFormatMethod("format")]
         public static string With(this string @string, params object[] args)

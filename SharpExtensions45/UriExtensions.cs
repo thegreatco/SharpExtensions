@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
 
 namespace SharpExtensions
 {
-    internal static partial class UriExtensions
+    public static partial class UriExtensions
     {
         /// <summary>
         /// Generates a Uri from the supplied string and any string format parameters.
@@ -37,12 +39,114 @@ namespace SharpExtensions
             return obj.FormatForUri(@string.With(args));
         }
 
+        /// <summary>
+        /// Add the supplied Key and Value to the <see cref="Uri"/> Query string.
+        /// </summary>
+        /// <param name="uri"> The Uri to which the query parameters are to be added. </param>
+        /// <param name="key"> The key to be added to the query. </param>
+        /// <param name="val"> The of the key to be added to the query. </param>
+        /// <returns> The modified <see cref="Uri"/>. </returns>
+        public static Uri AddQuery(this Uri uri, string key, object val)
+        {
+            return uri.AddQuery(new[] { new KeyValuePair<string, object>(key, val) });
+        }
+
+        /// <summary>
+        /// Add the supplied KeyValuePairs to the <see cref="Uri"/> Query string.
+        /// </summary>
+        /// <param name="uri"> The Uri to which the Query string will be added. </param>
+        /// <param name="arg"> The KeyValuePair to be added to the Query string. </param>
+        /// <returns> The modified <see cref="Uri"/>. </returns>
+        public static Uri AddQuery(this Uri uri, KeyValuePair<string, object> arg)
+        {
+            return uri.AddQuery(new[] { arg });
+        }
+
+        /// <summary>
+        /// Add the supplied KeyValuePairs to the <see cref="Uri"/> Query string.
+        /// </summary>
+        /// <param name="uri"> The Uri to which the Query string will be added. </param>
+        /// <param name="args"> The KeyValuePairs to be added to the Query string. </param>
+        /// <returns> The modified <see cref="Uri"/>. </returns>
+        public static Uri AddQuery(this Uri uri, IEnumerable<KeyValuePair<string, object>> args)
+        {
+            var builder = new UriBuilder(uri);
+            var query = GetQueryParameters(builder);
+            query.AddRange(args.Select(arg => new KeyValuePair<string, object>(arg.Key, arg.Value)));
+            builder.Query = string.Join("&", query.Select(x => "{0}={1}".With(x.Key, x.Value)));
+            return builder.Uri;
+        }
+
+        /// <summary>
+        /// Remove the provided KeyValuePair from the Uri Query string.
+        /// </summary>
+        /// <param name="uri"> The Uri from which to remove the KeyValuePair. </param>
+        /// <param name="key"> The key of the parameter to remove. </param>
+        /// <param name="val"> The value of the parameter to remove. </param>
+        /// <returns> The modified <see cref="Uri"/>. </returns>
+        public static Uri RemoveQuery(this Uri uri, string key, object val)
+        {
+            return uri.RemoveQuery(new[] { new KeyValuePair<string, object>(key, val) });
+        }
+
+        /// <summary>
+        /// Remove the provided KeyValuePair from the Uri Query string.
+        /// </summary>
+        /// <param name="uri"> The Uri from which to remove the KeyValuePair. </param>
+        /// <param name="arg"> The KeyValuePair to remove from the Query string. </param>
+        /// <returns> The modified <see cref="Uri"/>. </returns>
+        public static Uri RemoveQuery(this Uri uri, KeyValuePair<string, object> arg)
+        {
+            return uri.RemoveQuery(new[] { arg });
+        }
+
+        /// <summary>
+        /// Remove the provided KeyValuePairs from the Uri Query string.
+        /// </summary>
+        /// <param name="uri"> The Uri from which to remove the KeyValuePairs. </param>
+        /// <param name="args"> The KeyValuePairs to remove from the Query string. </param>
+        /// <returns> The modified <see cref="Uri"/>. </returns>
+        public static Uri RemoveQuery(this Uri uri, IEnumerable<KeyValuePair<string, object>> args)
+        {
+            var builder = new UriBuilder(uri);
+            var query = GetQueryParameters(builder);
+            foreach (var obj in args)
+            {
+                bool result;
+                do result = query.Remove(obj); while (result);
+            }
+
+            builder.Query = string.Join("&", query.Select(x => "{0}={1}".With(x.Key, x.Value)));
+            return builder.Uri;
+        }
+
+        /// <summary>
+        /// Remove all of the provided keys from the Uri Query string.
+        /// </summary>
+        /// <param name="uri"> The Uri from which to remove the keys. </param>
+        /// <param name="keys"> The keys to removed from the Query string. </param>
+        /// <returns> The modified <see cref="Uri"/>. </returns>
+        public static Uri RemoveQuery(this Uri uri, params string[] keys)
+        {
+            var builder = new UriBuilder(uri);
+            var query = GetQueryParameters(builder);
+            foreach (var obj in keys)
+            {
+                bool result;
+                do result = query.Remove(query.Find(x => x.Key == obj)); while (result);
+            }
+
+            builder.Query = string.Join("&", query.Select(x => "{0}={1}".With(x.Key, x.Value)));
+            return builder.Uri;
+        }
+
         private static Uri FormatForUri<T>(this T obj, string @string) where T : IUrlFormatable
         {
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
 
             var allNull = true;
             var props = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var kvps = new List<KeyValuePair<string, object>>();
             foreach (var prop in props)
             {
                 var val = prop.GetValue(obj, null);
@@ -55,30 +159,18 @@ namespace SharpExtensions
                 allNull = false;
                 var stringArray = val as string[];
                 if (stringArray != null)
-                {
-                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, stringArray.ValidatedJoin(","));
-                    else @string += "?{0}={1}".With(propName, stringArray.ValidatedJoin(","));
-                }
+                    kvps.Add(new KeyValuePair<string, object>(propName, stringArray.ValidatedJoin(",")));
                 else if (val is Enum)
-                {
-                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, val.ToString().ToLower());
-                    else @string += "?{0}={1}".With(propName, val.ToString().ToLower());
-                }
+                    kvps.Add(new KeyValuePair<string, object>(propName, val.ToString().ToLower()));
                 else if (val is bool)
-                {
-                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, val.ToString().ToLower());
-                    else @string += "?{0}={1}".With(propName, val.ToString().ToLower());
-                }
+                    kvps.Add(new KeyValuePair<string, object>(propName, val.ToString().ToLower()));
                 else
-                {
-                    if (@string.Contains("?")) @string += "&{0}={1}".With(propName, val);
-                    else @string += "?{0}={1}".With(propName, val);
-                }
+                    kvps.Add(new KeyValuePair<string, object>(propName, val));
             }
 
             if (allNull) throw new ArgumentException("All the properties of the object are null.  At least one property must have a value. ");
 
-            return @string.ToUri();
+            return @string.ToUri().AddQuery(kvps);
         }
 
         private static string FormatUriParameter(this string @string, string delimeter)
@@ -94,6 +186,11 @@ namespace SharpExtensions
             }
 
             return builder.ToString().ToLower();
+        }
+
+        private static List<KeyValuePair<string, object>> GetQueryParameters(UriBuilder builder)
+        {
+            return builder.Query.Replace("?", string.Empty).Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(new[] { '=' }, StringSplitOptions.RemoveEmptyEntries)).Select(x => new KeyValuePair<string, object>(x[0], x[1])).ToList();
         }
     }
 }

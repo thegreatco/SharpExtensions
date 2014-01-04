@@ -2,7 +2,7 @@
 
 namespace SharpExtensions
 {
-    internal static partial class EnumExtensions
+    public static partial class EnumExtensions
     {
         /// <summary>
         /// Convert an enum to a pretty formatted string.

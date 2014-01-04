@@ -2,7 +2,7 @@
 
 namespace SharpExtensions
 {
-    internal static partial class TaskExtensions
+    public static partial class TaskExtensions
     {
         /// <summary>
         /// Run a task as void, allowing control to return immediately to the application.

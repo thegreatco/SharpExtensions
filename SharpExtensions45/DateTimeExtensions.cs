@@ -2,7 +2,7 @@
 
 namespace SharpExtensions
 {
-    internal static partial class DateTimeExtensions
+    public static partial class DateTimeExtensions
     {
         /// <summary>
         /// Convert a long value of seconds to a DateTime from Unix Epoch.
