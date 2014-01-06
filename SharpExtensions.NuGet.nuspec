@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SharpExtensions</id>
+    <version>0.0.6-alpha</version>
+    <authors>TheGreatCO</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A collection of extension methods to make things a bit easier, including Task, Enum, String, and Uri extensions.</description>
+    <releaseNotes>Added some new extension methods for Uri.</releaseNotes>
+    <language>en-US</language>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="ReSharper.Annotations" version="7.1.3.130415" />
+        <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
+      </group>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="ReSharper.Annotations" version="7.1.3.130415" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="NuGet Files\SharpExtensions45\*.pp" target="content\net45" />
+    <file src="NuGet Files\SharpExtensions40\*.pp" target="content\net40" />
+  </files>
+</package>
