@@ -7,6 +7,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions45", "SharpE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions40", "SharpExtensions40\SharpExtensions40.csproj", "{5FC66AE0-F7FE-4C12-874C-A175D3018799}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C991AD2B-FA67-409C-BE86-67068BDE5DCE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17A3BD69-2F7D-4FC0-B62C-37E37CE783CA}"
+	ProjectSection(SolutionItems) = preProject
+		SharpExtensions.NuGet.Assembly.nuspec = SharpExtensions.NuGet.Assembly.nuspec
+		SharpExtensions.NuGet.nuspec = SharpExtensions.NuGet.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions.NuGet", "SharpExtensions.NuGet\SharpExtensions.NuGet.csproj", "{1EA6B1F9-0BF2-4424-BA7C-B1D8905EBECA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +36,10 @@ Global
 		{5FC66AE0-F7FE-4C12-874C-A175D3018799}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FC66AE0-F7FE-4C12-874C-A175D3018799}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FC66AE0-F7FE-4C12-874C-A175D3018799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA6B1F9-0BF2-4424-BA7C-B1D8905EBECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA6B1F9-0BF2-4424-BA7C-B1D8905EBECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA6B1F9-0BF2-4424-BA7C-B1D8905EBECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA6B1F9-0BF2-4424-BA7C-B1D8905EBECA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
