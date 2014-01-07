@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using SharpExtensions;
 
-namespace SharpExtensions45.Tests
+namespace SharpExtensions.Tests
 {
     [TestFixture]
     public class TaskExtensionsTests

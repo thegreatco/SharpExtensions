@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using NUnit.Framework;
-using SharpExtensions;
 
-namespace SharpExtensions40.Tests
+namespace SharpExtensions.Tests
 {
     [TestFixture]
     public class TaskExtensionsTests

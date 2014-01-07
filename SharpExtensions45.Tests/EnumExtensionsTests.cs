@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using SharpExtensions;
 
-namespace SharpExtensions45.Tests
+namespace SharpExtensions.Tests
 {
     [TestFixture]
     public class EnumExtensionsTests

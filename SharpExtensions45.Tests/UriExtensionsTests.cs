@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using SharpExtensions;
 
-namespace SharpExtensions45.Tests
+namespace SharpExtensions.Tests
 {
     [TestFixture]
     public class UriExtensionsTests

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using SharpExtensions;
 
-namespace SharpExtensions45.Tests
+namespace SharpExtensions.Tests
 {
     [TestFixture]
     public class LinqExtensionsTests
