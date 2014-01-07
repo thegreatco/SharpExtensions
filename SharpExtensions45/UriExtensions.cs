@@ -24,12 +24,12 @@ namespace SharpExtensions
         }
 
         /// <summary>
-        /// Generates a Uri from the supplied string, any string format parameters, and the supplied <see cref="IUrlFormatable"/> object.
+        /// Generates a Uri from the supplied string, any string format parameters, and the supplied <see cref="IUrlFormatable"/> object as query parameters.
         /// </summary>
         /// <param name="string"> The string to convert to a Uri. </param>
         /// <param name="obj"> The <see cref="IUrlFormatable"/> object to be added as Url parameters. </param>
         /// <param name="args"> The parameters to format into the string using string.format. </param>
-        /// <returns></returns>
+        /// <returns>A <see cref="Uri"/> formatted with the supplied args and <see cref="IUrlFormatable"/> object as query parameters.</returns>
         [StringFormatMethod("format")]
         public static Uri ToUri(this string @string, IUrlFormatable obj, params object[] args)
         {
@@ -46,9 +46,9 @@ namespace SharpExtensions
         /// <param name="key"> The key to be added to the query. </param>
         /// <param name="val"> The of the key to be added to the query. </param>
         /// <returns> The modified <see cref="Uri"/>. </returns>
-        public static Uri AddQuery(this Uri uri, string key, object val)
+        public static Uri With(this Uri uri, string key, object val)
         {
-            return uri.AddQuery(new[] { new KeyValuePair<string, object>(key, val) });
+            return uri.With(new[] { new KeyValuePair<string, object>(key, val) });
         }
 
         /// <summary>
@@ -57,9 +57,9 @@ namespace SharpExtensions
         /// <param name="uri"> The Uri to which the Query string will be added. </param>
         /// <param name="arg"> The KeyValuePair to be added to the Query string. </param>
         /// <returns> The modified <see cref="Uri"/>. </returns>
-        public static Uri AddQuery(this Uri uri, KeyValuePair<string, object> arg)
+        public static Uri With(this Uri uri, KeyValuePair<string, object> arg)
         {
-            return uri.AddQuery(new[] { arg });
+            return uri.With(new[] { arg });
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace SharpExtensions
         /// <param name="uri"> The Uri to which the Query string will be added. </param>
         /// <param name="args"> The KeyValuePairs to be added to the Query string. </param>
         /// <returns> The modified <see cref="Uri"/>. </returns>
-        public static Uri AddQuery(this Uri uri, IEnumerable<KeyValuePair<string, object>> args)
+        public static Uri With(this Uri uri, IEnumerable<KeyValuePair<string, object>> args)
         {
             var builder = new UriBuilder(uri);
             var query = GetQueryParameters(builder);
@@ -84,9 +84,9 @@ namespace SharpExtensions
         /// <param name="key"> The key of the parameter to remove. </param>
         /// <param name="val"> The value of the parameter to remove. </param>
         /// <returns> The modified <see cref="Uri"/>. </returns>
-        public static Uri RemoveQuery(this Uri uri, string key, object val)
+        public static Uri Remove(this Uri uri, string key, object val)
         {
-            return uri.RemoveQuery(new[] { new KeyValuePair<string, object>(key, val) });
+            return uri.Remove(new[] { new KeyValuePair<string, object>(key, val) });
         }
 
         /// <summary>
@@ -95,9 +95,9 @@ namespace SharpExtensions
         /// <param name="uri"> The Uri from which to remove the KeyValuePair. </param>
         /// <param name="arg"> The KeyValuePair to remove from the Query string. </param>
         /// <returns> The modified <see cref="Uri"/>. </returns>
-        public static Uri RemoveQuery(this Uri uri, KeyValuePair<string, object> arg)
+        public static Uri Remove(this Uri uri, KeyValuePair<string, object> arg)
         {
-            return uri.RemoveQuery(new[] { arg });
+            return uri.Remove(new[] { arg });
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace SharpExtensions
         /// <param name="uri"> The Uri from which to remove the KeyValuePairs. </param>
         /// <param name="args"> The KeyValuePairs to remove from the Query string. </param>
         /// <returns> The modified <see cref="Uri"/>. </returns>
-        public static Uri RemoveQuery(this Uri uri, IEnumerable<KeyValuePair<string, object>> args)
+        public static Uri Remove(this Uri uri, IEnumerable<KeyValuePair<string, object>> args)
         {
             var builder = new UriBuilder(uri);
             var query = GetQueryParameters(builder);
@@ -126,7 +126,7 @@ namespace SharpExtensions
         /// <param name="uri"> The Uri from which to remove the keys. </param>
         /// <param name="keys"> The keys to removed from the Query string. </param>
         /// <returns> The modified <see cref="Uri"/>. </returns>
-        public static Uri RemoveQuery(this Uri uri, params string[] keys)
+        public static Uri Remove(this Uri uri, params string[] keys)
         {
             var builder = new UriBuilder(uri);
             var query = GetQueryParameters(builder);
@@ -170,7 +170,7 @@ namespace SharpExtensions
 
             if (allNull) throw new ArgumentException("All the properties of the object are null.  At least one property must have a value. ");
 
-            return @string.ToUri().AddQuery(kvps);
+            return @string.ToUri().With(kvps);
         }
 
         private static string FormatUriParameter(this string @string, string delimeter)

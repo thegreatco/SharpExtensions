@@ -11,7 +11,7 @@ namespace SharpExtensions
         /// <param name="case"> A <see cref="StringCase"/> indicating which case to return.  Valid enumerations are StringCase.Lower and StringCase.Upper. </param>
         /// <exception cref="ArgumentNullException"> If the enum is null. </exception>
         /// <returns></returns>
-        public static string EnumToString(this Enum val, StringCase @case = StringCase.Lower)
+        public static string EnumToString(this Enum val, StringCase @case = StringCase.Default)
         {
             if (val == null) throw new ArgumentNullException("val");
 

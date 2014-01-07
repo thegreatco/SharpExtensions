@@ -73,6 +73,9 @@
       <Link>IUrlFormatable.cs</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="..\SharpExtensions45\LinqExtensions.cs">
+      <Link>LinqExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\StringCase.cs">
       <Link>StringCase.cs</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

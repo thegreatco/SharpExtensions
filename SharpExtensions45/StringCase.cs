@@ -2,6 +2,7 @@
 {
     public enum StringCase
     {
+        Default,
         Lower,
         Upper,
         LowerCamel,
