@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions.NuGet", "Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions45.Tests", "SharpExtensions45.Tests\SharpExtensions45.Tests.csproj", "{166CA164-F7F3-499E-A11B-07CF85255437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions40.Tests", "SharpExtensions40.Tests\SharpExtensions40.Tests.csproj", "{7842FCB9-D7ED-4A91-8ABF-E50EFCB7E04F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{166CA164-F7F3-499E-A11B-07CF85255437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{166CA164-F7F3-499E-A11B-07CF85255437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{166CA164-F7F3-499E-A11B-07CF85255437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7842FCB9-D7ED-4A91-8ABF-E50EFCB7E04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7842FCB9-D7ED-4A91-8ABF-E50EFCB7E04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7842FCB9-D7ED-4A91-8ABF-E50EFCB7E04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7842FCB9-D7ED-4A91-8ABF-E50EFCB7E04F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
