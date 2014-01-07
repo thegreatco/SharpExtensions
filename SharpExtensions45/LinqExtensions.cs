@@ -93,6 +93,18 @@ namespace SharpExtensions
         }
 
         /// <summary>
+        /// Determines if a <see cref="IEnumerable{T}"/> contains any item in args.
+        /// </summary>
+        /// <typeparam name="T">The type of data in the collection.</typeparam>
+        /// <param name="source">The source against which to check the args.</param>
+        /// <param name="args">The args to check against the source.</param>
+        /// <returns>A <see cref="bool"/> indicating whether any item in <param name="args"/> appears in <param name="source"/>.</returns>
+        public static bool ContainsAny<T>(this IEnumerable<T> source, params T[] args)
+        {
+            return args.Any(source.Contains);
+        }
+
+        /// <summary>
         /// Determines if a <see cref="IEnumerable{T}"/> contains all items in <see cref="IEnumerable{T}"/> args.
         /// </summary>
         /// <typeparam name="T">The type of data in the collection.</typeparam>
@@ -100,6 +112,18 @@ namespace SharpExtensions
         /// <param name="args">The args to check against the source.</param>
         /// <returns>A <see cref="bool"/> indicating whether all items in <param name="args"/> appears in <param name="source"/>.</returns>
         public static bool ContainsAll<T>(this IEnumerable<T> source, IEnumerable<T> args)
+        {
+            return args.All(source.Contains);
+        }
+
+        /// <summary>
+        /// Determines if a <see cref="IEnumerable{T}"/> contains all items in args.
+        /// </summary>
+        /// <typeparam name="T">The type of data in the collection.</typeparam>
+        /// <param name="source">The source against which to check the args.</param>
+        /// <param name="args">The args to check against the source.</param>
+        /// <returns>A <see cref="bool"/> indicating whether all items in <param name="args"/> appears in <param name="source"/>.</returns>
+        public static bool ContainsAll<T>(this IEnumerable<T> source, params T[] args)
         {
             return args.All(source.Contains);
         }
@@ -119,6 +143,22 @@ namespace SharpExtensions
             if (argsEnumerable.Count() != sourceEnumerable.Length) return false;
 
             return !sourceEnumerable.Except(argsEnumerable).Any();
+        }
+
+        /// <summary>
+        /// Determines if a <see cref="IEnumerable{T}"/> contains only the items in args.
+        /// </summary>
+        /// <typeparam name="T">The type of data in the collection.</typeparam>
+        /// <param name="source">The source against which to check the args.</param>
+        /// <param name="args">The args to check against the source.</param>
+        /// <returns>A <see cref="bool"/> indicating whether only items in <param name="args"/> appear in <param name="source"/>.</returns>
+        public static bool ContainsOnly<T>(this IEnumerable<T> source, params T[] args)
+        {
+            var sourceEnumerable = source as T[] ?? source.ToArray();
+
+            if (args.Count() != sourceEnumerable.Length) return false;
+
+            return !sourceEnumerable.Except(args).Any();
         }
     }
 }

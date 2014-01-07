@@ -25,6 +25,21 @@ namespace SharpExtensions.Tests
         }
 
         [Test]
+        public void Split()
+        {
+            const string str1 = "abc,def,,ghi";
+            Assert.IsTrue(str1.Split(",").ContainsAll("abc","def","ghi",""));
+            Assert.IsTrue(str1.Split(StringSplitOptions.RemoveEmptyEntries, ",").ContainsOnly("abc", "def", "ghi"));
+
+            const string str2 = "abc,def;ghi,jkl;";
+            Assert.IsTrue(str2.Split(",", ";").ContainsAll("abc", "def", "ghi", "jkl", ""));
+            Assert.IsTrue(str2.Split(StringSplitOptions.RemoveEmptyEntries, ",", ";").ContainsOnly("abc", "def", "ghi", "jkl"));
+
+            Assert.IsTrue(str2.Split(',', ';').ContainsAll("abc", "def", "ghi", "jkl", ""));
+            Assert.IsTrue(str2.Split(StringSplitOptions.RemoveEmptyEntries, ',', ';').ContainsOnly("abc", "def", "ghi", "jkl"));
+        }
+
+        [Test]
         public void IsNumeric()
         {
             Assert.IsTrue("123".IsNumeric());
