@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SharpExtensions</id>
-    <version>0.0.7-alpha</version>
+    <version>0.0.8-alpha</version>
     <authors>TheGreatCO</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A collection of extension methods to make things a bit easier, including Task, Enum, String, and Uri extensions.</description>
-    <releaseNotes>Added some new extension methods for Uri.</releaseNotes>
+    <releaseNotes></releaseNotes>
     <language>en-US</language>
     <dependencies>
       <group targetFramework=".NETFramework4.0">
