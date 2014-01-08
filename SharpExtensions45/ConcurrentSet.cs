@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace SharpExtensions
 {
-    public class ConcurrentSet<T> : IEnumerable<T>, ISet<T>, ICollection<T>
+    public class ConcurrentSet<T> : ISet<T>
     {
         private readonly ConcurrentDictionary<T, byte> _dictionary = new ConcurrentDictionary<T, byte>();
 

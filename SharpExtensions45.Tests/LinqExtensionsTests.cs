@@ -15,7 +15,7 @@ namespace SharpExtensions.Tests
             Assert.IsTrue(arr.WhereNotNull().ContainsAll(new[] { "1", "2", "3", "4" }));
             Assert.IsFalse(arr.WhereNotNull().Contains(null));
 
-            var nullableArr = new int?[4] { null, 1, 2, 3 };
+            var nullableArr = new int?[] { null, 1, 2, 3 };
 
             Assert.IsTrue(nullableArr.WhereNotNull().ContainsAll(new[] { 1, 2, 3 }));
         }
