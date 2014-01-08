@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -21,7 +22,41 @@ namespace SharpExtensions.Tests
         [Test]
         public void ToVoid()
         {
+            var sw = Stopwatch.StartNew();
             Assert.DoesNotThrow(() => TaskEx.Delay(5000).ToVoid());
+            sw.Stop();
+            Assert.IsTrue(sw.ElapsedMilliseconds < 5000);
+        }
+
+        [Test]
+        public void WithCancellation()
+        {
+            // TODO: actually write this test.
+        }
+
+        [Test]
+        public void IgnoreExceptions()
+        {
+            Assert.Throws<Exception>(async () => await TaskEx.Run(() =>
+                                                                  {
+                                                                      throw new Exception();
+                                                                  }));
+            Assert.DoesNotThrow(async () => await TaskEx.Run(() =>
+                                                             {
+                                                                 throw new Exception();
+                                                             }).IgnoreExceptions());
+        }
+
+        [Test]
+        public void ToTask()
+        {
+            // TODO: actually write this test.
+        }
+
+        [Test]
+        public void AsTask()
+        {
+            // TODO: actually write this test.
         }
     }
 }

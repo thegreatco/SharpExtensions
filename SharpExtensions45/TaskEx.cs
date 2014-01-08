@@ -92,5 +92,26 @@ namespace SharpExtensions
         {
             await Task.Delay(timeout, cancellationToken);
         }
+
+        /// <summary>
+        /// Creates a task that runs the specified action.
+        /// </summary>
+        /// <param name="action">The action to execute asynchronously.</param>
+        /// <returns>A task that represents the completion of the action.</returns>
+        public static async Task Run(Action action)
+        {
+            await Run(action, CancellationToken.None);
+        }
+
+        /// <summary>
+        /// Creates a task that runs the specified action.
+        /// </summary>
+        /// <param name="action">The action to execute asynchronously.</param>
+        /// <param name="cancellationToken">A <see cref="CancellationToken"/> for the <see cref="Task"/>.</param>
+        /// <returns>A task that represents the completion of the action.</returns>
+        public static async Task Run(Action action, CancellationToken cancellationToken)
+        {
+            await Task.Run(action, cancellationToken);
+        }
     }
 }
