@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConcurrentSet.cs" />
     <Compile Include="LinqExtensions.cs" />
+    <Compile Include="SetExtensions.cs" />
     <Compile Include="StringCase.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -62,6 +64,7 @@
     <Compile Include="StringExtensions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="TaskEx.cs" />
     <Compile Include="TaskExtensions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>

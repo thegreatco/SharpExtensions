@@ -154,6 +154,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="bool"/> indicating whether only items in <param name="args"/> appear in <param name="source"/>.</returns>
         public static bool ContainsOnly<T>(this IEnumerable<T> source, params T[] args)
         {
+            // TODO: check this logic against http://msmvps.com/blogs/jon_skeet/archive/2010/12/30/reimplementing-linq-to-objects-part-17-except.aspx
             var sourceEnumerable = source as T[] ?? source.ToArray();
 
             if (args.Count() != sourceEnumerable.Length) return false;
