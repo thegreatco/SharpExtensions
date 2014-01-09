@@ -60,12 +60,18 @@
       <Link>EnumExtensions.cs</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="..\SharpExtensions45\ExceptionExtensions.cs">
+      <Link>ExceptionExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\IUrlFormatable.cs">
       <Link>IUrlFormatable.cs</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="..\SharpExtensions45\LinqExtensions.cs">
       <Link>LinqExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\NaiveTimeoutException.cs">
+      <Link>NaiveTimeoutException.cs</Link>
     </Compile>
     <Compile Include="..\SharpExtensions45\SetExtensions.cs">
       <Link>SetExtensions.cs</Link>

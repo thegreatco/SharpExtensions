@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="EnumExtensionsTests.cs" />
+    <Compile Include="ExceptionExtensionsTests.cs" />
     <Compile Include="LinqExtensionsTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

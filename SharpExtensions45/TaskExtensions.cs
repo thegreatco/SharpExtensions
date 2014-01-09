@@ -147,22 +147,5 @@ namespace SharpExtensions
             tcs.SetException(e);
             return tcs.Task;
         }
-
-        internal class NaiveTimeoutException : TimeoutException
-        {
-            public NaiveTimeoutException()
-            {
-            }
-
-            public NaiveTimeoutException(string message)
-                : base(message)
-            {
-            }
-
-            public NaiveTimeoutException(string message, Exception innerException)
-                : base(message, innerException)
-            {
-            }
-        }
     }
 }

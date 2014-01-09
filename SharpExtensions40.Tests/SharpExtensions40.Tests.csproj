@@ -67,6 +67,9 @@
     <Compile Include="..\SharpExtensions45.Tests\EnumExtensionsTests.cs">
       <Link>EnumExtensionsTests.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45.Tests\ExceptionExtensionsTests.cs">
+      <Link>ExceptionExtensionsTests.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45.Tests\LinqExtensionsTests.cs">
       <Link>LinqExtensionsTests.cs</Link>
     </Compile>

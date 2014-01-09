@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConcurrentSet.cs" />
+    <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="LinqExtensions.cs" />
+    <Compile Include="NaiveTimeoutException.cs" />
     <Compile Include="SetExtensions.cs" />
     <Compile Include="StringCase.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
