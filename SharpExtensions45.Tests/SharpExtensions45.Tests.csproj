@@ -58,6 +58,7 @@
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="EnumExtensionsTests.cs" />
     <Compile Include="ExceptionExtensionsTests.cs" />
+    <Compile Include="JsonExtensionTests.cs" />
     <Compile Include="LinqExtensionsTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharpExtensions45.Json\SharpExtensions45.Json.csproj">
+      <Project>{a65b4ab6-28d8-4fb1-8429-5c4541e7060c}</Project>
+      <Name>SharpExtensions45.Json</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpExtensions45\SharpExtensions45.csproj">
       <Project>{bdb26656-0058-4dd6-a9ec-c27b71461874}</Project>
       <Name>SharpExtensions45</Name>

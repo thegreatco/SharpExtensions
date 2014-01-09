@@ -70,6 +70,9 @@
     <Compile Include="..\SharpExtensions45.Tests\ExceptionExtensionsTests.cs">
       <Link>ExceptionExtensionsTests.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45.Tests\JsonExtensionTests.cs">
+      <Link>JsonExtensionTests.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45.Tests\LinqExtensionsTests.cs">
       <Link>LinqExtensionsTests.cs</Link>
     </Compile>
@@ -88,6 +91,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharpExtensions40.Json\SharpExtensions40.Json.csproj">
+      <Project>{70a4bdd6-08cd-4d6d-a302-ced026ddcd7c}</Project>
+      <Name>SharpExtensions40.Json</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpExtensions40\SharpExtensions40.csproj">
       <Project>{5fc66ae0-f7fe-4c12-874c-a175d3018799}</Project>
       <Name>SharpExtensions40</Name>
