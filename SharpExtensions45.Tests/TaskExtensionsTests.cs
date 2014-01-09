@@ -11,9 +11,8 @@ namespace SharpExtensions.Tests
         [Test]
         public void WithTimeout()
         {
-            var task = TaskEx.Delay(500);
-            Assert.Throws<NaiveTimeoutException>(async () => await task.WithTimeout(100));
-            Assert.Throws<NaiveTimeoutException>(async () => await task.WithTimeout(TimeSpan.FromMilliseconds(100)));
+            Assert.Throws<NaiveTimeoutException>(async () => await TaskEx.Delay(500).WithTimeout(100));
+            Assert.Throws<NaiveTimeoutException>(async () => await TaskEx.Delay(500).WithTimeout(TimeSpan.FromMilliseconds(100)));
 
             Assert.DoesNotThrow(async () => await TaskEx.Delay(100).WithTimeout(500));
             Assert.DoesNotThrow(async () => await TaskEx.Delay(100).WithTimeout(TimeSpan.FromMilliseconds(500)));
