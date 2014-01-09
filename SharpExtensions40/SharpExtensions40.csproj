@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations">
-      <HintPath>..\packages\ReSharper.Annotations.7.1.3.130415\lib\net\JetBrains.Annotations.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Net4">
       <HintPath>..\packages\Microsoft.CompilerServices.AsyncTargetingPack.1.0.0\lib\net40\Microsoft.CompilerServices.AsyncTargetingPack.Net4.dll</HintPath>
     </Reference>
@@ -72,6 +69,18 @@
     </Compile>
     <Compile Include="..\SharpExtensions45\NaiveTimeoutException.cs">
       <Link>NaiveTimeoutException.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\RefEliminators\ImplicitUseKindFlags.cs">
+      <Link>RefEliminators\ImplicitUseKindFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\RefEliminators\ImplicitUseTargetFlags.cs">
+      <Link>RefEliminators\ImplicitUseTargetFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\RefEliminators\StringFormatMethodAttribute.cs">
+      <Link>RefEliminators\StringFormatMethodAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\RefEliminators\UsedImplicitly.cs">
+      <Link>RefEliminators\UsedImplicitly.cs</Link>
     </Compile>
     <Compile Include="..\SharpExtensions45\SetExtensions.cs">
       <Link>SetExtensions.cs</Link>

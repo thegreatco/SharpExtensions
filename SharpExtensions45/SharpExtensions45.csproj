@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations">
-      <HintPath>..\packages\ReSharper.Annotations.7.1.3.130415\lib\net\JetBrains.Annotations.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConcurrentSet.cs" />
+    <Compile Include="RefEliminators\ImplicitUseKindFlags.cs" />
+    <Compile Include="RefEliminators\ImplicitUseTargetFlags.cs" />
+    <Compile Include="RefEliminators\UsedImplicitly.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="NaiveTimeoutException.cs" />
@@ -66,6 +66,7 @@
     <Compile Include="StringExtensions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="RefEliminators\StringFormatMethodAttribute.cs" />
     <Compile Include="TaskEx.cs" />
     <Compile Include="TaskExtensions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -73,9 +74,6 @@
     <Compile Include="UriExtensions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

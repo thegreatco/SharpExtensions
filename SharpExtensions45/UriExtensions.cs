@@ -133,7 +133,7 @@ namespace SharpExtensions
             foreach (var obj in keys)
             {
                 bool result;
-                do result = query.Remove(query.Find(x => x.Key == obj)); while (result);
+                do result = query.Remove(query.FirstOrDefault(x => x.Key == obj)); while (result);
             }
 
             builder.Query = string.Join("&", query.Select(x => "{0}={1}".With(x.Key, x.Value)));
