@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcurrentSet.cs" />
+    <Compile Include="ConcurrentSet.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="RefEliminators\ImplicitUseKindFlags.cs" />
     <Compile Include="RefEliminators\ImplicitUseTargetFlags.cs" />
     <Compile Include="RefEliminators\UsedImplicitly.cs" />
@@ -50,30 +52,16 @@
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="NaiveTimeoutException.cs" />
     <Compile Include="SetExtensions.cs" />
-    <Compile Include="StringCase.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="DateTimeExtensions.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="EnumExtensions.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="IUrlFormatable.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    <Compile Include="StringCase.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="IUrlFormatable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtensions.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="RefEliminators\StringFormatMethodAttribute.cs" />
     <Compile Include="TaskEx.cs" />
-    <Compile Include="TaskExtensions.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="UriExtensions.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    <Compile Include="TaskExtensions.cs" />
+    <Compile Include="UriExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
