@@ -13,11 +13,16 @@ namespace SharpExtensions.Tests
         [Test]
         public void Descrption()
         {
+            var str = new StringBuilder()
+                .AppendLine("Application failed.")
+                .AppendLine("Call of Method0 failed")
+                .AppendLine("Arg0 cannot be blank.");
+
             var argEx = new ArgumentException("Arg0 cannot be blank.");
             var ex = new Exception("Call of Method0 failed", argEx);
             var appEx = new ApplicationException("Application failed.", ex);
 
-            Console.WriteLine(appEx.SimpleDescription());
+            Assert.IsTrue(appEx.SimpleDescription() == str.ToString());
         }
     }
 }
