@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharpExtensions
 {
-    public static class ExceptionExtensions
+    public static partial class ExceptionExtensions
     {
         /// <summary>
         /// Get a simple description of an <see cref="Exception"/> based on the <see cref="Exception.Message"/>.

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace SharpExtensions.Json
 {
-    public static class JsonExtensions
+    public static partial class JsonExtensions
     {
         public static string ToJson(this object obj, Formatting formatting = Formatting.Indented)
         {

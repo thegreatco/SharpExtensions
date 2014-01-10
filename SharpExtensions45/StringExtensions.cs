@@ -47,6 +47,30 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="string">The string to split.</param>
         /// <param name="options">The <see cref="StringSplitOptions"/>.</param>
+        /// <param name="separator">The separators with which to split the <param name="string"/>.</param>
+        /// <returns>The split strings.</returns>
+        public static string[] Split(this string @string, string separator, StringSplitOptions options)
+        {
+            return @string.Split(options, separator);
+        }
+
+        /// <summary>
+        /// Extension method for <see cref="string"/>.Split()
+        /// </summary>
+        /// <param name="string">The string to split.</param>
+        /// <param name="options">The <see cref="StringSplitOptions"/>.</param>
+        /// <param name="separator">The separators with which to split the <param name="string"/>.</param>
+        /// <returns>The split strings.</returns>
+        public static string[] Split(this string @string, char separator, StringSplitOptions options)
+        {
+            return @string.Split(options, separator);
+        }
+
+        /// <summary>
+        /// Extension method for <see cref="string"/>.Split()
+        /// </summary>
+        /// <param name="string">The string to split.</param>
+        /// <param name="options">The <see cref="StringSplitOptions"/>.</param>
         /// <param name="separators">The separators with which to split the <param name="string"/>.</param>
         /// <returns>The split strings.</returns>
         public static string[] Split(this string @string, StringSplitOptions options, params char[] separators)

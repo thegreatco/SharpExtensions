@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SharpExtensions
 {
-    public static class LinqExtensions
+    public static partial class LinqExtensions
     {
         /// <summary>
         /// Return only non-null items from the source sequence.

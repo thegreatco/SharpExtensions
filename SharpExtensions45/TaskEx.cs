@@ -9,7 +9,7 @@ namespace SharpExtensions
     /// Implementation of TaskEx for .NET45, simply a wrapper around the built in Task methods to allow sharing of source files between .NET40 and .NET45
     /// These methods shouldn't be called from outside SharpExtensions.
     /// </summary>
-    public static class TaskEx
+    public static partial class TaskEx
     {
         /// <summary>
         /// Creates a Task that will complete when any of the tasks in the provided collection completes.
