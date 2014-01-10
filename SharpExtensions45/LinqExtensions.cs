@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SharpExtensions
@@ -160,6 +161,40 @@ namespace SharpExtensions
             if (args.Count() != sourceEnumerable.Length) return false;
 
             return !sourceEnumerable.Except(args).Any();
+        }
+
+        /// <summary>
+        /// Include only the values in source as long as the corresponding position in args is true.
+        /// </summary>
+        /// <typeparam name="T">The type of data in the collection.</typeparam>
+        /// <param name="source">The source against which to check the args.</param>
+        /// <param name="args">The <see cref="Enumerable"/> of <see cref="bool"/> values.</param>
+        /// <returns>The filtered list.</returns>
+        public static IEnumerable<T> IncludeIf<T>(this IEnumerable<T> source, IEnumerable<bool> args)
+        {
+            var sourceArr = source as T[] ?? source.ToArray();
+            var argsArr = args as bool[] ?? args.ToArray();
+            if (sourceArr.Length != argsArr.Length) throw new ArgumentOutOfRangeException("args", "Length of includes does not match length of source.");
+
+            return sourceArr.Zip(argsArr, (x, include) => new { include, x }).Where(x => x.include).Select(x => x.x);
+        }
+
+        /// <summary>
+        /// Include only the values in source as long as the corresponding position in args is true.
+        /// </summary>
+        /// <typeparam name="TSource">The type of data in the source collection.</typeparam>
+        /// <typeparam name="TArgs">The type of data in the args collection.</typeparam>
+        /// <param name="source">The source against which to check the args.</param>
+        /// <param name="args">The <see cref="Enumerable"/> of <see cref="bool"/> values.</param>
+        /// <param name="trueValues">The values that represent a true state for T.</param>
+        /// <returns>The filtered list.</returns>
+        public static IEnumerable<TSource> IncludeIf<TSource, TArgs>(this IEnumerable<TSource> source, IEnumerable<TArgs> args, params TArgs[] trueValues)
+        {
+            var sourceArr = source as TSource[] ?? source.ToArray();
+            var argsArr = args as TArgs[] ?? args.ToArray();
+            if (sourceArr.Length != argsArr.Length) throw new ArgumentOutOfRangeException("args", "Length of includes does not match length of source.");
+
+            return sourceArr.Zip(argsArr, (x, include) => new { include, x }).Where(x => trueValues.Contains(x.include)).Select(x => x.x);
         }
     }
 }
