@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SharpExtensions.Assembly</id>
-    <version>0.0.6</version>
+    <version>0.0.8</version>
     <authors>TheGreatCO</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A collection of extension methods to make things a bit easier, including Task, Enum, String, and Uri extensions.</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Added pdb files to package.</releaseNotes>
     <language>en-US</language>
     <dependencies>
       <group targetFramework=".NETFramework4.0">
@@ -18,6 +18,8 @@
   </metadata>
   <files>
     <file src="SharpExtensions45\bin\Release\SharpExtensions45.dll" target="lib\net45" />
+    <file src="SharpExtensions45\bin\Release\SharpExtensions45.pdb" target="lib\net45" />
     <file src="SharpExtensions40\bin\Release\SharpExtensions40.dll" target="lib\net40" />
+    <file src="SharpExtensions40\bin\Release\SharpExtensions40.pdb" target="lib\net40" />
   </files>
 </package>
