@@ -76,6 +76,9 @@
     <Compile Include="..\SharpExtensions45.Tests\LinqExtensionsTests.cs">
       <Link>LinqExtensionsTests.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45.Tests\NumericExtensionsTests.cs">
+      <Link>NumericExtensionsTests.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45.Tests\StringExtensionsTests.cs">
       <Link>StringExtensionsTests.cs</Link>
     </Compile>

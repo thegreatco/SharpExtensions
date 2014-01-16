@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace SharpExtensions.Tests
 {
     [TestFixture]
-    public class NumericalExtensionsTests
+    public class NumericExtensionsTests
     {
         [Test]
         public void ToShort()
