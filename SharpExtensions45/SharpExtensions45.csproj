@@ -45,6 +45,7 @@
     <Compile Include="ConcurrentSet.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="NumericExtensions.cs" />
     <Compile Include="RefEliminators\ImplicitUseKindFlags.cs" />
     <Compile Include="RefEliminators\ImplicitUseTargetFlags.cs" />
     <Compile Include="RefEliminators\UsedImplicitly.cs" />

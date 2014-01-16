@@ -67,6 +67,9 @@
     <Compile Include="..\SharpExtensions45\NaiveTimeoutException.cs">
       <Link>NaiveTimeoutException.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45\NumericExtensions.cs">
+      <Link>NumericExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\RefEliminators\ImplicitUseKindFlags.cs">
       <Link>RefEliminators\ImplicitUseKindFlags.cs</Link>
     </Compile>

@@ -60,6 +60,7 @@
     <Compile Include="ExceptionExtensionsTests.cs" />
     <Compile Include="JsonExtensionTests.cs" />
     <Compile Include="LinqExtensionsTests.cs" />
+    <Compile Include="NumericalExtensionsTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskExtensionsTests.cs" />

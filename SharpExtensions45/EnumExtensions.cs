@@ -108,5 +108,19 @@ namespace SharpExtensions
 
             return default(T);
         }
+
+        /// <summary>
+        /// Convert the string to an <see cref="Enum"/> of <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">The enum type.</typeparam>
+        /// <param name="string">The <see cref="string"/> to parse.</param>
+        /// <param name="ignoreCase">A <see cref="bool"/> indicating if the parser should ignore case.</param>
+        /// <returns>A <see cref="Nullable"/> of <typeparamref name="T"/>.</returns>
+        public static T? ToEnum<T>(this string @string, bool ignoreCase = false) where T : struct
+        {
+            T val;
+            var result = Enum.TryParse(@string, ignoreCase, out val);
+            return result ? new T?(val) : null;
+        }
     }
 }
