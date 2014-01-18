@@ -209,6 +209,12 @@ namespace SharpExtensions
             return source.Where(matchPredicate);
         }
 
+        /// <summary>
+        /// An Optimized implementation of <see cref="IEnumerable{T}"/>.Any()
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source to test.</param>
+        /// <returns>A <see cref="bool"/> indicating if any items exist in the collection.</returns>
         public static bool FastAny<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null)
@@ -224,6 +230,13 @@ namespace SharpExtensions
             return false;
         }
 
+        /// <summary>
+        /// An Optimized implementation of <see cref="IEnumerable{T}"/>.Single(predicate).
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source to test.</param>
+        /// <param name="predicate">The predicate on which to filter.</param>
+        /// <returns>The first item matching <paramref name="predicate"/> in the <paramref name="source"/> collection.</returns>
         public static TSource FastSingle<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             return source.Where(predicate).Single();

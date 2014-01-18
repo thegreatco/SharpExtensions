@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using NUnit.Framework;
 
 namespace SharpExtensions.Tests
@@ -132,6 +134,50 @@ namespace SharpExtensions.Tests
         {
             var stuff = new[] { "abc", "def", "ghi" };
             Assert.IsTrue(stuff.RemoveIf(x => !x.EndsWith("c")).ContainsOnly(new[] { "def", "ghi" }));
+        }
+
+        [Test]
+        public void FastAnySpeedTest()
+        {
+            const int n = 10000;
+            var times = new Tuple<long, long>[1000];
+            for (var i = 0; i < 1000; i++)
+            {
+                var r = new Random();
+                var en = Enumerable.Range(0, 10*n).ToList();
+                var sw1 = Stopwatch.StartNew();
+                var result = en.Any();
+                sw1.Stop();
+                var sw2 = Stopwatch.StartNew();
+                result = en.FastAny();
+                sw2.Stop();
+                times[i] = new Tuple<long, long>(sw1.ElapsedTicks, sw2.ElapsedTicks);
+            }
+
+            Console.WriteLine("Any vs FastAny");
+            Console.WriteLine("{0} vs {1}", times.Average(x => x.Item1), times.Average(x => x.Item2));
+        }
+
+        [Test]
+        public void FastSingleSpeedTest()
+        {
+            const int n = 10000;
+            var times = new Tuple<long, long>[1000];
+            for (var i = 0; i < 1000; i++)
+            {
+                var r = new Random();
+                var en = Enumerable.Range(0, 10 * n).ToList();
+                var sw1 = Stopwatch.StartNew();
+                var result = en.Single(x => x == 10000);
+                sw1.Stop();
+                var sw2 = Stopwatch.StartNew();
+                result = en.FastSingle(x => x == 10000);
+                sw2.Stop();
+                times[i] = new Tuple<long, long>(sw1.ElapsedTicks, sw2.ElapsedTicks);
+            }
+
+            Console.WriteLine("Single vs FastSingle");
+            Console.WriteLine("{0} vs {1}", times.Average(x => x.Item1), times.Average(x => x.Item2));
         }
     }
 }
