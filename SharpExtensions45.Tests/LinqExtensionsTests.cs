@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
@@ -113,6 +114,24 @@ namespace SharpExtensions.Tests
             arr2 = new[] { "def", "ghi" };
 
             Assert.IsFalse(arr1.ContainsOnly(arr2));
+        }
+
+        [Test]
+        public void IncludeIf()
+        {
+            var stuff = new[] { "abc", "def", "ghi" };
+            var args = new[] { true, false, true };
+            Assert.IsTrue(stuff.IncludeIf(args).ContainsOnly(new[] { "abc", "ghi" }));
+            
+            var args2 = new[] { "foo", "foo", "bar" };
+            Assert.IsTrue(stuff.IncludeIf(args2, "foo").ContainsOnly(new[] { "abc", "def" }));
+        }
+
+        [Test]
+        public void RemoveIf()
+        {
+            var stuff = new[] { "abc", "def", "ghi" };
+            Assert.IsTrue(stuff.RemoveIf(x => !x.EndsWith("c")).ContainsOnly(new[] { "def", "ghi" }));
         }
     }
 }
