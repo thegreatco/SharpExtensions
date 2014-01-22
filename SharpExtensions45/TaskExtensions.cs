@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -6,6 +7,8 @@ namespace SharpExtensions
 {
     public static partial class TaskExtensions
     {
+        public static EventHandler<TaskErrorEventArgs> TaskErrorEventHandler;
+
         private static readonly TaskCompletionSource<object> NeverCompleteSource = new TaskCompletionSource<object>();
 
         public static Task NeverComplete { get { return NeverCompleteSource.Task; } }
@@ -80,30 +83,85 @@ namespace SharpExtensions
         /// <summary>
         /// Run a task as void, allowing control to return immediately to the application.
         /// </summary>
+        /// <param name="caller">The caller of the method.</param>
         /// <param name="task">The task to run.</param>
-        public static async void ToVoid(this Task task)
+        public static async void ToVoid(this Task task, string caller = null)
         {
-            await task;
+            try
+            {
+                await task;
+            }
+            catch (AggregateException aggex)
+            {
+                if (TaskErrorEventHandler != null)
+                    TaskErrorEventHandler(null, new TaskErrorEventArgs(aggex, caller));
+            }
         }
 
         /// <summary>
         /// Executes the <see cref="Task"/> ignoring all thrown exceptions during execution.
         /// </summary>
         /// <param name="task">The <see cref="Task"/> to run.</param>
+        /// <param name="caller">The caller of the method.</param>
         /// <returns>A <see cref="Task"/> that ignores all thrown execeptions during execution.</returns>
-        public static Task IgnoreExceptions(this Task task)
+        public static async Task IgnoreExceptions(this Task task, string caller = null)
+        {
+            await task.ContinueWith(t =>
+                                    {
+                                        if (t.Exception != null)
+                                            t.Exception.Handle(ex =>
+                                                               {
+                                                                   if (TaskErrorEventHandler != null) TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
+                                                                   else Trace.WriteLine(ex);
+                                                                   return true;
+                                                               });
+
+                                    });
+        }
+
+        /// <summary>
+        /// Executes the <see cref="Task"/> ignoring all thrown exceptions during execution.
+        /// </summary>
+        /// <typeparam name="T">The return type of the task.</typeparam>
+        /// <param name="task">The <see cref="Task"/> to run.</param>
+        /// <param name="caller">The caller of the method.</param>
+        /// <returns>A <see cref="Task"/> that ignores all thrown execeptions during execution.</returns>
+        public static async Task<T> IgnoreExceptions<T>(this Task<T> task, string caller = null)
+        {
+            return await task.ContinueWith(t =>
+                                              {
+                                                  if (t.Exception != null)
+                                                  {
+                                                      t.Exception.Handle(ex =>
+                                                                         {
+                                                                             if (TaskErrorEventHandler != null) TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
+                                                                             else Trace.WriteLine(ex);
+                                                                             return true;
+                                                                         });
+                                                      return default(T);
+                                                  }
+                                                  return t.Result;
+                                              });
+        }
+
+        /// <summary>
+        /// Observe any unobserved exceptions to prevent crashing of entire runtime.
+        /// </summary>
+        /// <param name="task">The task from which to observe the exceptions.</param>
+        /// <returns>The original task with the exception observation enabled.</returns>
+        public static Task ObserveExceptions(this Task task)
         {
             task.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.NotOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
             return task;
         }
 
         /// <summary>
-        /// Executes the <see cref="Task"/> ignoring all thrown exceptions during execution.
+        /// Observe any unobserved exceptions to prevent crashing of entire runtime.
         /// </summary>
-        /// <typeparam name="T">The return type of the <see cref="Task"/>.</typeparam>
-        /// <param name="task">The <see cref="Task"/> to run.</param>
-        /// <returns>A <see cref="Task"/> that ignores all thrown execeptions during execution.</returns>
-        public static Task<T> IgnoreExceptions<T>(this Task<T> task)
+        /// <typeparam name="T">The return type of the Task.</typeparam>
+        /// <param name="task">The task from which to observe the exceptions.</param>
+        /// <returns>The original task with the exception observation enabled.</returns>
+        public static Task<T> ObserveExceptions<T>(this Task<T> task)
         {
             task.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.NotOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
             return task;

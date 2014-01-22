@@ -113,5 +113,10 @@ namespace SharpExtensions
         {
             await Task.Run(action, cancellationToken);
         }
+
+        public static async Task<T> Run<T>(Func<T> func)
+        {
+            return await Task.Run(func);
+        }
     }
 }

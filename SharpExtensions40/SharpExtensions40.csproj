@@ -91,6 +91,9 @@
     <Compile Include="..\SharpExtensions45\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45\TaskErrorEventArgs.cs">
+      <Link>TaskErrorEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\TaskExtensions.cs">
       <Link>TaskExtensions.cs</Link>
     </Compile>
