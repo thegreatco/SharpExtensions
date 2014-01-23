@@ -2,11 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SharpExtensions.Assembly</id>
-    <version>0.0.11</version>
+    <version>0.0.12</version>
     <authors>TheGreatCO</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A collection of extension methods to make things a bit easier, including Task, Enum, String, and Uri extensions.</description>
     <releaseNotes>Added new RemoveIf method.</releaseNotes>
+    <projectUrl>http://www.github.com/thegreatco/SharpExtensions</projectUrl>
     <language>en-US</language>
     <dependencies>
       <group targetFramework=".NETFramework4.0">
