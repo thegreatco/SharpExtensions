@@ -241,5 +241,66 @@ namespace SharpExtensions
         {
             return source.Where(predicate).Single();
         }
+
+        /// <summary>
+        /// Like FirstOrDefault() but returns the <see cref="IEnumerable{T}"/> as an array or null.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source to to return.</param>
+        /// <returns>The <paramref name="source"/> as an array or null.</returns>
+        public static TSource[] ToArrayOrDefault<TSource>(this IEnumerable<TSource> source)
+        {
+            return source.FastAny() ? source.ToArray() : null;
+        }
+
+        /// <summary>
+        /// Like FirstOrDefault() but returns the <see cref="IEnumerable{T}"/> as a List or null.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source to to return.</param>
+        /// <returns>The <paramref name="source"/> as an List or null.</returns>
+        public static IList<TSource> ToListOrDefault<TSource>(this IEnumerable<TSource> source)
+        {
+            return source.FastAny() ? source.ToList() : null;
+        }
+
+        /// <summary>
+        /// Like FirstOrDefault() but returns the <see cref="IEnumerable{T}"/> as a HashSet or null.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source to to return.</param>
+        /// <returns>The <paramref name="source"/> as a HashSet or null.</returns>
+        public static ISet<TSource> ToHashSetOrDefault<TSource>(this IEnumerable<TSource> source)
+        {
+            return source.FastAny() ? source.ToHashSet() : null;
+        }
+
+        /// <summary>
+        /// Takes an Array of Arrays and merges them into a Set of Sets where overlapping groups are merged.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="source">The source to to return.</param>
+        /// <returns>The <paramref name="source"/> as a HashSet or null.</returns>
+        public static ISet<HashSet<TSource>> Crossect<TSource>(this IEnumerable<IEnumerable<TSource>> source)
+        {
+            var hashSet = new HashSet<HashSet<TSource>>();
+            var sourceArr = source as IEnumerable<TSource>[] ?? source.ToArray();
+            foreach (var list in sourceArr)
+            {
+                var set = new HashSet<TSource>();
+                var listArr = list as TSource[] ?? list.ToArray();
+                foreach (var item in listArr)
+                {
+                    var items = sourceArr.Where(x => x.ContainsAny(item)).SelectMany();
+                    set.AddRange(items);
+                }
+
+                var hashSetItem = hashSet.SingleOrDefault(x => x.Contains(set.First()));
+                if (hashSetItem != null) hashSetItem.AddRange(set);
+                else hashSet.Add(set);
+            }
+
+            return hashSet;
+        }
     }
 }
