@@ -53,6 +53,7 @@
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="NaiveTimeoutException.cs" />
     <Compile Include="SetExtensions.cs" />
+    <Compile Include="SortedObservableCollection.cs" />
     <Compile Include="StringCase.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />

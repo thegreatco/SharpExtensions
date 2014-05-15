@@ -217,8 +217,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="bool"/> indicating if any items exist in the collection.</returns>
         public static bool FastAny<TSource>(this IEnumerable<TSource> source)
         {
-            if (source == null)
-                throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException("source");
             var collection = source as ICollection<TSource>;
             if (collection != null)
                 return collection.Count > 0;

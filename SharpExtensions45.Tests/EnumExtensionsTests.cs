@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace SharpExtensions.Tests
 {
@@ -8,6 +9,7 @@ namespace SharpExtensions.Tests
         [Test]
         public void EnumToString()
         {
+            Assert.Throws<ArgumentNullException>(() => EnumExtensions.GetName(null));
             Assert.IsTrue(TestEnum.Default.GetName() == "Default");
             Assert.IsTrue(TestEnum.A.GetName() == "A");
             Assert.IsTrue(TestEnum.B.GetName() == "B");

@@ -41,6 +41,33 @@ namespace SharpExtensions
         }
 
         /// <summary>
+        /// Run a task with a timeout, execute the supplied action if a timeout occurs.
+        /// </summary>
+        /// <param name="task">The task to run.</param>
+        /// <param name="timeout">The maximum amount of time the task is allowed to run.</param>
+        /// <param name="action">The action to execute if the task times out.</param>
+        /// <returns>A <see cref="Task"/>.</returns>
+        public static async Task WithTimeout(this Task task, TimeSpan timeout, Action action)
+        {
+            if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
+                action.Invoke();
+
+            await task;
+        }
+
+        /// <summary>
+        /// Run a task with a timeout, execute the supplied action if a timeout occurs.
+        /// </summary>
+        /// <param name="task">The task to run.</param>
+        /// <param name="timeout">The maximum amount of time in milliseconds the task is allowed to run.</param>
+        /// <param name="action">The action to execute if the task times out.</param>
+        /// <returns>A <see cref="Task"/>.</returns>
+        public static async Task WithTimeout(this Task task, int timeout, Action action)
+        {
+            await WithTimeout(task, TimeSpan.FromMilliseconds(timeout), action);
+        }
+
+        /// <summary>
         /// A naive implementation of timeout and cancellation over an uncancelable <see cref="Task"/>.
         /// </summary>
         /// <typeparam name="T">The result type of the task</typeparam>

@@ -63,8 +63,8 @@ namespace SharpExtensions.Tests
         [Test]
         public void AddRange()
         {
-            var arr1 = new List<string> { "abc" };
-            var arr2 = new List<string> { "def", "ghi" };
+            var arr1 = new HashSet<string> { "abc" };
+            var arr2 = new HashSet<string> { "def", "ghi" };
             arr1.AddRange(arr2);
 
             Assert.IsTrue(arr1.ContainsAll(arr2));
@@ -75,11 +75,11 @@ namespace SharpExtensions.Tests
         public void ContainsAny()
         {
             var arr1 = new[] { "abc" };
-            var arr2 = new[] { "abc", "def", "ghi" };
-
+            var arr2 = new List<string> { "abc", "def", "ghi" };
+            Assert.IsTrue(arr1.ContainsAny("abc", "def", "ghi"));
             Assert.IsTrue(arr1.ContainsAny(arr2));
 
-            arr2 = new [] { "def" };
+            arr2 = new List<string> { "def" };
 
             Assert.IsFalse(arr1.ContainsAny(arr2));
         }
@@ -105,16 +105,14 @@ namespace SharpExtensions.Tests
         public void ContainsOnly()
         {
             var arr1 = new[] { "abc", "def", "ghi" };
-            var arr2 = new[] { "abc", "def", "ghi" };
+            
+            Assert.IsTrue(arr1.ContainsOnly("abc", "def", "ghi"));
+            Assert.IsFalse(arr1.ContainsOnly("abc", "ghi"));
 
+            var arr2 = new List<string> { "abc", "def", "ghi" };
             Assert.IsTrue(arr1.ContainsOnly(arr2));
 
-            arr2 = new[] { "def" };
-
-            Assert.IsFalse(arr1.ContainsOnly(arr2));
-
-            arr2 = new[] { "def", "ghi" };
-
+            arr2 = new List<string> {"def"};
             Assert.IsFalse(arr1.ContainsOnly(arr2));
         }
 
@@ -123,9 +121,11 @@ namespace SharpExtensions.Tests
         {
             var stuff = new[] { "abc", "def", "ghi" };
             var args = new[] { true, false, true };
+            Assert.Throws<ArgumentOutOfRangeException>(() => stuff.IncludeIf(new[] {true}));
             Assert.IsTrue(stuff.IncludeIf(args).ContainsOnly(new[] { "abc", "ghi" }));
             
             var args2 = new[] { "foo", "foo", "bar" };
+            Assert.Throws<ArgumentOutOfRangeException>(() => stuff.IncludeIf(new[] {"foo"}, "foo"));
             Assert.IsTrue(stuff.IncludeIf(args2, "foo").ContainsOnly(new[] { "abc", "def" }));
         }
 
@@ -134,6 +134,20 @@ namespace SharpExtensions.Tests
         {
             var stuff = new[] { "abc", "def", "ghi" };
             Assert.IsTrue(stuff.RemoveIf(x => !x.EndsWith("c")).ContainsOnly(new[] { "def", "ghi" }));
+        }
+
+        [Test]
+        public void FastAny()
+        {
+            Assert.Throws<ArgumentNullException>(() => LinqExtensions.FastAny<int[]>(null));
+            var collection = new List<string> {"abc", "def", "ghi"};
+            Assert.IsTrue(collection.FastAny());
+
+            var nonCollecton = new Queue<string>();
+            nonCollecton.Enqueue("abc");
+            nonCollecton.Enqueue("def");
+            nonCollecton.Enqueue("ghi");
+            Assert.IsTrue(nonCollecton.FastAny());
         }
 
         [Test]
