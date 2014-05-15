@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DocumentationFile>bin\Debug\SharpExtensions45.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SharpExtensions45.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,13 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcurrentSet.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    <Compile Include="ConcurrentSet.cs" />
     <Compile Include="NumericExtensions.cs" />
-    <Compile Include="RefEliminators\ImplicitUseKindFlags.cs" />
-    <Compile Include="RefEliminators\ImplicitUseTargetFlags.cs" />
-    <Compile Include="RefEliminators\UsedImplicitly.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="NaiveTimeoutException.cs" />
@@ -60,7 +57,6 @@
     <Compile Include="IUrlFormatable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
-    <Compile Include="RefEliminators\StringFormatMethodAttribute.cs" />
     <Compile Include="TaskErrorEventArgs.cs" />
     <Compile Include="TaskEx.cs" />
     <Compile Include="TaskExtensions.cs" />

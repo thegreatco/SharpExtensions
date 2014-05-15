@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SharpExtensions.Json.Assembly</id>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <authors>TheGreatCO</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A collection of extension methods for Json to make things a bit easier.</description>
-    <releaseNotes>Added pdb files to package.</releaseNotes>
+    <releaseNotes>Added missing xml documentation file.</releaseNotes>
     <language>en-US</language>
     <dependencies>
       <group targetFramework=".NETFramework4.0">
@@ -21,7 +21,9 @@
   <files>
     <file src="SharpExtensions45.Json\bin\Release\SharpExtensions45.Json.dll" target="lib\net45" />
     <file src="SharpExtensions45.Json\bin\Release\SharpExtensions45.Json.pdb" target="lib\net45" />
+    <file src="SharpExtensions45.Json\bin\Release\SharpExtensions45.Json.xml" target="lib\net45" />
     <file src="SharpExtensions40.Json\bin\Release\SharpExtensions40.Json.dll" target="lib\net40" />
     <file src="SharpExtensions40.Json\bin\Release\SharpExtensions40.Json.pdb" target="lib\net40" />
+    <file src="SharpExtensions40.Json\bin\Release\SharpExtensions40.Json.xml" target="lib\net40" />
   </files>
 </package>

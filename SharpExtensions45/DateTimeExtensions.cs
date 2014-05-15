@@ -2,6 +2,9 @@
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A set of DateTime Extension Methods
+    /// </summary>
     public static partial class DateTimeExtensions
     {
         /// <summary>
