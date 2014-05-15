@@ -10,6 +10,7 @@ namespace SharpExtensions.Tests
         [Test]
         public void With()
         {
+            StringExtensions.With("{0}", "abc");
             Assert.IsTrue("{0}".With("abc") == "abc");
 
             Assert.IsTrue("{0}".With("abc", "def") == "abc");

@@ -114,6 +114,12 @@ namespace SharpExtensions
             await Task.Run(action, cancellationToken);
         }
 
+        /// <summary>
+        /// Creates a task that runs the specified <see cref="Func{T}"/>.
+        /// </summary>
+        /// <param name="func">The <see cref="Func{T}"/> to run</param>
+        /// <typeparam name="T">The type returned by the Func</typeparam>
+        /// <returns>The result of <paramref name="func"/></returns>
         public static async Task<T> Run<T>(Func<T> func)
         {
             return await Task.Run(func);

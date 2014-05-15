@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A collection of extension methods for <see cref="Exception"/>.
+    /// </summary>
     public static partial class ExceptionExtensions
     {
         /// <summary>

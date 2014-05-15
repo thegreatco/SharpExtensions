@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharpExtensions45\Annotations\Annotations.cs">
+      <Link>Annotations\Annotations.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\ConcurrentSet.cs">
       <Link>ConcurrentSet.cs</Link>
     </Compile>

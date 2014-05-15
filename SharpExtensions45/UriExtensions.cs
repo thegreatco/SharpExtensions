@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using JetBrains.Annotations;
+using SharpExtensions.Annotations;
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A collection of extension methods for <see cref="Uri"/>.
+    /// </summary>
     public static partial class UriExtensions
     {
         /// <summary>

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
+using SharpExtensions.Annotations;
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A collection of extension methods for <see cref="string"/>.
+    /// </summary>
     public static partial class StringExtensions
     {
         /// <summary>
         /// Extension method for <see cref="string"/>.Format().
         /// </summary>
         /// <param name="string"><see cref="string"/> properly formatted for string.Format().</param>
-        /// <param name="args"><see cref="Array"/> of objects to replace the placeholders in string.Format()</param>
+        /// <param name="args">An <see cref="Array"/> of objects to replace the placeholders in string.Format()</param>
         /// <returns>The formatted <see cref="string"/>.</returns>
-        [StringFormatMethod("format")]
+        [StringFormatMethod("string")]
         public static string With(this string @string, params object[] args)
         {
             return string.Format(@string, args);
@@ -35,7 +38,7 @@ namespace SharpExtensions
         /// Extension method for <see cref="string"/>.Split()
         /// </summary>
         /// <param name="string">The string to split.</param>
-        /// <param name="separators">The separators with which to split the <param name="string"/>.</param>
+        /// <param name="separators">The separators with which to split the <paramref name="string"/>.</param>
         /// <returns>The split strings.</returns>
         public static string[] Split(this string @string, params string[] separators)
         {
@@ -47,7 +50,7 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="string">The string to split.</param>
         /// <param name="options">The <see cref="StringSplitOptions"/>.</param>
-        /// <param name="separator">The separators with which to split the <param name="string"/>.</param>
+        /// <param name="separator">The separators with which to split the <paramref name="string"/>.</param>
         /// <returns>The split strings.</returns>
         public static string[] Split(this string @string, string separator, StringSplitOptions options)
         {
@@ -59,7 +62,7 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="string">The string to split.</param>
         /// <param name="options">The <see cref="StringSplitOptions"/>.</param>
-        /// <param name="separator">The separators with which to split the <param name="string"/>.</param>
+        /// <param name="separator">The separators with which to split the <paramref name="string"/>.</param>
         /// <returns>The split strings.</returns>
         public static string[] Split(this string @string, char separator, StringSplitOptions options)
         {
@@ -71,7 +74,7 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="string">The string to split.</param>
         /// <param name="options">The <see cref="StringSplitOptions"/>.</param>
-        /// <param name="separators">The separators with which to split the <param name="string"/>.</param>
+        /// <param name="separators">The separators with which to split the <paramref name="string"/>.</param>
         /// <returns>The split strings.</returns>
         public static string[] Split(this string @string, StringSplitOptions options, params char[] separators)
         {
@@ -83,7 +86,7 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="string">The string to split.</param>
         /// <param name="options">The <see cref="StringSplitOptions"/>.</param>
-        /// <param name="separators">The separators with which to split the <param name="string"/>.</param>
+        /// <param name="separators">The separators with which to split the <paramref name="string"/>.</param>
         /// <returns>The split strings.</returns>
         public static string[] Split(this string @string, StringSplitOptions options, params string[] separators)
         {
@@ -152,7 +155,7 @@ namespace SharpExtensions
         }
 
         /// <summary>
-        /// Extension method to return only the <param name="length"/> characters from the string.
+        /// Extension method to return only the <paramref name="length"/> characters from the string.
         /// </summary>
         /// <param name="string">The string from which to get the characters.</param>
         /// <param name="length">The number of characters to return.</param>
@@ -166,7 +169,7 @@ namespace SharpExtensions
         }
 
         /// <summary>
-        /// Extension method to return only the left <param name="length"/> characters from the string.
+        /// Extension method to return only the left <paramref name="length"/> characters from the string.
         /// </summary>
         /// <param name="string">The string from which to get the characters.</param>
         /// <param name="length">The number of characters to return.</param>
@@ -201,7 +204,7 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether any item in <param name="args"/> appear in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether any item in <paramref name="args"/> appear in <paramref name="source"/>.</returns>
         public static bool ContainsAny(this string source, params string[] args)
         {
             return args.Any(source.Contains);
@@ -212,7 +215,7 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether all items in <param name="args"/> appear in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether all items in <paramref name="args"/> appear in <paramref name="source"/>.</returns>
         public static bool ContainsAll(this string source, params string[] args)
         {
             return args.All(source.Contains);

@@ -5,12 +5,21 @@ using System.Threading.Tasks;
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A collection of extension methods to use with <see cref="Task"/>.
+    /// </summary>
     public static partial class TaskExtensions
     {
+        /// <summary>
+        /// The <see cref="EventHandler"/> that will return any exceptions thrown during any task execution.
+        /// </summary>
         public static EventHandler<TaskErrorEventArgs> TaskErrorEventHandler;
 
         private static readonly TaskCompletionSource<object> NeverCompleteSource = new TaskCompletionSource<object>();
 
+        /// <summary>
+        /// A <see cref="Task"/> that never completes.
+        /// </summary>
         public static Task NeverComplete { get { return NeverCompleteSource.Task; } }
 
         /// <summary>
@@ -23,7 +32,7 @@ namespace SharpExtensions
         public static async Task WithTimeout(this Task task, TimeSpan timeout)
         {
             if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
-                throw new NaiveTimeoutException();
+                throw new NativeTimeoutException();
 
             await task;
         }
@@ -112,11 +121,24 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="caller">The caller of the method.</param>
         /// <param name="task">The task to run.</param>
-        public static async void ToVoid(this Task task, string caller = null)
+        public static void ToVoid(this Task task, string caller = null)
         {
             try
             {
-                await task;
+#pragma warning disable 4014
+                TaskEx.Run(async () =>
+#pragma warning restore 4014
+                {
+                    try
+                    {
+                        await task;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (TaskErrorEventHandler != null)
+                            TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
+                    }
+                });
             }
             catch (AggregateException aggex)
             {
@@ -178,6 +200,7 @@ namespace SharpExtensions
         /// <returns>The original task with the exception observation enabled.</returns>
         public static Task ObserveExceptions(this Task task)
         {
+// ReSharper disable once UnusedVariable
             task.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.NotOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
             return task;
         }
@@ -190,6 +213,7 @@ namespace SharpExtensions
         /// <returns>The original task with the exception observation enabled.</returns>
         public static Task<T> ObserveExceptions<T>(this Task<T> task)
         {
+// ReSharper disable once UnusedVariable
             task.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.NotOnRanToCompletion | TaskContinuationOptions.ExecuteSynchronously);
             return task;
         }
@@ -213,7 +237,7 @@ namespace SharpExtensions
         /// </summary>
         /// <typeparam name="T">The return type of the <see cref="Task"/>.</typeparam>
         /// <param name="e">The <see cref="Exception"/> to throw.</param>
-        /// <returns>A <see cref="Task"/> with the <see cref="e"/> set as the <see cref="Exception"/>.</returns>
+        /// <returns>A <see cref="Task"/> with the <paramref name="e"/> set as the <see cref="Exception"/>.</returns>
         public static Task<T> AsTask<T>(this Exception e)
         {
             var tcs = new TaskCompletionSource<T>();
@@ -225,7 +249,7 @@ namespace SharpExtensions
         /// Converts an exception to a task for throwing an exception from a non-async func.
         /// </summary>
         /// <param name="e">The <see cref="Exception"/> to throw.</param>
-        /// <returns>A <see cref="Task"/> with the <see cref="e"/> set as the <see cref="Exception"/>.</returns>
+        /// <returns>A <see cref="Task"/> with the <paramref name="e"/> set as the <see cref="Exception"/>.</returns>
         public static Task AsTask(this Exception e)
         {
             var tcs = new TaskCompletionSource<object>();

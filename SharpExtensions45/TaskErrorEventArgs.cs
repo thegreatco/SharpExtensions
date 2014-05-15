@@ -2,6 +2,9 @@
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A class for passing errors without the need for a common interface.
+    /// </summary>
     public class TaskErrorEventArgs : EventArgs
     {
         /// <summary>

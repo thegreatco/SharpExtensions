@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A collection of extension methods for <see cref="Enum"/>.
+    /// </summary>
     public static partial class EnumExtensions
     {
         /// <summary>

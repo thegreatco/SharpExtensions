@@ -14,10 +14,10 @@ namespace SharpExtensions.Tests
         public void WithTimeout()
         {
             var innerException1 = Assert.Throws<AggregateException>(() => TaskEx.Delay(500).WithTimeout(100).Wait()).InnerException;
-            Assert.IsTrue(innerException1 is NaiveTimeoutException);
+            Assert.IsTrue(innerException1 is NativeTimeoutException);
             
             var innerException2 = Assert.Throws<AggregateException>(() => TaskEx.Delay(500).WithTimeout(TimeSpan.FromMilliseconds(100)).Wait()).InnerException;
-            Assert.IsTrue(innerException2 is NaiveTimeoutException);
+            Assert.IsTrue(innerException2 is NativeTimeoutException);
 
             Assert.DoesNotThrow(() => TaskEx.Delay(100).WithTimeout(500).Wait());
             Assert.DoesNotThrow(() => TaskEx.Delay(100).WithTimeout(TimeSpan.FromMilliseconds(500)).Wait());
@@ -41,14 +41,14 @@ namespace SharpExtensions.Tests
         [Test]
         public void IgnoreExceptions()
         {
-            var innerException1 = Assert.Throws<AggregateException>(() => TaskEx.Run(() => { throw new NaiveTimeoutException(); }).Wait()).InnerException;
-            Assert.IsTrue(innerException1 is NaiveTimeoutException);
+            var innerException1 = Assert.Throws<AggregateException>(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).Wait()).InnerException;
+            Assert.IsTrue(innerException1 is NativeTimeoutException);
 
             // Make sure errors go to trace if there isn't a handler attached.
             var stream = new MemoryStream();
             Trace.Listeners.Add(new TextWriterTraceListener(stream));
 
-            Assert.DoesNotThrow(() => TaskEx.Run(() => { throw new NaiveTimeoutException(); }).IgnoreExceptions().Wait());
+            Assert.DoesNotThrow(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).IgnoreExceptions().Wait());
             
             stream.Flush();
             stream.Seek(0, SeekOrigin.Begin);
@@ -60,23 +60,23 @@ namespace SharpExtensions.Tests
             var exceptionHandled = false;
             TaskExtensions.TaskErrorEventHandler += (sender, args) => { exceptionHandled = true; };
 
-            Assert.DoesNotThrow(() => TaskEx.Run(() => { throw new NaiveTimeoutException(); }).IgnoreExceptions().Wait());
+            Assert.DoesNotThrow(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).IgnoreExceptions().Wait());
             Assert.IsTrue(exceptionHandled);
             exceptionHandled = false;
 
-            var innerException2 = Assert.Throws<AggregateException>(() => TaskEx.Run(new Func<bool>(() => { throw new NaiveTimeoutException(); })).Wait()).InnerException;
-            Assert.IsTrue(innerException2 is NaiveTimeoutException);
+            var innerException2 = Assert.Throws<AggregateException>(() => TaskEx.Run(new Func<bool>(() => { throw new NativeTimeoutException(); })).Wait()).InnerException;
+            Assert.IsTrue(innerException2 is NativeTimeoutException);
             Assert.IsFalse(exceptionHandled);
 
-            Assert.DoesNotThrow(() => TaskEx.Run(new Func<bool>(() => { throw new NaiveTimeoutException(); })).IgnoreExceptions().Wait());
+            Assert.DoesNotThrow(() => TaskEx.Run(new Func<bool>(() => { throw new NativeTimeoutException(); })).IgnoreExceptions().Wait());
             Assert.IsTrue(exceptionHandled);
         }
 
         [Test]
         public void ObserveExceptions()
         {
-            var innerException1 = Assert.Throws<AggregateException>(() => TaskEx.Run(() => { throw new NaiveTimeoutException(); }).Wait()).InnerException;
-            Assert.IsTrue(innerException1 is NaiveTimeoutException);
+            var innerException1 = Assert.Throws<AggregateException>(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).Wait()).InnerException;
+            Assert.IsTrue(innerException1 is NativeTimeoutException);
 
             var mre = new ManualResetEvent(false);
             EventHandler<UnobservedTaskExceptionEventArgs> subscription = (s, args) => mre.Set();
@@ -85,7 +85,7 @@ namespace SharpExtensions.Tests
             {
                 var res = TaskEx.Run(() =>
                 {
-                    throw new NaiveTimeoutException();
+                    throw new NativeTimeoutException();
                 });
                 ((IAsyncResult)res).AsyncWaitHandle.WaitOne(); // Wait for the task to complete
                 res = null; // Allow the task to be GC'ed

@@ -3,6 +3,9 @@ using System.Globalization;
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A collection of extension methods for numeric datatypes.
+    /// </summary>
     public static partial class NumericExtensions
     {
         /// <summary>

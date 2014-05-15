@@ -1,5 +1,8 @@
 ﻿namespace SharpExtensions
 {
+    /// <summary>
+    /// An interface to enable the use of <see cref="UriExtensions"/> on classes.
+    /// </summary>
     public partial interface IUrlFormatable
     {
         /// <summary>

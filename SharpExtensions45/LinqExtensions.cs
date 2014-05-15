@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace SharpExtensions
 {
+    /// <summary>
+    /// A collection of extension methods for LINQ.
+    /// </summary>
     public static partial class LinqExtensions
     {
         /// <summary>
@@ -87,7 +90,7 @@ namespace SharpExtensions
         /// <typeparam name="TSource">The type of data in the collection.</typeparam>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether any item in <param name="args"/> appears in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether any item in <paramref name="args"/> appears in <paramref name="source"/>.</returns>
         public static bool ContainsAny<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> args)
         {
             return args.Any(source.Contains);
@@ -99,7 +102,7 @@ namespace SharpExtensions
         /// <typeparam name="TSource">The type of data in the collection.</typeparam>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether any item in <param name="args"/> appears in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether any item in <paramref name="args"/> appears in <paramref name="source"/>.</returns>
         public static bool ContainsAny<TSource>(this IEnumerable<TSource> source, params TSource[] args)
         {
             return args.Any(source.Contains);
@@ -111,7 +114,7 @@ namespace SharpExtensions
         /// <typeparam name="TSource">The type of data in the collection.</typeparam>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether all items in <param name="args"/> appears in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether all items in <paramref name="args"/> appears in <paramref name="source"/>.</returns>
         public static bool ContainsAll<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> args)
         {
             return args.All(source.Contains);
@@ -123,7 +126,7 @@ namespace SharpExtensions
         /// <typeparam name="TSource">The type of data in the collection.</typeparam>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether all items in <param name="args"/> appears in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether all items in <paramref name="args"/> appears in <paramref name="source"/>.</returns>
         public static bool ContainsAll<TSource>(this IEnumerable<TSource> source, params TSource[] args)
         {
             return args.All(source.Contains);
@@ -135,7 +138,7 @@ namespace SharpExtensions
         /// <typeparam name="TSource">The type of data in the collection.</typeparam>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether only items in <param name="args"/> appear in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether only items in <paramref name="args"/> appear in <paramref name="source"/>.</returns>
         public static bool ContainsOnly<TSource>(this IEnumerable<TSource> source, IEnumerable<TSource> args)
         {
             var sourceEnumerable = source as TSource[] ?? source.ToArray();
@@ -152,7 +155,7 @@ namespace SharpExtensions
         /// <typeparam name="TSource">The type of data in the collection.</typeparam>
         /// <param name="source">The source against which to check the args.</param>
         /// <param name="args">The args to check against the source.</param>
-        /// <returns>A <see cref="bool"/> indicating whether only items in <param name="args"/> appear in <param name="source"/>.</returns>
+        /// <returns>A <see cref="bool"/> indicating whether only items in <paramref name="args"/> appear in <paramref name="source"/>.</returns>
         public static bool ContainsOnly<TSource>(this IEnumerable<TSource> source, params TSource[] args)
         {
             // TODO: check this logic against http://msmvps.com/blogs/jon_skeet/archive/2010/12/30/reimplementing-linq-to-objects-part-17-except.aspx
