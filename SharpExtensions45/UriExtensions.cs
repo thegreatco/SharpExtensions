@@ -15,31 +15,31 @@ namespace SharpExtensions
         /// <summary>
         /// Generates a Uri from the supplied string and any string format parameters.
         /// </summary>
-        /// <param name="string"> The string to convert to a Uri. </param>
+        /// <param name="formatString"> The string to convert to a Uri. </param>
         /// <param name="args"> The parameters to format into the string using string.format. </param>
         /// <returns> A <see cref="Uri"/>. </returns>
-        [StringFormatMethod("format")]
-        public static Uri ToUri(this string @string, params object[] args)
+        [StringFormatMethod("formatString")]
+        public static Uri ToUri(this string formatString, params object[] args)
         {
-            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+            if (string.IsNullOrWhiteSpace(formatString)) throw new ArgumentNullException("formatString");
 
-            return new UriBuilder(@string.With(args)).Uri;
+            return new UriBuilder(formatString.With(args)).Uri;
         }
 
         /// <summary>
         /// Generates a Uri from the supplied string, any string format parameters, and the supplied <see cref="IUrlFormatable"/> object as query parameters.
         /// </summary>
-        /// <param name="string"> The string to convert to a Uri. </param>
+        /// <param name="formatString"> The string to convert to a Uri. </param>
         /// <param name="obj"> The <see cref="IUrlFormatable"/> object to be added as Url parameters. </param>
         /// <param name="args"> The parameters to format into the string using string.format. </param>
         /// <returns>A <see cref="Uri"/> formatted with the supplied args and <see cref="IUrlFormatable"/> object as query parameters.</returns>
-        [StringFormatMethod("format")]
-        public static Uri ToUri(this string @string, IUrlFormatable obj, params object[] args)
+        [StringFormatMethod("formatString")]
+        public static Uri ToUri(this string formatString, IUrlFormatable obj, params object[] args)
         {
-            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+            if (string.IsNullOrWhiteSpace(formatString)) throw new ArgumentNullException("formatString");
             if (obj == null) throw new ArgumentNullException("obj");
 
-            return obj.FormatForUri(@string.With(args));
+            return obj.FormatForUri(formatString.With(args));
         }
 
         /// <summary>

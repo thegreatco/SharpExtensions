@@ -14,13 +14,13 @@ namespace SharpExtensions
         /// <summary>
         /// Extension method for <see cref="string"/>.Format().
         /// </summary>
-        /// <param name="string"><see cref="string"/> properly formatted for string.Format().</param>
+        /// <param name="formatString"><see cref="string"/> properly formatted for string.Format().</param>
         /// <param name="args">An <see cref="Array"/> of objects to replace the placeholders in string.Format()</param>
         /// <returns>The formatted <see cref="string"/>.</returns>
-        [StringFormatMethod("string")]
-        public static string With(this string @string, params object[] args)
+        [StringFormatMethod("formatString")]
+        public static string With(this string formatString, params object[] args)
         {
-            return string.Format(@string, args);
+            return string.Format(formatString, args);
         }
 
         /// <summary>
