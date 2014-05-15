@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SharpExtensions40.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SharpExtensions40.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Net4">
@@ -69,18 +71,6 @@
     </Compile>
     <Compile Include="..\SharpExtensions45\NumericExtensions.cs">
       <Link>NumericExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\SharpExtensions45\RefEliminators\ImplicitUseKindFlags.cs">
-      <Link>RefEliminators\ImplicitUseKindFlags.cs</Link>
-    </Compile>
-    <Compile Include="..\SharpExtensions45\RefEliminators\ImplicitUseTargetFlags.cs">
-      <Link>RefEliminators\ImplicitUseTargetFlags.cs</Link>
-    </Compile>
-    <Compile Include="..\SharpExtensions45\RefEliminators\StringFormatMethodAttribute.cs">
-      <Link>RefEliminators\StringFormatMethodAttribute.cs</Link>
-    </Compile>
-    <Compile Include="..\SharpExtensions45\RefEliminators\UsedImplicitly.cs">
-      <Link>RefEliminators\UsedImplicitly.cs</Link>
     </Compile>
     <Compile Include="..\SharpExtensions45\SetExtensions.cs">
       <Link>SetExtensions.cs</Link>
