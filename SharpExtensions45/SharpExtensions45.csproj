@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Annotations\Annotations.cs" />
     <Compile Include="ConcurrentSet.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="NumericExtensions.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="LinqExtensions.cs" />

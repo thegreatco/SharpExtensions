@@ -54,6 +54,9 @@
     <Compile Include="..\SharpExtensions45\ConcurrentSet.cs">
       <Link>ConcurrentSet.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45\Constants.cs">
+      <Link>Constants.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\DateTimeExtensions.cs">
       <Link>DateTimeExtensions.cs</Link>
     </Compile>

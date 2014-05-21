@@ -476,5 +476,29 @@ namespace SharpExtensions
             var result = decimal.TryParse(@string, styles, provider, out val);
             return result ? new decimal?(val) : null;
         }
+
+        /// <summary>
+        /// Round the provided <see cref="double"/> value to the nearest <paramref name="numberOfDigits"/> using the specified <paramref name="rounding"/>.
+        /// </summary>
+        /// <param name="double">The value to round.</param>
+        /// <param name="numberOfDigits">The number of digits to which to round.</param>
+        /// <param name="rounding">The type of rounding to perform, <see cref="MidpointRounding"/>. The default is <see cref="MidpointRounding.ToEven"/></param>
+        /// <returns></returns>
+        public static double Round(this double @double, int numberOfDigits = 0, MidpointRounding rounding = MidpointRounding.ToEven)
+        {
+            return Math.Round(@double, numberOfDigits, rounding);
+        }
+
+        /// <summary>
+        /// Round the provided <see cref="decimal"/> value to the nearest <paramref name="numberOfDigits"/> using the specified <paramref name="rounding"/>.
+        /// </summary>
+        /// <param name="decimal">The value to round.</param>
+        /// <param name="numberOfDigits">The number of digits to which to round.</param>
+        /// <param name="rounding">The type of rounding to perform, <see cref="MidpointRounding"/>. The default is <see cref="MidpointRounding.ToEven"/></param>
+        /// <returns></returns>
+        public static decimal Round(this decimal @decimal, int numberOfDigits = 0, MidpointRounding rounding = MidpointRounding.ToEven)
+        {
+            return Math.Round(@decimal, numberOfDigits);
+        }
     }
 }
