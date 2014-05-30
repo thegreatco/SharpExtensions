@@ -35,6 +35,17 @@ namespace SharpExtensions
         }
 
         /// <summary>
+        /// Extension method for <see cref="string"/>.Join().
+        /// </summary>
+        /// <param name="objects">The objects to join.</param>
+        /// <param name="delimeter">The delimiter to insert between the strings.</param>
+        /// <returns>The joined string.</returns>
+        public static string Join<T>(this IEnumerable<T> objects, string delimeter)
+        {
+            return string.Join(delimeter, objects);
+        }
+
+        /// <summary>
         /// Extension method for <see cref="string"/>.Split()
         /// </summary>
         /// <param name="string">The string to split.</param>

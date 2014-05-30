@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CappedQueueTests.cs" />
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="EnumExtensionsTests.cs" />
     <Compile Include="ExceptionExtensionsTests.cs" />
