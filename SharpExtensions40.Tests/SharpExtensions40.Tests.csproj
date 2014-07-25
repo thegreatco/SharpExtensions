@@ -65,6 +65,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\SharpExtensions45.Tests\AssertExtensions.cs">
+      <Link>AssertExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45.Tests\CappedQueueTests.cs">
       <Link>CappedQueueTests.cs</Link>
     </Compile>

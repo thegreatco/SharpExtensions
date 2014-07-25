@@ -39,16 +39,16 @@ namespace SharpExtensions.Tests
         }
 
         [Test]
-        public void IgnoreExceptions()
+        public async void IgnoreExceptions()
         {
-            var innerException1 = Assert.Throws<AggregateException>(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).Wait()).InnerException;
-            Assert.IsTrue(innerException1 is NativeTimeoutException);
+            await AssertEx.Throws<NativeTimeoutException>(async () => await TaskEx.Run(() => { throw new NativeTimeoutException(); }));
 
             // Make sure errors go to trace if there isn't a handler attached.
             var stream = new MemoryStream();
+            Trace.Listeners.Clear();
             Trace.Listeners.Add(new TextWriterTraceListener(stream));
 
-            Assert.DoesNotThrow(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).IgnoreExceptions().Wait());
+            await AssertEx.DoesNotThrow(async () => await TaskEx.Run(() => { throw new NativeTimeoutException(); }).IgnoreExceptions());
             
             stream.Flush();
             stream.Seek(0, SeekOrigin.Begin);
@@ -60,33 +60,28 @@ namespace SharpExtensions.Tests
             var exceptionHandled = false;
             TaskExtensions.TaskErrorEventHandler += (sender, args) => { exceptionHandled = true; };
 
-            Assert.DoesNotThrow(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).IgnoreExceptions().Wait());
+            await AssertEx.DoesNotThrow(async () => await TaskEx.Run(() => { throw new NativeTimeoutException(); }).IgnoreExceptions());
             Assert.IsTrue(exceptionHandled);
             exceptionHandled = false;
 
-            var innerException2 = Assert.Throws<AggregateException>(() => TaskEx.Run(new Func<bool>(() => { throw new NativeTimeoutException(); })).Wait()).InnerException;
-            Assert.IsTrue(innerException2 is NativeTimeoutException);
+            await AssertEx.Throws<NativeTimeoutException>(async () => await TaskEx.Run(new Func<bool>(() => { throw new NativeTimeoutException(); })));
             Assert.IsFalse(exceptionHandled);
 
-            Assert.DoesNotThrow(() => TaskEx.Run(new Func<bool>(() => { throw new NativeTimeoutException(); })).IgnoreExceptions().Wait());
+            await AssertEx.DoesNotThrow(async () => await TaskEx.Run(new Func<bool>(() => { throw new NativeTimeoutException(); })).IgnoreExceptions());
             Assert.IsTrue(exceptionHandled);
         }
 
         [Test]
         public void ObserveExceptions()
         {
-            var innerException1 = Assert.Throws<AggregateException>(() => TaskEx.Run(() => { throw new NativeTimeoutException(); }).Wait()).InnerException;
-            Assert.IsTrue(innerException1 is NativeTimeoutException);
+            AssertEx.Throws<NativeTimeoutException>(async () => await TaskEx.Run(() => { throw new NativeTimeoutException(); })).Wait();
 
             var mre = new ManualResetEvent(false);
             EventHandler<UnobservedTaskExceptionEventArgs> subscription = (s, args) => mre.Set();
             TaskScheduler.UnobservedTaskException += subscription;
             try
             {
-                var res = TaskEx.Run(() =>
-                {
-                    throw new NativeTimeoutException();
-                });
+                var res = TaskEx.Run(() => { throw new NativeTimeoutException(); });
                 ((IAsyncResult)res).AsyncWaitHandle.WaitOne(); // Wait for the task to complete
                 res = null; // Allow the task to be GC'ed
                 GC.Collect();
