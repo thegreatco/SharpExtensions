@@ -152,7 +152,7 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="task">The <see cref="Task"/> to run.</param>
         /// <param name="caller">The caller of the method.</param>
-        /// <returns>A <see cref="Task"/> that ignores all thrown execeptions during execution.</returns>
+        /// <returns>A <see cref="Task"/> that ignores all thrown exceptions during execution.</returns>
         public static async Task IgnoreExceptions(this Task task, string caller = null)
         {
             await task.ContinueWith(t =>
@@ -174,7 +174,7 @@ namespace SharpExtensions
         /// <typeparam name="T">The return type of the task.</typeparam>
         /// <param name="task">The <see cref="Task"/> to run.</param>
         /// <param name="caller">The caller of the method.</param>
-        /// <returns>A <see cref="Task"/> that ignores all thrown execeptions during execution.</returns>
+        /// <returns>A <see cref="Task"/> that ignores all thrown exceptions during execution.</returns>
         public static async Task<T> IgnoreExceptions<T>(this Task<T> task, string caller = null)
         {
             return await task.ContinueWith(t =>

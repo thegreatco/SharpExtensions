@@ -53,8 +53,8 @@ namespace SharpExtensions.Tests
             stream.Flush();
             stream.Seek(0, SeekOrigin.Begin);
             var output = new StreamReader(stream).ReadToEnd();
-            
-            Assert.IsTrue(output.StartsWith("SharpExtensions.NaiveTimeoutException: The operation has timed out."));
+
+            Assert.IsTrue(output.StartsWith("SharpExtensions.NativeTimeoutException: The operation has timed out."));
 
             // Attach a handler to capture errors.
             var exceptionHandled = false;
