@@ -9,6 +9,11 @@ namespace SharpExtensions.Json
     public static partial class JsonExtensions
     {
         /// <summary>
+        /// Gets or sets the default serializer settings used by method calls in this class.
+        /// </summary>
+        public static JsonSerializerSettings DefaultSerializerSettings { get; set; }
+
+        /// <summary>
         /// Convert the object to a Json string.
         /// </summary>
         /// <param name="obj">The object to convert.</param>
@@ -16,13 +21,13 @@ namespace SharpExtensions.Json
         /// <returns>The object in Json format.</returns>
         public static string ToJson(this object obj, Formatting formatting = Formatting.Indented)
         {
-            return JsonConvert.SerializeObject(obj, formatting);
+            return JsonConvert.SerializeObject(obj, formatting, DefaultSerializerSettings);
         }
 
         /// <summary>
-        /// Conver the object to a Json string.
+        /// Convert the object to a Json string.
         /// </summary>
-        /// <param name="obj">The objec to convert.</param>
+        /// <param name="obj">The object to convert.</param>
         /// <param name="formatting">Formatting options for the Json.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> to use.</param>
         /// <returns>The object in Json format.</returns>
@@ -39,13 +44,13 @@ namespace SharpExtensions.Json
         /// <returns>The object in Json format.</returns>
         public static async Task<string> ToJsonAsync(this object obj, Formatting formatting = Formatting.Indented)
         {
-            return await JsonConvert.SerializeObjectAsync(obj, formatting);
+            return await JsonConvert.SerializeObjectAsync(obj, formatting, DefaultSerializerSettings);
         }
 
         /// <summary>
-        /// Conver the object to a Json string asynchronously.
+        /// Convert the object to a Json string asynchronously.
         /// </summary>
-        /// <param name="obj">The objec to convert.</param>
+        /// <param name="obj">The object to convert.</param>
         /// <param name="formatting">Formatting options for the Json.</param>
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> to use.</param>
         /// <returns>The object in Json format.</returns>
