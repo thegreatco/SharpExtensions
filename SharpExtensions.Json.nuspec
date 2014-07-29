@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SharpExtensions.Json</id>
-    <version>0.0.7</version>
+    <version>0.0.8</version>
     <authors>TheGreatCO</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A collection of extension methods for Json to make things a bit easier.</description>
