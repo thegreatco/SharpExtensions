@@ -1,10 +1,15 @@
 SharpExtensions
 ===============
 
-A set of extension methods to assist with C# development.  Extensions include String, Uri, Task, and Enum.
+A set of extension methods to assist with C# development.  Extensions include String, Uri, Task, and Enum. The documentation for this project can be found at [TheGreatCO.com](https://www.thegreatco.com/projects/sharpextensions/).
 
-A NuGet of this repository can be found at https://www.nuget.org/packages/SharpExtensions/ and a package with the compiled assembly can be found at https://www.nuget.org/packages/SharpExtensions.Assembly/.  The NuGet package should be used as it will always have the latest stable code.
-
+There are four NuGet Packages available:
+* Precompiled NuGet Packages (Recommended)
+  * [SharpExtensions](https://www.nuget.org/packages/SharpExtensions.Assembly/)
+  * [SharpExtensions Json](https://www.nuget.org/packages/SharpExtensions.Json.Assembly/)
+* Source Only NuGet Packages
+  * [SharpExtensions](https://www.nuget.org/packages/SharpExtensions/)
+  * [SharpExtensions Json](https://www.nuget.org/packages/SharpExtensions.Json/)
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/thegreatco/sharpextensions/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
