@@ -7,7 +7,7 @@
     <ProjectGuid>{70A4BDD6-08CD-4D6D-A302-CED026DDCD7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharpExtensions.Json</RootNamespace>
+    <RootNamespace>SharpExtensions</RootNamespace>
     <AssemblyName>SharpExtensions40.Json</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

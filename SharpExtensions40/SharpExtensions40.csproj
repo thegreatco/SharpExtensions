@@ -51,59 +51,72 @@
     <Compile Include="..\SharpExtensions45\Annotations\Annotations.cs">
       <Link>Annotations\Annotations.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\CappedQueue.cs">
-      <Link>CappedQueue.cs</Link>
-    </Compile>
-    <Compile Include="..\SharpExtensions45\ConcurrentSet.cs">
-      <Link>ConcurrentSet.cs</Link>
-    </Compile>
     <Compile Include="..\SharpExtensions45\Constants.cs">
       <Link>Constants.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\DateTimeExtensions.cs">
-      <Link>DateTimeExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\Enum Extensions\EnumExtensions.cs">
+      <Link>Enum Extensions\EnumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\EnumExtensions.cs">
-      <Link>EnumExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\Enumerable Extensions\CappedQueue.cs">
+      <Link>Enumerable Extensions\CappedQueue.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\ExceptionExtensions.cs">
-      <Link>ExceptionExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\Enumerable Extensions\ConcurrentSet.cs">
+      <Link>Enumerable Extensions\ConcurrentSet.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\IUrlFormatable.cs">
-      <Link>IUrlFormatable.cs</Link>
+    <Compile Include="..\SharpExtensions45\Enumerable Extensions\SetExtensions.cs">
+      <Link>Enumerable Extensions\SetExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\LinqExtensions.cs">
-      <Link>LinqExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\Exception Extensions\ExceptionExtensions.cs">
+      <Link>Exception Extensions\ExceptionExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\NaiveTimeoutException.cs">
-      <Link>NaiveTimeoutException.cs</Link>
+    <Compile Include="..\SharpExtensions45\Exception Extensions\NaiveTimeoutException.cs">
+      <Link>Exception Extensions\NaiveTimeoutException.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\NumericExtensions.cs">
-      <Link>NumericExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\LINQ Extensions\LinqExtensions.cs">
+      <Link>LINQ Extensions\LinqExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\SetExtensions.cs">
-      <Link>SetExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\Numeric Extensions\DoubleExtensions.cs">
+      <Link>Numeric Extensions\DoubleExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\StringCase.cs">
-      <Link>StringCase.cs</Link>
+    <Compile Include="..\SharpExtensions45\Numeric Extensions\IntExtensions.cs">
+      <Link>Numeric Extensions\IntExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\StringExtensions.cs">
-      <Link>StringExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\Numeric Extensions\LongExtensions.cs">
+      <Link>Numeric Extensions\LongExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\TaskErrorEventArgs.cs">
-      <Link>TaskErrorEventArgs.cs</Link>
+    <Compile Include="..\SharpExtensions45\String Extensions\StringCase.cs">
+      <Link>String Extensions\StringCase.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\TaskExtensions.cs">
-      <Link>TaskExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\String Extensions\StringExtensions.cs">
+      <Link>String Extensions\StringExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharpExtensions45\UriExtensions.cs">
-      <Link>UriExtensions.cs</Link>
+    <Compile Include="..\SharpExtensions45\String Extensions\StringParseExtensions.cs">
+      <Link>String Extensions\StringParseExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\Task Extensions\TaskErrorEventArgs.cs">
+      <Link>Task Extensions\TaskErrorEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\Task Extensions\TaskExtensions.cs">
+      <Link>Task Extensions\TaskExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\Time Extensions\DateTimeExtensions.cs">
+      <Link>Time Extensions\DateTimeExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\Time Extensions\TimeSpanExtensions.cs">
+      <Link>Time Extensions\TimeSpanExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\Url Extensions\IUrlFormatable.cs">
+      <Link>Url Extensions\IUrlFormatable.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\Url Extensions\UriExtensions.cs">
+      <Link>Url Extensions\UriExtensions.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

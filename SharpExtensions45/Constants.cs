@@ -1,4 +1,6 @@
-﻿namespace SharpExtensions
+﻿using System;
+
+namespace SharpExtensions
 {
     /// <summary>
     /// A collection of commonly used Constants.
@@ -54,5 +56,10 @@
         /// The number of bytes in a Kibibyte <see href="http://en.wikipedia.org/wiki/IEC_80000-13#Prefixes_for_binary_multiples"/>.
         /// </summary>
         public const long KiB = 1024;
+
+        /// <summary>
+        /// The numbers of seconds in an astronomical year as defined by
+        /// </summary>
+        public const int SecondsInAJulianYear = 31557600;
     }
 }

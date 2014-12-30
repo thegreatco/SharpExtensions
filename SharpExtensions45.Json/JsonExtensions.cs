@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace SharpExtensions.Json
+namespace SharpExtensions
 {
     /// <summary>
     /// A set of Json Extension Methods
