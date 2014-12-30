@@ -12,4 +12,5 @@ There are four NuGet Packages available:
   * [SharpExtensions Json](https://www.nuget.org/packages/SharpExtensions.Json/)
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/thegreatco/sharpextensions/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Code Climate](https://codeclimate.com/github/thegreatco/SharpExtensions/badges/gpa.svg)](https://codeclimate.com/github/thegreatco/SharpExtensions)
 
