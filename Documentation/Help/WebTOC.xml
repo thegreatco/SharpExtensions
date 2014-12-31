@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="7b656cb9-bd81-40c8-918c-3fe1453e7f62" Title="SharpExtensions" Url="html/F055FC2C.htm">
+    <HelpTOCNode Id="ba3395c4-fc23-4fe9-92bd-3ead594246f4" Title="CappedQueue(T) Class" Url="html/9A3A8595.htm">
+      <HelpTOCNode Title="CappedQueue(T) Constructor " Url="html/BDAE907F.htm" />
+      <HelpTOCNode Id="047d0d05-03ef-4783-9dfd-aecf18820776" Title="CappedQueue(T) Methods" Url="html/4E2E2677.htm">
+        <HelpTOCNode Title="Clear Method " Url="html/6FF40C13.htm" />
+        <HelpTOCNode Title="Contains Method " Url="html/8BD46199.htm" />
+        <HelpTOCNode Title="CopyTo Method " Url="html/1D66CF7E.htm" />
+        <HelpTOCNode Title="Dequeue Method " Url="html/BD2A481C.htm" />
+        <HelpTOCNode Title="Enqueue Method " Url="html/D7569B8.htm" />
+        <HelpTOCNode Title="GetEnumerator Method " Url="html/7182EDF8.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f84e9069-22e9-4788-ad4e-0b21aa72a2f3" Title="CappedQueue(T) Properties" Url="html/2A2958F4.htm">
+        <HelpTOCNode Title="Capacity Property " Url="html/2C53286F.htm" />
+        <HelpTOCNode Title="Count Property " Url="html/FC0E853E.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6107693b-6a8f-451a-8e83-fb00e335973f" Title="ConcurrentSet(T) Class" Url="html/B816EDB0.htm">
+      <HelpTOCNode Title="ConcurrentSet(T) Constructor " Url="html/CBA8B576.htm" />
+      <HelpTOCNode Id="cd546baa-2607-4580-9389-636a514f85b0" Title="ConcurrentSet(T) Methods" Url="html/F2E86B0C.htm">
+        <HelpTOCNode Title="Add Method " Url="html/18F0B0CE.htm" />
+        <HelpTOCNode Title="Clear Method " Url="html/71EC79C0.htm" />
+        <HelpTOCNode Title="Contains Method " Url="html/B106C7D6.htm" />
+        <HelpTOCNode Title="CopyTo Method " Url="html/1FE49C53.htm" />
+        <HelpTOCNode Title="ExceptWith Method " Url="html/C51877FA.htm" />
+        <HelpTOCNode Title="GetEnumerator Method " Url="html/B1F1BFFB.htm" />
+        <HelpTOCNode Title="IntersectWith Method " Url="html/6667260.htm" />
+        <HelpTOCNode Title="IsProperSubsetOf Method " Url="html/9C06D582.htm" />
+        <HelpTOCNode Title="IsProperSupersetOf Method " Url="html/C52945BB.htm" />
+        <HelpTOCNode Title="IsSubsetOf Method " Url="html/502B2148.htm" />
+        <HelpTOCNode Title="IsSupersetOf Method " Url="html/B9E58301.htm" />
+        <HelpTOCNode Title="Overlaps Method " Url="html/D6E7AF21.htm" />
+        <HelpTOCNode Title="Remove Method " Url="html/B47E817B.htm" />
+        <HelpTOCNode Title="SetEquals Method " Url="html/C156A314.htm" />
+        <HelpTOCNode Title="SymmetricExceptWith Method " Url="html/4C2606DF.htm" />
+        <HelpTOCNode Title="ToArray Method " Url="html/98F3446B.htm" />
+        <HelpTOCNode Title="TryAdd Method " Url="html/F6ACACA3.htm" />
+        <HelpTOCNode Title="TryRemove Method " Url="html/FACA2A44.htm" />
+        <HelpTOCNode Title="UnionWith Method " Url="html/6A4570E2.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e5e0389f-e37d-49a8-99bb-a353f4d4f854" Title="ConcurrentSet(T) Properties" Url="html/4C6E30F9.htm">
+        <HelpTOCNode Title="Count Property " Url="html/F6617223.htm" />
+        <HelpTOCNode Title="IsEmpty Property " Url="html/42415BC3.htm" />
+        <HelpTOCNode Title="IsReadOnly Property " Url="html/E18DC408.htm" />
+        <HelpTOCNode Title="Values Property " Url="html/9C647B98.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="5fd1c191-46c6-492d-a257-4d760fc8a56b" Title="Constants Class" Url="html/EB49A8C7.htm">
+      <HelpTOCNode Id="b0fa7e26-9a23-4ee0-b0df-e9d4cb738d3b" Title="Constants Fields" Url="html/3AEDCA12.htm">
+        <HelpTOCNode Title="GB Field" Url="html/F8C753E.htm" />
+        <HelpTOCNode Title="GiB Field" Url="html/E6E5EEA3.htm" />
+        <HelpTOCNode Title="KB Field" Url="html/F8C754A.htm" />
+        <HelpTOCNode Title="KiB Field" Url="html/E6E5F02F.htm" />
+        <HelpTOCNode Title="MB Field" Url="html/F8C7548.htm" />
+        <HelpTOCNode Title="MiB Field" Url="html/E6E5EF69.htm" />
+        <HelpTOCNode Title="PB Field" Url="html/F8C7535.htm" />
+        <HelpTOCNode Title="PiB Field" Url="html/E6E5ED76.htm" />
+        <HelpTOCNode Title="SecondsInAJulianYear Field" Url="html/916CA39E.htm" />
+        <HelpTOCNode Title="TB Field" Url="html/F8C7531.htm" />
+        <HelpTOCNode Title="TiB Field" Url="html/E6E5ECF2.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="2aa6f549-5bd0-42e7-b259-5eadd20dd9fc" Title="EnumExtensions Class" Url="html/619D1293.htm">
+      <HelpTOCNode Id="490e032c-d68d-425a-9e21-339d78b57733" Title="EnumExtensions Methods" Url="html/CEBB4385.htm">
+        <HelpTOCNode Id="145b2029-463e-4b7f-8830-4543b4c1c260" Title="GetDescription Method " Url="html/A5B88439.htm">
+          <HelpTOCNode Title="GetDescription Method (Enum)" Url="html/682FAB02.htm" />
+          <HelpTOCNode Title="GetDescription(T) Method (T)" Url="html/1075D6D.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="a50dca70-faab-4d96-a573-a671858874db" Title="GetDescriptions Method " Url="html/C33260A8.htm">
+          <HelpTOCNode Title="GetDescriptions(T) Method " Url="html/D0433666.htm" />
+          <HelpTOCNode Title="GetDescriptions(T) Method (Enum)" Url="html/714DC856.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetName Method " Url="html/5771FF81.htm" />
+        <HelpTOCNode Title="GetValueFromDescription(T) Method " Url="html/69F11134.htm" />
+        <HelpTOCNode Title="ToEnum(T) Method " Url="html/46D1E865.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="98458623-6ec1-4727-aa23-2601fb4b49cc" Title="ExceptionExtensions Class" Url="html/C7E0CA03.htm">
+      <HelpTOCNode Id="d8505865-9de7-4aac-b074-d4ad86ece1eb" Title="ExceptionExtensions Methods" Url="html/37024EB9.htm">
+        <HelpTOCNode Title="SimpleDescription Method " Url="html/DBE5D9B2.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="67c26c55-14cf-4c69-aaa4-09ee3b83d29c" Title="IUrlFormatable Interface" Url="html/94556769.htm">
+      <HelpTOCNode Id="dd20c84a-1110-4325-a3f5-7a0fad68c765" Title="IUrlFormatable Methods" Url="html/4823BD93.htm">
+        <HelpTOCNode Title="MultiWordDelimeter Method " Url="html/840C7B96.htm" />
+        <HelpTOCNode Title="SplitOnCamelCase Method " Url="html/5FD2A397.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="433479bd-bded-4cb9-b828-f3a7f86fe98f" Title="JsonExtensions Class" Url="html/B60F4648.htm">
+      <HelpTOCNode Id="d86cb25c-6570-475d-aac3-ebb261a19d10" Title="JsonExtensions Methods" Url="html/24C3160.htm">
+        <HelpTOCNode Id="e8db98ac-af2a-4552-ab3b-a0d07bcc2a9b" Title="FromJson Method " Url="html/8AE34C8E.htm">
+          <HelpTOCNode Title="FromJson(T) Method (String)" Url="html/77FEF10E.htm" />
+          <HelpTOCNode Title="FromJson(T) Method (String, JsonConverter[])" Url="html/44FBD0E6.htm" />
+          <HelpTOCNode Title="FromJson(T) Method (String, JsonSerializerSettings)" Url="html/5D057315.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="bed838ba-ff6c-41cc-be49-e377e09748df" Title="FromJsonAsync Method " Url="html/E988B7BA.htm">
+          <HelpTOCNode Title="FromJsonAsync(T) Method (String)" Url="html/5EB9D57C.htm" />
+          <HelpTOCNode Title="FromJsonAsync(T) Method (String, JsonSerializerSettings)" Url="html/27EE9238.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="ff45a8da-05ec-465c-b8f3-0263d65b79b5" Title="ToJson Method " Url="html/14011311.htm">
+          <HelpTOCNode Title="ToJson Method (Object, Formatting)" Url="html/C383F33A.htm" />
+          <HelpTOCNode Title="ToJson Method (Object, Formatting, JsonSerializerSettings)" Url="html/B09A3A42.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="c8c5c06d-86e6-4b25-a4e1-f76fd08e1c98" Title="ToJsonAsync Method " Url="html/DC3351CF.htm">
+          <HelpTOCNode Title="ToJsonAsync Method (Object, Formatting)" Url="html/BCF79DD2.htm" />
+          <HelpTOCNode Title="ToJsonAsync Method (Object, Formatting, JsonSerializerSettings)" Url="html/38A9C05E.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="5d9834ce-4103-4904-a483-491d61a3d578" Title="JsonExtensions Properties" Url="html/66FCB67.htm">
+        <HelpTOCNode Title="DefaultSerializerSettings Property " Url="html/78FA5DC2.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7c46eda6-ee63-44b0-8bc3-6b88341feca2" Title="LinqExtensions Class" Url="html/9E27B518.htm">
+      <HelpTOCNode Id="bbc0ecf1-9ac3-4be4-9960-eeca162fc940" Title="LinqExtensions Methods" Url="html/FBA31094.htm">
+        <HelpTOCNode Title="AddRange(TSource) Method " Url="html/E76D3048.htm" />
+        <HelpTOCNode Id="242ec732-fee9-4c79-85b4-da02cd532d54" Title="ContainsAll Method " Url="html/69984640.htm">
+          <HelpTOCNode Title="ContainsAll(TSource) Method (IEnumerable(TSource), IEnumerable(TSource))" Url="html/85F2E79E.htm" />
+          <HelpTOCNode Title="ContainsAll(TSource) Method (IEnumerable(TSource), TSource[])" Url="html/30ADEE0E.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="9c156735-672c-4b22-b53f-069337ebec75" Title="ContainsAny Method " Url="html/AEE72F69.htm">
+          <HelpTOCNode Title="ContainsAny(TSource) Method (IEnumerable(TSource), IEnumerable(TSource))" Url="html/8FF29E01.htm" />
+          <HelpTOCNode Title="ContainsAny(TSource) Method (IEnumerable(TSource), TSource[])" Url="html/55C921CF.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="22b28fe4-3e97-48ff-8339-0067d8b45eb4" Title="ContainsOnly Method " Url="html/1E794E17.htm">
+          <HelpTOCNode Title="ContainsOnly(TSource) Method (IEnumerable(TSource), IEnumerable(TSource))" Url="html/924C3CC7.htm" />
+          <HelpTOCNode Title="ContainsOnly(TSource) Method (IEnumerable(TSource), TSource[])" Url="html/A8F2939D.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Crossect(TSource) Method " Url="html/2E65C2C0.htm" />
+        <HelpTOCNode Title="FastAny(TSource) Method " Url="html/D9142AEA.htm" />
+        <HelpTOCNode Title="FastSingle(TSource) Method " Url="html/67A55CAE.htm" />
+        <HelpTOCNode Id="80718c2c-ceb8-4b93-9d11-3ce57099410c" Title="IncludeIf Method " Url="html/39E01CE7.htm">
+          <HelpTOCNode Title="IncludeIf(TSource) Method (IEnumerable(TSource), IEnumerable(Boolean))" Url="html/6DE4B6B.htm" />
+          <HelpTOCNode Title="IncludeIf(TSource, TArgs) Method (IEnumerable(TSource), IEnumerable(TArgs), TArgs[])" Url="html/6DE4B6A.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Partition(T) Method " Url="html/A13F661C.htm" />
+        <HelpTOCNode Title="RemoveIf(TSource) Method " Url="html/FCF04C4D.htm" />
+        <HelpTOCNode Title="SelectMany(TSource) Method " Url="html/90BE2953.htm" />
+        <HelpTOCNode Title="ToArrayOrDefault(TSource) Method " Url="html/CCFAC98.htm" />
+        <HelpTOCNode Title="ToHashSet(TSource) Method " Url="html/A511B313.htm" />
+        <HelpTOCNode Title="ToHashSetOrDefault(TSource) Method " Url="html/75FD28C5.htm" />
+        <HelpTOCNode Title="ToListOrDefault(TSource) Method " Url="html/559AD18B.htm" />
+        <HelpTOCNode Id="af2e5a7a-21d3-4505-8acd-0321213b1cd4" Title="WhereNotNull Method " Url="html/8F1D2537.htm">
+          <HelpTOCNode Title="WhereNotNull(TSource) Method (IEnumerable(Nullable(TSource)))" Url="html/2DBFC34F.htm" />
+          <HelpTOCNode Title="WhereNotNull(TSource) Method (IEnumerable(TSource))" Url="html/C27695D9.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="WhereNotNullOrEmpty Method " Url="html/8050417E.htm" />
+        <HelpTOCNode Title="WhereNotNullOrWhitespace Method " Url="html/C38733E0.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c438606a-244d-454b-b888-1c5a8180c294" Title="NativeTimeoutException Class" Url="html/EDB60477.htm">
+      <HelpTOCNode Id="aae6965d-d9c0-4dfb-9ad2-e1b9a4654fa4" Title="NativeTimeoutException Constructor " Url="html/F84EE444.htm">
+        <HelpTOCNode Title="NativeTimeoutException Constructor " Url="html/BD12E1D1.htm" />
+        <HelpTOCNode Title="NativeTimeoutException Constructor (String)" Url="html/D79F4717.htm" />
+        <HelpTOCNode Title="NativeTimeoutException Constructor (String, Exception)" Url="html/7A46BBB2.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="NativeTimeoutException Methods" Url="html/EEF45181.htm" />
+      <HelpTOCNode Title="NativeTimeoutException Properties" Url="html/E51AE782.htm" />
+      <HelpTOCNode Title="NativeTimeoutException Events" Url="html/AD893E56.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="5c5b3da0-2d0e-4709-a2a8-5767a118b684" Title="NumericExtensions Class" Url="html/DAFF205B.htm">
+      <HelpTOCNode Id="14232e69-6967-4021-86ff-af973ce0ec57" Title="NumericExtensions Methods" Url="html/9DE3392D.htm">
+        <HelpTOCNode Id="cc7669f9-24a2-4e91-ab43-ddcab7d03f5c" Title="Days Method " Url="html/6DF84C0C.htm">
+          <HelpTOCNode Title="Days Method (Double)" Url="html/ABC2B94B.htm" />
+          <HelpTOCNode Title="Days Method (Int32)" Url="html/20C90D5.htm" />
+          <HelpTOCNode Title="Days Method (Int64)" Url="html/EA02EEA6.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="143f032a-ba66-49b6-a983-2faa759154f8" Title="Hours Method " Url="html/8AABB56A.htm">
+          <HelpTOCNode Title="Hours Method (Double)" Url="html/B45E603B.htm" />
+          <HelpTOCNode Title="Hours Method (Int32)" Url="html/7D0F58DD.htm" />
+          <HelpTOCNode Title="Hours Method (Int64)" Url="html/7D0F58DA.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="8261246a-a11c-4737-b3bd-0ee7f7da7209" Title="Milliseconds Method " Url="html/6D97439F.htm">
+          <HelpTOCNode Title="Milliseconds Method (Double)" Url="html/2D05A1C2.htm" />
+          <HelpTOCNode Title="Milliseconds Method (Int32)" Url="html/AA78421A.htm" />
+          <HelpTOCNode Title="Milliseconds Method (Int64)" Url="html/7D0CD7F.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="830717f8-e3ce-4a87-af8e-4c4f51face00" Title="Minutes Method " Url="html/20599E78.htm">
+          <HelpTOCNode Title="Minutes Method (Double)" Url="html/F1337815.htm" />
+          <HelpTOCNode Title="Minutes Method (Int32)" Url="html/1608C30F.htm" />
+          <HelpTOCNode Title="Minutes Method (Int64)" Url="html/1608C310.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="60354e3f-4a79-49b9-a8a2-c91becbe4464" Title="Months Method " Url="html/B7686708.htm">
+          <HelpTOCNode Title="Months Method (Double)" Url="html/24A7597.htm" />
+          <HelpTOCNode Title="Months Method (Int32)" Url="html/7E7A69E5.htm" />
+          <HelpTOCNode Title="Months Method (Int64)" Url="html/DBD2F54A.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="627fcb1f-3188-45f0-99b0-5d53c4d08518" Title="Round Method " Url="html/5773BB77.htm">
+          <HelpTOCNode Title="Round Method (Decimal, Int32, MidpointRounding)" Url="html/EA0D794C.htm" />
+          <HelpTOCNode Title="Round Method (Double, Int32, MidpointRounding)" Url="html/FD4315B4.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="8537b2fc-fbd3-4406-ae55-c4156e08623d" Title="Seconds Method " Url="html/CFE75A08.htm">
+          <HelpTOCNode Title="Seconds Method (Double)" Url="html/EAE498EF.htm" />
+          <HelpTOCNode Title="Seconds Method (Int32)" Url="html/1E9A24A5.htm" />
+          <HelpTOCNode Title="Seconds Method (Int64)" Url="html/1E9A24A8.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="f7f4614d-efc7-4f52-8dcf-f38a5f953fc7" Title="Times Method " Url="html/3407D227.htm">
+          <HelpTOCNode Title="Times Method (Int32, Action)" Url="html/D66BA0E2.htm" />
+          <HelpTOCNode Title="Times Method (Int64, Action)" Url="html/9CAA0B0E.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="0ed6789f-d08e-49c9-b46a-5115e67969f0" Title="To Method " Url="html/CE85B19A.htm">
+          <HelpTOCNode Title="To Method (Int32, Int64)" Url="html/A93E2A6B.htm" />
+          <HelpTOCNode Title="To Method (Int64, Int64)" Url="html/F310C9BD.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="bcffe43b-916c-4dfb-bb10-9186789b47a9" Title="Years Method " Url="html/8DD637C1.htm">
+          <HelpTOCNode Title="Years Method (Double)" Url="html/AFF6652A.htm" />
+          <HelpTOCNode Title="Years Method (Int32)" Url="html/A0BD1786.htm" />
+          <HelpTOCNode Title="Years Method (Int64)" Url="html/A0BD1785.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="SetExtensions Class" Url="html/156F3DBA.htm" />
+    <HelpTOCNode Title="StringCase Enumeration" Url="html/EAC1A2FF.htm" />
+    <HelpTOCNode Id="271b7028-47a0-4e97-85d7-9bcdf1cf236d" Title="StringExtensions Class" Url="html/312A9FBD.htm">
+      <HelpTOCNode Id="71b233c4-0795-4c06-9182-d169ea6f90e9" Title="StringExtensions Methods" Url="html/D96E551F.htm">
+        <HelpTOCNode Title="CleanForUrl Method " Url="html/D145EC43.htm" />
+        <HelpTOCNode Title="ContainsAll Method " Url="html/BA43DD70.htm" />
+        <HelpTOCNode Title="ContainsAny Method " Url="html/CCB184F3.htm" />
+        <HelpTOCNode Title="IsLower Method " Url="html/995C57DF.htm" />
+        <HelpTOCNode Title="IsNumeric Method " Url="html/410EE88B.htm" />
+        <HelpTOCNode Title="IsUpper Method " Url="html/4D6A6260.htm" />
+        <HelpTOCNode Id="f7813f31-12e3-4be0-8757-2f157eba13cc" Title="Join Method " Url="html/57C88089.htm">
+          <HelpTOCNode Title="Join Method (IEnumerable(String), String)" Url="html/EBADFBF8.htm" />
+          <HelpTOCNode Title="Join(T) Method (IEnumerable(T), String)" Url="html/29EBF9AD.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Left Method " Url="html/B46503C5.htm" />
+        <HelpTOCNode Title="Mid Method " Url="html/23B96FA2.htm" />
+        <HelpTOCNode Title="Right Method " Url="html/48E54B22.htm" />
+        <HelpTOCNode Id="38a330dd-a1b9-4bba-afe3-49b2e4e92db2" Title="Split Method " Url="html/BE200AF9.htm">
+          <HelpTOCNode Title="Split Method (String, String[])" Url="html/82D41791.htm" />
+          <HelpTOCNode Title="Split Method (String, Char, StringSplitOptions)" Url="html/FF9811C8.htm" />
+          <HelpTOCNode Title="Split Method (String, String, StringSplitOptions)" Url="html/257B8C2C.htm" />
+          <HelpTOCNode Title="Split Method (String, StringSplitOptions, Char[])" Url="html/E02CA2F6.htm" />
+          <HelpTOCNode Title="Split Method (String, StringSplitOptions, String[])" Url="html/3D852E5B.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="52c19ae9-bc71-401b-a848-f1c100d8f0cd" Title="ToDecimal Method " Url="html/E26ABFD3.htm">
+          <HelpTOCNode Title="ToDecimal Method (String, Boolean)" Url="html/5CA90FB0.htm" />
+          <HelpTOCNode Title="ToDecimal Method (String, NumberStyles)" Url="html/BEE9C3D4.htm" />
+          <HelpTOCNode Title="ToDecimal Method (String, IFormatProvider)" Url="html/799ADA9E.htm" />
+          <HelpTOCNode Title="ToDecimal Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/D6F36603.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="46b0d671-24c3-44a7-829a-5656a7232e3e" Title="ToDouble Method " Url="html/94C9CF89.htm">
+          <HelpTOCNode Title="ToDouble Method (String, Boolean)" Url="html/FE721860.htm" />
+          <HelpTOCNode Title="ToDouble Method (String, NumberStyles)" Url="html/501D44D8.htm" />
+          <HelpTOCNode Title="ToDouble Method (String, IFormatProvider)" Url="html/501D44D6.htm" />
+          <HelpTOCNode Title="ToDouble Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/501D44D5.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="a6833466-fe2d-48ee-a3c0-2a8f4ef950fc" Title="ToFloat Method " Url="html/E26923BA.htm">
+          <HelpTOCNode Title="ToFloat Method (String, Boolean)" Url="html/C45FF3FD.htm" />
+          <HelpTOCNode Title="ToFloat Method (String, NumberStyles)" Url="html/833FB52B.htm" />
+          <HelpTOCNode Title="ToFloat Method (String, IFormatProvider)" Url="html/C88E9E61.htm" />
+          <HelpTOCNode Title="ToFloat Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/6B3612FC.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="9a94eddb-d4a5-4c96-b6cc-91e911368c31" Title="ToInt Method " Url="html/FA35FE5F.htm">
+          <HelpTOCNode Title="ToInt Method (String, Boolean)" Url="html/2AEA025A.htm" />
+          <HelpTOCNode Title="ToInt Method (String, NumberStyles)" Url="html/BB0B8F2E.htm" />
+          <HelpTOCNode Title="ToInt Method (String, IFormatProvider)" Url="html/5A7864.htm" />
+          <HelpTOCNode Title="ToInt Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/A301ECFF.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="236fdd1e-4beb-41e6-ada8-baeac70cc15c" Title="ToLong Method " Url="html/61AC303E.htm">
+          <HelpTOCNode Title="ToLong Method (String, Boolean)" Url="html/152AD707.htm" />
+          <HelpTOCNode Title="ToLong Method (String, NumberStyles)" Url="html/E3634A51.htm" />
+          <HelpTOCNode Title="ToLong Method (String, IFormatProvider)" Url="html/E3634A4F.htm" />
+          <HelpTOCNode Title="ToLong Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/E3634A4E.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="c43b75f9-3edb-4801-a270-76e9cfba65fe" Title="ToShort Method " Url="html/36F275AE.htm">
+          <HelpTOCNode Title="ToShort Method (String, Boolean)" Url="html/33E53AF7.htm" />
+          <HelpTOCNode Title="ToShort Method (String, NumberStyles)" Url="html/7DAB57D9.htm" />
+          <HelpTOCNode Title="ToShort Method (String, IFormatProvider)" Url="html/C2FA410F.htm" />
+          <HelpTOCNode Title="ToShort Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/2052CC74.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b01db22e-f1a2-4f9d-b7c8-71f96c5cecc8" Title="ToUInt Method " Url="html/D8AFFA68.htm">
+          <HelpTOCNode Title="ToUInt Method (String, Boolean)" Url="html/FEBEE297.htm" />
+          <HelpTOCNode Title="ToUInt Method (String, NumberStyles)" Url="html/E4A12839.htm" />
+          <HelpTOCNode Title="ToUInt Method (String, IFormatProvider)" Url="html/E4A12837.htm" />
+          <HelpTOCNode Title="ToUInt Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/E4A12838.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="1db10163-64c6-418f-aef1-68f4d09aa724" Title="ToULong Method " Url="html/5704A7FB.htm">
+          <HelpTOCNode Title="ToULong Method (String, Boolean)" Url="html/3D5C1126.htm" />
+          <HelpTOCNode Title="ToULong Method (String, NumberStyles)" Url="html/1BBF7762.htm" />
+          <HelpTOCNode Title="ToULong Method (String, IFormatProvider)" Url="html/610E6098.htm" />
+          <HelpTOCNode Title="ToULong Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/3B5D533.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="ToUnsecuredString Method " Url="html/BD04D598.htm" />
+        <HelpTOCNode Id="1d55c219-0ba4-499c-ac6d-087c7d5f95c5" Title="ToUShort Method " Url="html/549A40DB.htm">
+          <HelpTOCNode Title="ToUShort Method (String, Boolean)" Url="html/8A7C76E6.htm" />
+          <HelpTOCNode Title="ToUShort Method (String, NumberStyles)" Url="html/7DE70E52.htm" />
+          <HelpTOCNode Title="ToUShort Method (String, IFormatProvider)" Url="html/7DE70E50.htm" />
+          <HelpTOCNode Title="ToUShort Method (String, NumberStyles, IFormatProvider, Boolean)" Url="html/7DE70E4F.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="ValidatedJoin Method " Url="html/1D4D08D2.htm" />
+        <HelpTOCNode Title="With Method " Url="html/EA79B4D8.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="61933daa-b54d-4e02-b275-17901cb04aad" Title="TaskErrorEventArgs Class" Url="html/F401812.htm">
+      <HelpTOCNode Id="21c1d790-dc06-4ca7-b034-4599055ffae5" Title="TaskErrorEventArgs Constructor " Url="html/3E495AE7.htm">
+        <HelpTOCNode Title="TaskErrorEventArgs Constructor (Exception)" Url="html/B5B35A4A.htm" />
+        <HelpTOCNode Title="TaskErrorEventArgs Constructor (Exception, String)" Url="html/9EFFE512.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="TaskErrorEventArgs Methods" Url="html/B8C97E06.htm" />
+      <HelpTOCNode Id="f42236e3-cb14-44e2-9dbd-7869307cad64" Title="TaskErrorEventArgs Properties" Url="html/354403A7.htm">
+        <HelpTOCNode Title="Caller Property " Url="html/5968314F.htm" />
+        <HelpTOCNode Title="Exception Property " Url="html/E0ADFE71.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="bc61ef4e-dd38-4893-98fa-8de8bd4770a3" Title="TaskEx Class" Url="html/F2FAFC8.htm">
+      <HelpTOCNode Id="9e071aee-d3d9-45ad-8efe-104d7810eb8d" Title="TaskEx Methods" Url="html/E742FCC4.htm">
+        <HelpTOCNode Id="b082d092-c3f8-4fb9-aa6f-f1bc30ee143d" Title="Delay Method " Url="html/83B66C71.htm">
+          <HelpTOCNode Title="Delay Method (Int32)" Url="html/17467000.htm" />
+          <HelpTOCNode Title="Delay Method (TimeSpan)" Url="html/904E3CD9.htm" />
+          <HelpTOCNode Title="Delay Method (Int32, CancellationToken)" Url="html/32F5B174.htm" />
+          <HelpTOCNode Title="Delay Method (TimeSpan, CancellationToken)" Url="html/EDA6C83E.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="ffa2b104-a113-43d1-b8df-fb933bf780b5" Title="Run Method " Url="html/F0A6D369.htm">
+          <HelpTOCNode Title="Run Method (Action)" Url="html/1AD54A92.htm" />
+          <HelpTOCNode Title="Run(T) Method (Func(T))" Url="html/B78F93A1.htm" />
+          <HelpTOCNode Title="Run Method (Action, CancellationToken)" Url="html/978BEEDA.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="ca3bfb18-abd6-4268-a80f-164c2155d3f8" Title="WhenAny Method " Url="html/5B274E2.htm">
+          <HelpTOCNode Title="WhenAny(T) Method (IEnumerable(Task(T)))" Url="html/4F90F24.htm" />
+          <HelpTOCNode Title="WhenAny Method (IEnumerable(Task))" Url="html/7AEF1733.htm" />
+          <HelpTOCNode Title="WhenAny Method (Task[])" Url="html/FC139545.htm" />
+          <HelpTOCNode Title="WhenAny(T) Method (Task(T)[])" Url="html/96150120.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="32c1bc12-ae98-4c43-a162-8c0e1b9c2a05" Title="TaskExtensions Class" Url="html/875399F5.htm">
+      <HelpTOCNode Id="84acffd3-1710-486f-bd47-9077377739f5" Title="TaskExtensions Fields" Url="html/7A535B0A.htm">
+        <HelpTOCNode Title="TaskErrorEventHandler Field" Url="html/513E81CE.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d0bde193-77e1-4d58-b3bd-aceb13131775" Title="TaskExtensions Methods" Url="html/7D9F8B17.htm">
+        <HelpTOCNode Id="13c08c13-2618-4109-a787-2dff60c2b647" Title="AsTask Method " Url="html/9F873144.htm">
+          <HelpTOCNode Title="AsTask(T) Method (Exception)" Url="html/F488D1BC.htm" />
+          <HelpTOCNode Title="AsTask Method (Exception)" Url="html/D787F071.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="53a74c9e-1834-4bd1-8058-7977078701e2" Title="IgnoreExceptions Method " Url="html/C3F93FC7.htm">
+          <HelpTOCNode Title="IgnoreExceptions Method (Task, String)" Url="html/DA6942BC.htm" />
+          <HelpTOCNode Title="IgnoreExceptions(T) Method (Task(T), String)" Url="html/4981CFA7.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="9d429319-465e-43ba-951e-8e039c9e7f00" Title="ObserveExceptions Method " Url="html/53583269.htm">
+          <HelpTOCNode Title="ObserveExceptions Method (Task)" Url="html/2A4E99B2.htm" />
+          <HelpTOCNode Title="ObserveExceptions(T) Method (Task(T))" Url="html/5A5B6A41.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="ToTask Method " Url="html/EA7B4884.htm" />
+        <HelpTOCNode Title="ToVoid Method " Url="html/27C5AC0D.htm" />
+        <HelpTOCNode Id="764405b7-49c2-4f20-9a88-e990f327e05f" Title="WithCancellation Method " Url="html/B218AC3A.htm">
+          <HelpTOCNode Title="WithCancellation Method (Task, CancellationToken)" Url="html/76FDEF33.htm" />
+          <HelpTOCNode Title="WithCancellation(T) Method (Task(T), CancellationToken)" Url="html/72DF33DE.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="684907f0-ac59-472e-a0eb-15610577d902" Title="WithTimeout Method " Url="html/4A92A44C.htm">
+          <HelpTOCNode Title="WithTimeout Method (Task, Int32)" Url="html/8A380E03.htm" />
+          <HelpTOCNode Title="WithTimeout Method (Task, TimeSpan)" Url="html/41000186.htm" />
+          <HelpTOCNode Title="WithTimeout Method (Task, Int32, Action)" Url="html/5909A3B5.htm" />
+          <HelpTOCNode Title="WithTimeout Method (Task, TimeSpan, Action)" Url="html/9E588CEB.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="440a2a42-8441-441d-82bc-e792b92e1b13" Title="TaskExtensions Properties" Url="html/5CD74EB2.htm">
+        <HelpTOCNode Title="NeverComplete Property " Url="html/E6C5C3F8.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="41ea3cb6-8bb9-44a5-9b1a-c273426928de" Title="TimeExtensions Class" Url="html/EF5BA421.htm">
+      <HelpTOCNode Id="6b6a5de6-7a1f-4bd0-b0fa-9223654c3cc8" Title="TimeExtensions Methods" Url="html/7CFC0C37.htm">
+        <HelpTOCNode Title="BeforeNow Method " Url="html/CAF50801.htm" />
+        <HelpTOCNode Title="BeforeNowUtc Method " Url="html/4EEC752F.htm" />
+        <HelpTOCNode Title="FromNow Method " Url="html/A25E5A78.htm" />
+        <HelpTOCNode Title="FromNowUtc Method " Url="html/F2AF865E.htm" />
+        <HelpTOCNode Id="1c3fe399-f562-46e0-99fb-5ad1e38b4146" Title="FromUnixTime Method " Url="html/91C0E7D6.htm">
+          <HelpTOCNode Title="FromUnixTime Method (Double)" Url="html/19A0D277.htm" />
+          <HelpTOCNode Title="FromUnixTime Method (Int32)" Url="html/8AA01259.htm" />
+          <HelpTOCNode Title="FromUnixTime Method (Int64)" Url="html/8AA01256.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9e4cb82f-dd8f-445a-8baf-a7fd789e9f3c" Title="UriExtensions Class" Url="html/924F18C.htm">
+      <HelpTOCNode Id="121b41c5-0ac3-4b4f-9a27-322178a3e316" Title="UriExtensions Methods" Url="html/2FFDCEE0.htm">
+        <HelpTOCNode Id="91374972-ebca-4a94-bb93-0d68cd2e2fe6" Title="Remove Method " Url="html/E1284EB0.htm">
+          <HelpTOCNode Title="Remove Method (Uri, IEnumerable(KeyValuePair(String, Object)))" Url="html/6D48D457.htm" />
+          <HelpTOCNode Title="Remove Method (Uri, KeyValuePair(String, Object))" Url="html/F321C7CD.htm" />
+          <HelpTOCNode Title="Remove Method (Uri, String[])" Url="html/ADD2DE97.htm" />
+          <HelpTOCNode Title="Remove Method (Uri, String, Object)" Url="html/507A5332.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="62ffdf19-20e0-439b-8d53-8b03b28a161b" Title="ToUri Method " Url="html/3A24539.htm">
+          <HelpTOCNode Title="ToUri Method (String, Object[])" Url="html/13ADC058.htm" />
+          <HelpTOCNode Title="ToUri Method (String, IUrlFormatable, Object[])" Url="html/1CEE73B0.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="822994ef-edf1-4744-98d6-9ef0d7cb9e44" Title="With Method " Url="html/377F784.htm">
+          <HelpTOCNode Title="With Method (Uri, IEnumerable(KeyValuePair(String, Object)))" Url="html/265E9E3.htm" />
+          <HelpTOCNode Title="With Method (Uri, KeyValuePair(String, Object))" Url="html/2BE18EED.htm" />
+          <HelpTOCNode Title="With Method (Uri, String, Object)" Url="html/13D7ECBE.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
