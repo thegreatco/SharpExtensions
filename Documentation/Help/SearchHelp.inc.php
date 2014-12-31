@@ -169,5 +169,3 @@ function cmprankbytitle($x, $y)
 {
     return strcmp($x->pageTitle, $y->pageTitle);
 }
-
-?>
