@@ -84,6 +84,9 @@
     <Compile Include="..\SharpExtensions45\Numeric Extensions\LongExtensions.cs">
       <Link>Numeric Extensions\LongExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\SharpExtensions45\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="..\SharpExtensions45\String Extensions\StringCase.cs">
       <Link>String Extensions\StringCase.cs</Link>
     </Compile>
@@ -111,7 +114,6 @@
     <Compile Include="..\SharpExtensions45\Url Extensions\UriExtensions.cs">
       <Link>Url Extensions\UriExtensions.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

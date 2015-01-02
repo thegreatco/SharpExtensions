@@ -169,7 +169,7 @@ namespace SharpExtensions
         }
 
         /// <summary>
-        /// Extension method to return only the <paramref name="length"/> characters from the string.
+        /// Extension method to return only the <paramref name="length"/> characters from the string. If this exceeds the length, the whole string is returned.
         /// </summary>
         /// <param name="string">The string from which to get the characters.</param>
         /// <param name="length">The number of characters to return.</param>
@@ -177,9 +177,7 @@ namespace SharpExtensions
         public static string Left(this string @string, int length)
         {
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
-            if (length > @string.Length) throw new IndexOutOfRangeException("length");
-
-            return @string.Substring(0, length);
+            return length > @string.Length ? @string : @string.Substring(0, length);
         }
 
         /// <summary>
@@ -191,9 +189,7 @@ namespace SharpExtensions
         public static string Right(this string @string, int length)
         {
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
-            if (length > @string.Length) throw new IndexOutOfRangeException("length");
-
-            return @string.Substring(@string.Length - length, length);
+            return length > @string.Length ? @string : @string.Substring(@string.Length - length, length);
         }
 
         /// <summary>
