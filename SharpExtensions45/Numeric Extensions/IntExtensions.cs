@@ -83,6 +83,68 @@ namespace SharpExtensions
 
         #endregion
 
+        #region multipliers
+
+        /// <summary>
+        /// Return the number times one thousands.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static int Thousand(this int val)
+        {
+            checked
+            {
+                return val * 1000;
+            }
+        }
+
+        /// <summary>
+        /// Return the number times one millions.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static int Million(this int val)
+        {
+            checked
+            {
+                return val * 1.Thousand().Thousand();
+            }
+        }
+
+        /// <summary>
+        /// Return the number times one billions.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static int Billion(this int val)
+        {
+            checked
+            {
+                return val * 1.Thousand().Million();
+            }
+        }
+
+        /// <summary>
+        /// Multiple the <paramref name="val"/> by 10 to the <paramref name="exp"/>.
+        /// </summary>
+        /// <param name="val">The value to multiply</param>
+        /// <param name="exp">The exponent to which 10 will be raised.</param>
+        /// <returns>The <see cref="double"/>.</returns>
+        public static int Pow10(this int val, int exp)
+        {
+            checked
+            {
+                var returnExp = 1;
+                for (var i = 0; i < exp; i++)
+                {
+                    returnExp = returnExp * 10;
+                }
+                return val * returnExp;
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// Perform the <see cref="Action"/> this many times.
         /// </summary>

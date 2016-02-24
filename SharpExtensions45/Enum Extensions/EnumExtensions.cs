@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace SharpExtensions
 {
@@ -19,7 +20,7 @@ namespace SharpExtensions
         /// <returns></returns>
         public static string GetName(this Enum val, StringCase @case = StringCase.Default)
         {
-            if (val == null) throw new ArgumentNullException("val");
+            if (val == null) throw new ArgumentNullException(nameof(val));
 
             var name = Enum.GetName(val.GetType(), val);
             if (name == null) return null;
@@ -42,7 +43,15 @@ namespace SharpExtensions
         /// <returns>The <see cref="string"/> description.</returns>
         public static string GetDescription(this Enum val)
         {
+            if (val == null) throw new ArgumentNullException(nameof(val));
+
             var fields = val.GetType().GetField(val.GetName());
+            
+            // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
+            var jsonAttribute = fields.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() as EnumMemberAttribute;
+            if (jsonAttribute != null) return jsonAttribute.Value;
+
+            // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
             var attribute = fields.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
             return attribute == null ? val.GetName() : attribute.Description;
         }
@@ -55,11 +64,19 @@ namespace SharpExtensions
         /// <returns>The <see cref="string"/> description.</returns>
         public static string GetDescription<T>(this T val)
         {
+            if (val == null) throw new ArgumentNullException(nameof(val));
+
             var type = typeof (T);
             if (!type.IsEnum) throw new InvalidEnumArgumentException();
             var castVal = val as Enum;
 
             var fields = type.GetField(castVal.GetName());
+
+            // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
+            var jsonAttribute = fields.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() as EnumMemberAttribute;
+            if (jsonAttribute != null) return jsonAttribute.Value;
+
+            // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
             var attribute = fields.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
             return attribute == null ? castVal.GetName() : attribute.Description;
         }
@@ -98,6 +115,8 @@ namespace SharpExtensions
         /// <returns>The value of T or default(T) if the description is not found.</returns>
         public static T GetValueFromDescription<T>(this string description) where T : struct
         {
+            if (string.IsNullOrWhiteSpace(description)) throw new ArgumentNullException(nameof(description));
+
             var type = typeof(T);
             if (!type.IsEnum) throw new InvalidEnumArgumentException();
 
@@ -105,6 +124,12 @@ namespace SharpExtensions
             foreach (var field in fields)
             {
                 if (field.Name == description) return (T) field.GetValue(null);
+
+                // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
+                var jsonAttribute = Attribute.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() as EnumMemberAttribute;
+                if (jsonAttribute != null && jsonAttribute.Value == description) return (T) field.GetValue(null);
+
+                // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
                 var attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
                 if (attribute != null && attribute.Description == description) return (T) field.GetValue(null);    
             }

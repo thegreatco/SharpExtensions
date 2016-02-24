@@ -20,7 +20,7 @@ namespace SharpExtensions
         /// <summary>
         /// A <see cref="Task"/> that never completes.
         /// </summary>
-        public static Task NeverComplete { get { return NeverCompleteSource.Task; } }
+        public static Task NeverComplete => NeverCompleteSource.Task;
 
         /// <summary>
         /// Run a task with a timeout.
@@ -32,9 +32,24 @@ namespace SharpExtensions
         public static async Task WithTimeout(this Task task, TimeSpan timeout)
         {
             if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
-                throw new NativeTimeoutException();
+                throw new TimeoutException();
 
             await task;
+        }
+
+        /// <summary>
+        /// Allows non-cancelable tasks to be awaited, and throws an exception after a specified timeout if the task has not yet completed.
+        /// </summary>
+        /// <typeparam name="T">The type of the task's return value.</typeparam>
+        /// <param name="task">The <see cref="Task{T}"/> to run.</param>
+        /// <param name="timeout">The timeout after which to throw.</param>
+        /// <returns>A task that will throw a <see cref="TimeoutException"/> depending on the provided timeout.</returns>
+        public static async Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout)
+        {
+            if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
+                throw new TimeoutException();
+
+            return await task;
         }
 
         /// <summary>
@@ -50,6 +65,18 @@ namespace SharpExtensions
         }
 
         /// <summary>
+        /// Run a task with a timeout.
+        /// </summary>
+        /// <param name="task">The <see cref="Task{T}"/> to run.</param>
+        /// <param name="timeout">The maximum amount of time in milliseconds the task is allowed to run.</param>
+        /// <exception cref="TimeoutException">A timeout exception if the task takes too long to run. </exception>
+        /// <returns>A <see cref="Task"/>.</returns>
+        public static async Task<T> WithTimeout<T>(this Task<T> task, int timeout)
+        {
+            return await WithTimeout(task, TimeSpan.FromMilliseconds(timeout));
+        }
+
+        /// <summary>
         /// Run a task with a timeout, execute the supplied action if a timeout occurs.
         /// </summary>
         /// <param name="task">The task to run.</param>
@@ -62,6 +89,22 @@ namespace SharpExtensions
                 action.Invoke();
 
             await task;
+        }
+
+        /// <summary>
+        /// Allows non-cancelable tasks to be awaited, and throws an exception after a specified timeout if the task has not yet completed.
+        /// </summary>
+        /// <typeparam name="T">The type of the task's return value.</typeparam>
+        /// <param name="task">The <see cref="Task{T}"/>.</param>
+        /// <param name="timeout">The timeout after which to throw.</param>
+        /// <param name="action">The action to execute if the task times out.</param>
+        /// <returns>A task that will throw a <see cref="TimeoutException"/> depending on the provided timeout.</returns>
+        public static async Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout, Action action)
+        {
+            if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
+                action.Invoke();
+
+            return await task;
         }
 
         /// <summary>

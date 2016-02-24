@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,6 +87,9 @@
     </Compile>
     <Compile Include="..\SharpExtensions45\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SharpExtensions45\Reflection Extensions\ReflectionExtensions.cs">
+      <Link>Reflection Extensions\ReflectionExtensions.cs</Link>
     </Compile>
     <Compile Include="..\SharpExtensions45\String Extensions\StringCase.cs">
       <Link>String Extensions\StringCase.cs</Link>

@@ -53,7 +53,10 @@ namespace SharpExtensions
         /// </summary>
         public int Count
         {
-            get { return _dictionary.Count; }
+            get
+            {
+                return _dictionary.Count;
+            }
         }
 
         /// <summary>

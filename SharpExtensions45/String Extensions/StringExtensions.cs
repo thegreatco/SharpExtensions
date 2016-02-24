@@ -114,7 +114,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="bool"/> indicating if the string is numeric.</returns>
         public static bool IsNumeric(this string @string)
         {
-            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
 
             double val;
             return double.TryParse(@string, out val);
@@ -176,7 +176,7 @@ namespace SharpExtensions
         /// <returns>The <see cref="string"/>.</returns>
         public static string Left(this string @string, int length)
         {
-            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
             return length > @string.Length ? @string : @string.Substring(0, length);
         }
 
@@ -188,7 +188,7 @@ namespace SharpExtensions
         /// <returns>The <see cref="string"/>.</returns>
         public static string Right(this string @string, int length)
         {
-            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
             return length > @string.Length ? @string : @string.Substring(@string.Length - length, length);
         }
 
@@ -201,7 +201,7 @@ namespace SharpExtensions
         /// <returns>The <see cref="string"/>.</returns>
         public static string Mid(this string @string, int start, int end)
         {
-            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException("string");
+            if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
             if (start > @string.Length) throw new IndexOutOfRangeException("start");
             if (end > @string.Length) throw new IndexOutOfRangeException("end");
             if (start > end) throw new IndexOutOfRangeException("start must be <= end.");
@@ -239,7 +239,7 @@ namespace SharpExtensions
         /// <exception cref="ArgumentNullException">Thrown if the <see cref="SecureString"/> object is null.</exception>
         public static string ToUnsecuredString(this SecureString secureString)
         {
-            if (secureString == null) throw new ArgumentNullException("secureString");
+            if (secureString == null) throw new ArgumentNullException(nameof(secureString));
 
             // Start with a zero pointer
             var unmanagedString = IntPtr.Zero;
@@ -256,6 +256,109 @@ namespace SharpExtensions
                 // Free the unmanaged block of memory
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
+        }
+
+        /// <summary>
+        /// Trims the supplied array of strings from the beginning of the source string.
+        /// </summary>
+        /// <param name="str"> Source string </param>
+        /// <param name="trimStrings"> Array of strings to trim from the start of the source string. </param>
+        /// <returns> Trimmed source string. </returns>
+        public static string TrimStart(this string str, params string[] trimStrings)
+        {
+            bool matches;
+            do
+            {
+                matches = false;
+                foreach (var trimString in trimStrings.Where(trimString => str.StartsWith(trimString)))
+                {
+                    str = str.Substring(trimString.Length);
+                    matches = true;
+                }
+            } while (matches);
+
+            return str;
+        }
+
+        /// <summary>
+        /// Trims the supplied array of strings the from end of the source string.
+        /// </summary>
+        /// <param name="str"> Source string </param>
+        /// <param name="trimStrings"> Array of strings to trim from the end of the source string. </param>
+        /// <returns> Trimmed source string. </returns>
+        public static string TrimEnd(this string str, params string[] trimStrings)
+        {
+            return TrimEnd(str, StringComparison.Ordinal, trimStrings);
+        }
+
+        /// <summary>
+        /// Trims the supplied array of strings the from end of the source string.
+        /// </summary>
+        /// <param name="str"> Source string  </param>
+        /// <param name="comparisonType"> The comparison type. </param>
+        /// <param name="trimStrings"> Strings to trim from the end of the source string. </param>
+        /// <returns> Trimmed source string. </returns>
+        public static string TrimEnd(this string str, StringComparison comparisonType, params string[] trimStrings)
+        {
+            bool matches;
+            do
+            {
+                matches = false;
+                foreach (var trimString in trimStrings)
+                {
+                    var index = str.LastIndexOf(trimString, comparisonType);
+                    if (index == -1) continue;
+                    if (index + trimString.Length != str.Length) continue;
+
+                    str = str.Mid(0, index);
+                    matches = true;
+                }
+            } while (matches);
+
+            return str;
+        }
+
+        /// <summary>
+        /// Converts a string to a shorter version cut off at exactly at the provided length.
+        /// </summary>
+        /// <param name="string">The source string. </param>
+        /// <param name="length">The maximum allowed length of the string. </param>
+        /// <returns>
+        /// The shortened <see cref="string"/>.
+        /// </returns>
+        public static string FirstN(this string @string, int length)
+        {
+            if (string.IsNullOrEmpty(@string)) return @string;
+            return @string.Length <= length ? @string : @string.Substring(0, length);
+        }
+
+        /// <summary>
+        /// Converts a string to a shorter version with a provided max length, cut off at the last space before that length.
+        /// </summary>
+        /// <param name="string">The source string. </param>
+        /// <param name="length">The maximum allowed length of the string. </param>
+        /// <returns>
+        /// The shortened <see cref="string"/>.
+        /// </returns>
+        public static string FirstNSoft(this string @string, int length)
+        {
+            if (string.IsNullOrEmpty(@string)) return @string;
+            return @string.Length <= length ? @string : @string.Substring(0, @string.Substring(0, length).LastIndexOf(" ", StringComparison.Ordinal));
+        }
+
+        /// <summary>
+        /// Takes a string and returns the first N number of words.
+        /// </summary>
+        /// <param name="string"> The source string. </param>
+        /// <param name="length"> The length </param>
+        /// <returns>
+        /// The shortened <see cref="string"/>.
+        /// </returns>
+        public static string FirstNWords(this string @string, int length)
+        {
+            if (string.IsNullOrWhiteSpace(@string)) return @string;
+            var strArr = @string.Split(' ').ToArray();
+            return strArr.Length <= length ? @string : string.Join(" ", strArr.Take(length));
         }
     }
 }

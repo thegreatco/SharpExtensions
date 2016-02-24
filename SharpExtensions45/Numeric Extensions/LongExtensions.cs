@@ -84,13 +84,110 @@ namespace SharpExtensions
         #endregion
 
         /// <summary>
+        /// Return the number times one thousands.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static long Thousand(this long val)
+        {
+            checked
+            {
+                return val * 1000L;
+            }
+        }
+
+        /// <summary>
+        /// Return the number times one millions.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static long Million(this long val)
+        {
+            checked
+            {
+                return val * 1L.Thousand().Thousand();
+            }
+        }
+
+        /// <summary>
+        /// Return the number times one billions.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static long Billion(this long val)
+        {
+            checked
+            {
+                return val * 1L.Thousand().Million();
+            }
+        }
+
+        /// <summary>
+        /// Return the number times one billions.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static long Trillion(this long val)
+        {
+            checked
+            {
+                return val * 1L.Thousand().Billion();
+            }
+        }
+
+        /// <summary>
+        /// Return the number times one quadrillions.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static long Quadrillion(this long val)
+        {
+            checked
+            {
+                return val * 1L.Thousand().Trillion();
+            }
+        }
+
+        /// <summary>
+        /// Return the number times one quintillions.
+        /// </summary>
+        /// <param name="val">The number to multiply</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        public static long Quintillion(this long val)
+        {
+            checked
+            {
+                return val * 1L.Thousand().Quadrillion();
+            }
+        }
+
+        /// <summary>
+        /// Multiple the <paramref name="val"/> by 10 to the <paramref name="exp"/>.
+        /// </summary>
+        /// <param name="val">The value to multiply</param>
+        /// <param name="exp">The exponent to which 10 will be raised.</param>
+        /// <returns>The <see cref="double"/>.</returns>
+        public static long Pow10(this long val, int exp)
+        {
+            checked
+            {
+                var returnExp = 1L;
+                for (var i = 0; i < exp; i++)
+                {
+                    returnExp = returnExp * 10;
+                }
+                return val * returnExp;
+            }
+        }
+
+        /// <summary>
         /// Perform the <see cref="Action"/> this many times.
         /// </summary>
         /// <param name="val">The number of times to execute the <see cref="Action"/></param>
         /// <param name="action">The <see cref="Action"/> to be executed</param>
         public static void Times(this long val, Action action)
         {
-            for (var i = 0; i < val; i++)
+            for (var i = 0L; i < val; i++)
             {
                 action();
             }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions45", "SharpExtensions45\SharpExtensions45.csproj", "{BDB26656-0058-4DD6-A9EC-C27B71461874}"
 EndProject
@@ -34,8 +34,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions40.Json", "SharpExtensions40.Json\SharpExtensions40.Json.csproj", "{70A4BDD6-08CD-4D6D-A302-CED026DDCD7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpTools", "SharpTools\SharpTools.csproj", "{A3B8062D-AC1D-47A2-85FE-A71AA2599784}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalityUUID", "LocalityUUID\LocalityUUID.csproj", "{9F7971F0-8674-46AF-850A-6296D3645323}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,9 +71,6 @@ Global
 		{A3B8062D-AC1D-47A2-85FE-A71AA2599784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3B8062D-AC1D-47A2-85FE-A71AA2599784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3B8062D-AC1D-47A2-85FE-A71AA2599784}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F7971F0-8674-46AF-850A-6296D3645323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F7971F0-8674-46AF-850A-6296D3645323}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F7971F0-8674-46AF-850A-6296D3645323}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
