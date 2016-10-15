@@ -31,5 +31,8 @@
       "type": "git",
       "url": "https://github.com/thegreatco/SharpExtensions"
     }
+  },
+  "scripts": {
+    "postcompile": [ "dotnet pack --no-build --configuration %compile:Configuration%" ]
   }
 }
