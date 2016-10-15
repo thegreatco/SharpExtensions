@@ -1,0 +1,35 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
+    "NETStandard.Library": "1.6.0",
+    "System.ComponentModel": "4.0.1",
+    "System.ComponentModel.Primitives": "4.1.0",
+    "System.Linq.Parallel": "4.0.1",
+    "System.Runtime.Serialization.Primitives": "4.1.1"
+  },
+  "frameworks": {
+    "netstandard1.1": {}
+  },
+  "description": "A collection of extension methods to make things a bit easier, including Task, Enum, String, and Uri extensions.",
+  "authors": [ "TheGreatCO" ],
+  "version": "0.1.8",
+  "name": "SharpExtensions",
+  "language": "en-US",
+  "buildOptions": {
+    "define": [ "NETDX" ],
+    "platform": "anycpu",
+    "debugType": "portable",
+    "xmlDoc": true
+  },
+  "packOptions": {
+    "releaseNotes": "Removed support for .NET 40, this package now targets .NETStandard 1.1 supporting .NET 4.5 and newer.",
+    "projectUrl": "https://github.com/thegreatco/SharpExtensions",
+    "licenseUrl": "https://github.com/thegreatco/SharpExtensions/blob/master/LICENSE.TXT",
+    "requireLicenseAcceptance": true,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/thegreatco/SharpExtensions"
+    }
+  }
+}
