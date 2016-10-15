@@ -3,20 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C991AD2B-FA67-409C-BE86-67068BDE5DCE}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17A3BD69-2F7D-4FC0-B62C-37E37CE783CA}"
 	ProjectSection(SolutionItems) = preProject
 		Settings.StyleCop = Settings.StyleCop
-		SharpExtensions.Assembly.nuspec = SharpExtensions.Assembly.nuspec
-		SharpExtensions.Json.Assembly.nuspec = SharpExtensions.Json.Assembly.nuspec
-		SharpExtensions.Json.nuspec = SharpExtensions.Json.nuspec
-		SharpExtensions.nuspec = SharpExtensions.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions.Tests", "SharpExtensions.Tests\SharpExtensions.Tests.csproj", "{166CA164-F7F3-499E-A11B-07CF85255437}"
