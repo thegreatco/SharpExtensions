@@ -4,7 +4,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node
+      - image: microsoft/dotnet:2.0.3-sdk-jessie
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -18,13 +18,6 @@ jobs:
       only: master
 
     steps:
-      - run: sudo apt-get install apt-transport-https
-      - run: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-      - run: sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-      - run: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
-      - run: sudo apt-get update && sudo apt-get install dotnet-sdk-2.0.0
-      # - run: sudo apt-get install python2.7 python-dev
-
       - checkout
       
       # Download and cache dependencies
