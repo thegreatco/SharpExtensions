@@ -1,56 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C17F768B-8A0B-46F2-A935-9FDD31B6BF23}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharpExtensions</RootNamespace>
+    <Description>A collection of extension methods to make Json things a bit easier.</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <VersionPrefix>0.1.8</VersionPrefix>
+    <Authors>TheGreatCO</Authors>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DefineConstants>$(DefineConstants);NETDX</DefineConstants>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>SharpExtensions.Json</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <PackageId>SharpExtensions.Json</PackageId>
+    <PackageProjectUrl>https://github.com/thegreatco/SharpExtensions</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/thegreatco/SharpExtensions/blob/master/LICENSE.TXT</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/thegreatco/SharpExtensions</RepositoryUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NETDX</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETDX</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <None Include="project.json" />
-    <!-- A reference to the entire .NET Framework is automatically included -->
+    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="JsonExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>dotnet pack --configuration $(ConfigurationName) --output $(SolutionDir)nupkgs $(ProjectDir)project.json</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+
+  <Target Name="PostcompileScript" AfterTargets="Build">
+    <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
