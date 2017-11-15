@@ -35,7 +35,7 @@ jobs:
       #     - node_modules-
 
       - run: dotnet restore SharpExtensions.sln
-      - run: dotnet test src/SharpExtensions/SharpExtensions.Test/SharpExtensions.Test.csproj
+      - run: dotnet test src/SharpExtensions.Test/SharpExtensions.Test.csproj
       - run: dotnet pack src/SharpExtensions/SharpExtensions.csproj -o ../../ --include-symbols /p:Version=1.0.0.${CIRCLE_BUILD_NUM}
       - run: dotnet pack src/SharpExtensions.Json/SharpExtensions.Json.csproj -o ../../ --include-symbols /p:Version=1.0.0.${CIRCLE_BUILD_NUM}
       - run: dotnet nuget push SharpExtensions.1.0.0.${CIRCLE_BUILD_NUM}.symbols.nupkg -k ${NUGET_API_KEY} -s nuget.org
