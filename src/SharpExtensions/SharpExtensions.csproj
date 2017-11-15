@@ -6,7 +6,7 @@
     <VersionPrefix>0.1.8</VersionPrefix>
     <Authors>TheGreatCO</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PlatformTarget>anycpu</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>portable</DebugType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>SharpExtensions</AssemblyName>
@@ -19,15 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
-    <PackageReference Include="System.ComponentModel" Version="4.0.1" />
-    <PackageReference Include="System.ComponentModel.Primitives" Version="4.1.0" />
-    <PackageReference Include="System.Linq.Parallel" Version="4.0.1" />
-    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.1.1" />
   </ItemGroup>
-
-  <Target Name="PostcompileScript" AfterTargets="Build">
-    <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
-  </Target>
 
 </Project>

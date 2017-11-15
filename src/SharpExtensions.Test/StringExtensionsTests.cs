@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
-    [TestFixture]
+    [TestClass]
     public class StringExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void With()
         {
             Assert.IsTrue("{0}".With("abc") == "abc");
@@ -17,14 +17,14 @@ namespace SharpExtensions.Tests
             Assert.IsTrue("{0} {1}".With("abc", "def") == "abc def");
         }
 
-        [Test]
+        [TestMethod]
         public void Join()
         {
             var arr = new[] { "abc", "def" };
             Assert.IsTrue(arr.Join(",") == "abc,def");
         }
 
-        [Test]
+        [TestMethod]
         public void Split()
         {
             const string str1 = "abc,def,,ghi";
@@ -46,10 +46,10 @@ namespace SharpExtensions.Tests
             Assert.IsTrue(str3.Split(",", StringSplitOptions.None).ContainsOnly("abc", "def", string.Empty, "ghi", "jkl"));
         }
 
-        [Test]
+        [TestMethod]
         public void IsNumeric()
         {
-            Assert.Throws<ArgumentNullException>(() => { var res = string.Empty.IsNumeric(); });
+            Assert.ThrowsException<ArgumentNullException>(() => { var res = string.Empty.IsNumeric(); });
             Assert.IsTrue("123".IsNumeric());
 
             Assert.IsTrue("12.3".IsNumeric());
@@ -57,7 +57,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse("123d".IsNumeric());
         }
 
-        [Test]
+        [TestMethod]
         public void CleanForUrl()
         {
             var arr = new[] { "!", "*", "'", "(", ")", ";", ":", "@", "&", "=", "+", "$", ",", "/", "?", "%", "#", "[", "]" };
@@ -66,7 +66,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(str.CleanForUrl().ContainsAny(arr));
         }
 
-        [Test]
+        [TestMethod]
         public void ValidatedJoin()
         {
             var arr = new[] { "abc", string.Empty, "", " ", "stuff" };
@@ -74,7 +74,7 @@ namespace SharpExtensions.Tests
             Assert.IsTrue(arr.ValidatedJoin(",") == "abc,stuff");
         }
 
-        [Test]
+        [TestMethod]
         public void IsLower()
         {
             Assert.IsTrue("abc".IsLower());
@@ -86,7 +86,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse("abC".IsLower());
         }
 
-        [Test]
+        [TestMethod]
         public void IsUpper()
         {
             Assert.IsTrue("ABC".IsUpper());
@@ -98,36 +98,38 @@ namespace SharpExtensions.Tests
             Assert.IsFalse("abC".IsUpper());
         }
 
-        [Test]
+        [TestMethod]
         public void Left()
         {
-            Assert.Throws<ArgumentNullException>(() => "".Left(2));
-            Assert.Throws<IndexOutOfRangeException>(() => "abc".Left(4));
+            Assert.ThrowsException<ArgumentNullException>(() => "".Left(2, true));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => "abc".Left(4, true));
             
+            Assert.IsTrue("abc".Left(4) == "abc");
             Assert.IsTrue("abcdef".Left(2) == "ab");
         }
 
-        [Test]
+        [TestMethod]
         public void Right()
         {
-            Assert.Throws<ArgumentNullException>(() => "".Right(2));
-            Assert.Throws<IndexOutOfRangeException>(() => "abc".Right(4));
+            Assert.ThrowsException<ArgumentNullException>(() => "".Right(2, true));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => "abc".Right(4, true));
 
+            Assert.IsTrue("abc".Right(4) == "abc");
             Assert.IsTrue("abcdef".Right(2) == "ef");
         }
 
-        [Test]
+        [TestMethod]
         public void Mid()
         {
-            Assert.Throws<ArgumentNullException>(() => "".Mid(5, 7));
-            Assert.Throws<IndexOutOfRangeException>(() => "abcdefghij".Mid(11, 5));
-            Assert.Throws<IndexOutOfRangeException>(() => "abcdefghij".Mid(5, 11));
-            Assert.Throws<IndexOutOfRangeException>(() => "abcdefghij".Mid(7, 5));
+            Assert.ThrowsException<ArgumentNullException>(() => "".Mid(5, 7));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => "abcdefghij".Mid(11, 5));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => "abcdefghij".Mid(5, 11));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => "abcdefghij".Mid(7, 5));
 
             Assert.IsTrue("abcdefghij".Mid(4, 5) == "ef");
         }
 
-        [Test]
+        [TestMethod]
         public void ContainsAny()
         {
             Assert.IsTrue("abcdefghijk".ContainsAny("def", "xyz"));
@@ -135,7 +137,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse("abcdefghijk".ContainsAny("qrs", "xyz"));
         }
 
-        [Test]
+        [TestMethod]
         public void ContainsAll()
         {
             Assert.IsTrue("abcdefghijk".ContainsAll("def", "ghi"));

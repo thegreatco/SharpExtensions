@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
-    [TestFixture]
+    [TestClass]
     public class CappedQueueTests
     {
-        [Test]
+        [TestMethod]
         public void Test()
         {
             var collection = new CappedQueue<int>(10);

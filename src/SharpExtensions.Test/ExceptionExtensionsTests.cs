@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
-    [TestFixture]
+    [TestClass]
     public class ExceptionExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void Descrption()
         {
             var str = new StringBuilder()

@@ -1,12 +1,12 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
-    [TestFixture]
+    [TestClass]
     public class DateTimeExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void FromUnixTime()
         {
             var dateTime = 100L.FromUnixTime();

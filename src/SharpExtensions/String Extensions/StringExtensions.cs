@@ -113,8 +113,7 @@ namespace SharpExtensions
         {
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
 
-            double val;
-            return double.TryParse(@string, out val);
+            return double.TryParse(@string, out double val);
         }
 
         /// <summary>
@@ -129,11 +128,7 @@ namespace SharpExtensions
                 .Union(Enumerable.Range(58, 7))
                 .Union(Enumerable.Range(91, 6))
                 .Union(Enumerable.Range(123, 5))
-#if NET40 || NET45
                 .Select(x => ((char) x).ToString(CultureInfo.InvariantCulture));
-#elif NETDX
-                .Select(x => ((char) x).ToString());
-#endif
             @string = chars.Aggregate(@string, (current, x) => current.Replace(x, string.Empty));
             return @string.Trim();
         }
@@ -156,11 +151,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="bool"/> indicating if the string is lowercase.</returns>
         public static bool IsLower(this string @string)
         {
-#if NET40 || NET45
-            return @string.Select(x => (int) x).All(x => x >= 97 && x <= 122);
-#elif NETDX
             return @string.ToCharArray().Select(x => (int) x).All(x => x >= 97 && x <= 122);
-#endif
         }
 
         /// <summary>
@@ -170,11 +161,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="bool"/> indicating if the string is uppercase.</returns>
         public static bool IsUpper(this string @string)
         {
-#if NET40 || NET45
-            return @string.Select(x => (int)x).All(x => x >= 65 && x <= 90);
-#elif NETDX
             return @string.ToCharArray().Select(x => (int)x).All(x => x >= 65 && x <= 90);
-#endif
         }
 
         /// <summary>
@@ -182,10 +169,12 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="string">The string from which to get the characters.</param>
         /// <param name="length">The number of characters to return.</param>
+        /// <param name="throwIfShort">Throw an exception if the input string is shorter than the length specified.</param>
         /// <returns>The <see cref="string"/>.</returns>
-        public static string Left(this string @string, int length)
+        public static string Left(this string @string, int length, bool throwIfShort = false)
         {
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
+            if (throwIfShort && @string.Length < length) throw new IndexOutOfRangeException(nameof(length));
             return length > @string.Length ? @string : @string.Substring(0, length);
         }
 
@@ -194,10 +183,12 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="string">The string from which to get the characters.</param>
         /// <param name="length">The number of characters to return.</param>
+        /// <param name="throwIfShort">Throw an exception if the input string is shorter than the length specified.</param>
         /// <returns>The <see cref="string"/>.</returns>
-        public static string Right(this string @string, int length)
+        public static string Right(this string @string, int length, bool throwIfShort = false)
         {
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
+            if (throwIfShort && @string.Length < length) throw new IndexOutOfRangeException(nameof(length));
             return length > @string.Length ? @string : @string.Substring(@string.Length - length, length);
         }
 
@@ -211,8 +202,8 @@ namespace SharpExtensions
         public static string Mid(this string @string, int start, int end)
         {
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
-            if (start > @string.Length) throw new IndexOutOfRangeException("start");
-            if (end > @string.Length) throw new IndexOutOfRangeException("end");
+            if (start > @string.Length) throw new IndexOutOfRangeException(nameof(start));
+            if (end > @string.Length) throw new IndexOutOfRangeException(nameof(end));
             if (start > end) throw new IndexOutOfRangeException("start must be <= end.");
 
             return @string.Substring(start, end - start + 1);
@@ -239,35 +230,6 @@ namespace SharpExtensions
         {
             return args.All(source.Contains);
         }
-
-#if NET40 || NET45
-        /// <summary>
-        /// Convert a <see cref="SecureString"/> to a <see cref="string"/>.
-        /// </summary>
-        /// <param name="secureString">The <see cref="SecureString"/> to be converted to a regular <see cref="string"/>.</param>
-        /// <returns>The unsecured string.</returns>
-        /// <exception cref="ArgumentNullException">Thrown if the <see cref="SecureString"/> object is null.</exception>
-        public static string ToUnsecuredString(this SecureString secureString)
-        {
-            if (secureString == null) throw new ArgumentNullException(nameof(secureString));
-
-            // Start with a zero pointer
-            var unmanagedString = IntPtr.Zero;
-            try
-            {
-                // Get the contents of the SecureString into an unmanaged block of memory
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(secureString);
-
-                // Move the unmanaged string into a managed block of memory.
-                return Marshal.PtrToStringUni(unmanagedString);
-            }
-            finally
-            {
-                // Free the unmanaged block of memory
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
-        }
-#endif
 
         /// <summary>
         /// Trims the supplied array of strings from the beginning of the source string.

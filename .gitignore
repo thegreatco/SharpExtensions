@@ -111,4 +111,5 @@ UpgradeLog*.XML
 *.pp
 *.nupkg
 *.ide
+.vs/**
 Documentation/Help/

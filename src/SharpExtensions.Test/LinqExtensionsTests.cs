@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
-    [TestFixture]
+    [TestClass]
     public class LinqExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void WhereNotNull()
         {
             var arr = new[] { "1", "2", "3", "4", null };
@@ -23,7 +23,7 @@ namespace SharpExtensions.Tests
             Assert.IsTrue(nullableArr.WhereNotNull().ContainsAll(new[] { 1, 2, 3 }));
         }
 
-        [Test]
+        [TestMethod]
         public void WhereNotNullOrEmpty()
         {
             var arr = new[] { "abc", string.Empty, "def", null, " " };
@@ -32,7 +32,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(arr.WhereNotNullOrEmpty().ContainsAll(new[] { string.Empty, null }));
         }
 
-        [Test]
+        [TestMethod]
         public void WhereNotNullOrWhitespace()
         {
             var arr = new[] { "abc", string.Empty, "def", null, " " };
@@ -41,7 +41,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(arr.WhereNotNullOrWhitespace().ContainsAll(new[] { string.Empty, null, " " }));
         }
 
-        [Test]
+        [TestMethod]
         public void SelectMany()
         {
             var arr = new[] { new[] { "str1" }, new[] { "str2" }};
@@ -49,7 +49,7 @@ namespace SharpExtensions.Tests
             Assert.IsTrue(arr.SelectMany().ContainsAll(new[] { "str1", "str2" }));
         }
 
-        [Test]
+        [TestMethod]
         public void ToHashSet()
         {
             var arr = new[] { "abc", string.Empty, "def", null, "abc", "def" };
@@ -60,7 +60,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(res.Contains(" "));
         }
 
-        [Test]
+        [TestMethod]
         public void AddRange()
         {
             var arr1 = new HashSet<string> { "abc" };
@@ -71,7 +71,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(arr1.ContainsOnly(arr2));
         }
 
-        [Test]
+        [TestMethod]
         public void ContainsAny()
         {
             var arr1 = new[] { "abc" };
@@ -84,7 +84,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(arr1.ContainsAny(arr2));
         }
 
-        [Test]
+        [TestMethod]
         public void ContainsAll()
         {
             var arr1 = new[] { "abc", "def", "ghi" };
@@ -101,7 +101,7 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(arr1.ContainsAll(arr2));
         }
 
-        [Test]
+        [TestMethod]
         public void ContainsOnly()
         {
             var arr1 = new[] { "abc", "def", "ghi" };
@@ -116,30 +116,30 @@ namespace SharpExtensions.Tests
             Assert.IsFalse(arr1.ContainsOnly(arr2));
         }
 
-        [Test]
+        [TestMethod]
         public void IncludeIf()
         {
             var stuff = new[] { "abc", "def", "ghi" };
             var args = new[] { true, false, true };
-            Assert.Throws<ArgumentOutOfRangeException>(() => stuff.IncludeIf(new[] {true}));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => stuff.IncludeIf(new[] {true}));
             Assert.IsTrue(stuff.IncludeIf(args).ContainsOnly(new[] { "abc", "ghi" }));
             
             var args2 = new[] { "foo", "foo", "bar" };
-            Assert.Throws<ArgumentOutOfRangeException>(() => stuff.IncludeIf(new[] {"foo"}, "foo"));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => stuff.IncludeIf(new[] {"foo"}, "foo"));
             Assert.IsTrue(stuff.IncludeIf(args2, "foo").ContainsOnly(new[] { "abc", "def" }));
         }
 
-        [Test]
+        [TestMethod]
         public void RemoveIf()
         {
             var stuff = new[] { "abc", "def", "ghi" };
             Assert.IsTrue(stuff.RemoveIf(x => !x.EndsWith("c")).ContainsOnly(new[] { "def", "ghi" }));
         }
 
-        [Test]
+        [TestMethod]
         public void FastAny()
         {
-            Assert.Throws<ArgumentNullException>(() => LinqExtensions.FastAny<int[]>(null));
+            Assert.ThrowsException<ArgumentNullException>(() => LinqExtensions.FastAny<int[]>(null));
             var collection = new List<string> {"abc", "def", "ghi"};
             Assert.IsTrue(collection.FastAny());
 
@@ -150,7 +150,7 @@ namespace SharpExtensions.Tests
             Assert.IsTrue(nonCollecton.FastAny());
         }
 
-        [Test]
+        [TestMethod]
         public void FastAnySpeedTest()
         {
             const int n = 10000;
@@ -172,7 +172,7 @@ namespace SharpExtensions.Tests
             Console.WriteLine("{0} vs {1}", times.Average(x => x.Item1), times.Average(x => x.Item2));
         }
 
-        [Test]
+        [TestMethod]
         public void FastSingleSpeedTest()
         {
             const int n = 10000;

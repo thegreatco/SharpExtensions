@@ -1,15 +1,15 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
-    [TestFixture]
+    [TestClass]
     public class EnumExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void EnumToString()
         {
-            Assert.Throws<ArgumentNullException>(() => EnumExtensions.GetName(null));
+            Assert.ThrowsException<ArgumentNullException>(() => EnumExtensions.GetName(null));
             Assert.IsTrue(TestEnum.Default.GetName() == "Default");
             Assert.IsTrue(TestEnum.A.GetName() == "A");
             Assert.IsTrue(TestEnum.B.GetName() == "B");

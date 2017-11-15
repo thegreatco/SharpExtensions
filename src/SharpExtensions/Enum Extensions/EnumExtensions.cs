@@ -45,19 +45,13 @@ namespace SharpExtensions
         public static string GetDescription(this Enum val)
         {
             if (val == null) throw new ArgumentNullException(nameof(val));
-#if NET40 || NET45
-            var fields = val.GetType().GetField(val.GetName());
-#elif NETDX
             var fields = val.GetType().GetTypeInfo().GetDeclaredField(val.GetName());
-#endif
 
             // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
-            var jsonAttribute = fields.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() as EnumMemberAttribute;
-            if (jsonAttribute != null) return jsonAttribute.Value;
+            if (fields.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() is EnumMemberAttribute jsonAttribute) return jsonAttribute.Value;
 
             // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
-            var attribute = fields.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
-            return attribute == null ? val.GetName() : attribute.Description;
+            return !(fields.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() is DescriptionAttribute attribute) ? val.GetName() : attribute.Description;
         }
 
         /// <summary>
@@ -71,26 +65,16 @@ namespace SharpExtensions
             if (val == null) throw new ArgumentNullException(nameof(val));
 
             var type = typeof (T);
-#if NET40 || NET45
-            if (!type.IsEnum) throw new InvalidEnumArgumentException();
-#elif NETDX
             if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(T), $"{typeof(T)} is not an Enum.");
-#endif
             var castVal = val as Enum;
 
-#if NET40 || NET45
-            var fields = type.GetField(castVal.GetName());
-#elif NETDX
             var fields = type.GetTypeInfo().GetDeclaredField(castVal.GetName());
-#endif
 
             // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
-            var jsonAttribute = fields.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() as EnumMemberAttribute;
-            if (jsonAttribute != null) return jsonAttribute.Value;
+            if (fields.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() is EnumMemberAttribute jsonAttribute) return jsonAttribute.Value;
 
             // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
-            var attribute = fields.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
-            return attribute == null ? castVal.GetName() : attribute.Description;
+            return !(fields.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() is DescriptionAttribute attribute) ? castVal.GetName() : attribute.Description;
         }
 
         /// <summary>
@@ -112,11 +96,7 @@ namespace SharpExtensions
         public static Dictionary<T, string> GetDescriptions<T>()
         {
             var type = typeof(T);
-#if NET40 || NET45
-            if (!type.IsEnum) throw new InvalidEnumArgumentException();
-#elif NETDX
             if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(T), $"{typeof(T)} is not an Enum.");
-#endif
 
             var values = Enum.GetValues(type).OfType<T>();
 
@@ -134,33 +114,18 @@ namespace SharpExtensions
             if (string.IsNullOrWhiteSpace(description)) throw new ArgumentNullException(nameof(description));
 
             var type = typeof(T);
-#if NET40 || NET45
-            if (!type.IsEnum) throw new InvalidEnumArgumentException();
-            var fields = type.GetFields();
-#elif NETDX
             if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(T), $"{typeof(T)} is not an Enum.");
             var fields = type.GetRuntimeFields();
-#endif
 
             foreach (var field in fields)
             {
                 if (field.Name == description) return (T) field.GetValue(null);
 
                 // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
-#if NET40 || NET45
-                var jsonAttribute = Attribute.GetCustomAttributes(typeof(EnumMemberAttribute)).FirstOrDefault() as EnumMemberAttribute;
-#elif NETDX
-                var jsonAttribute = field.GetCustomAttribute(typeof(EnumMemberAttribute), false) as EnumMemberAttribute;
-#endif
-                if (jsonAttribute != null && jsonAttribute.Value == description) return (T) field.GetValue(null);
+                if (field.GetCustomAttribute(typeof(EnumMemberAttribute), false) is EnumMemberAttribute jsonAttribute && jsonAttribute.Value == description) return (T) field.GetValue(null);
 
                 // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
-#if NET40 || NET45
-                var attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
-#elif NETDX
-                var attribute = field.GetCustomAttribute(typeof(DescriptionAttribute), false) as DescriptionAttribute;
-#endif
-                if (attribute != null && attribute.Description == description) return (T) field.GetValue(null);    
+                if (field.GetCustomAttribute(typeof(DescriptionAttribute), false) is DescriptionAttribute attribute && attribute.Description == description) return (T) field.GetValue(null);    
             }
 
             return default(T);
@@ -175,8 +140,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="Nullable"/> of <typeparamref name="T"/>.</returns>
         public static T? ToEnum<T>(this string @string, bool ignoreCase = false) where T : struct
         {
-            T val;
-            var result = Enum.TryParse(@string, ignoreCase, out val);
+            var result = Enum.TryParse(@string, ignoreCase, out T val);
             return result ? new T?(val) : null;
         }
     }

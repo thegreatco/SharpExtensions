@@ -44,9 +44,9 @@ namespace SharpExtensions
         /// <param name="formatting">The <see cref="Formatting"/> options for the Json.</param>
         /// <returns>The object in Json format.</returns>
         [Obsolete("SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings))")]
-        public static async Task<string> ToJsonAsync(this object obj, Formatting formatting = Formatting.Indented)
+        public static Task<string> ToJsonAsync(this object obj, Formatting formatting = Formatting.Indented)
         {
-            return await JsonConvert.SerializeObjectAsync(obj, formatting, DefaultSerializerSettings);
+            return Task.Run(() => JsonConvert.SerializeObject(obj, formatting, DefaultSerializerSettings));
         }
 
         /// <summary>
@@ -57,9 +57,9 @@ namespace SharpExtensions
         /// <param name="settings">The <see cref="JsonSerializerSettings"/> to use.</param>
         /// <returns>The object in Json format.</returns>
         [Obsolete("SerializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to serialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.SerializeObject(value, formatting, settings))")]
-        public static async Task<string> ToJsonAsync(this object obj, Formatting formatting, JsonSerializerSettings settings)
+        public static Task<string> ToJsonAsync(this object obj, Formatting formatting, JsonSerializerSettings settings)
         {
-            return await JsonConvert.SerializeObjectAsync(obj, formatting, settings);
+            return Task.Run(() => JsonConvert.SerializeObject(obj, formatting, settings));
         }
 
         /// <summary>
@@ -104,9 +104,9 @@ namespace SharpExtensions
         /// <typeparam name="T">The type to deserialize to.</typeparam>
         /// <returns>The new <typeparamref name="T"/></returns>
         [Obsolete("DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value))")]
-        public static async Task<T> FromJsonAsync<T>(this string @string)
+        public static Task<T> FromJsonAsync<T>(this string @string)
         {
-            return await JsonConvert.DeserializeObjectAsync<T>(@string);
+            return Task.Run(() => JsonConvert.DeserializeObject<T>(@string));
         }
 
         /// <summary>
@@ -117,9 +117,9 @@ namespace SharpExtensions
         /// <typeparam name="T">The type to deserialize to.</typeparam>
         /// <returns>The new <typeparamref name="T"/></returns>
         [Obsolete("DeserializeObjectAsync is obsolete. Use the Task.Factory.StartNew method to deserialize JSON asynchronously: Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(value, settings))")]
-        public static async Task<T> FromJsonAsync<T>(this string @string, JsonSerializerSettings settings)
+        public static Task<T> FromJsonAsync<T>(this string @string, JsonSerializerSettings settings)
         {
-            return await JsonConvert.DeserializeObjectAsync<T>(@string, settings);
+            return Task.Run(() => JsonConvert.DeserializeObject<T>(@string, settings));
         }
     }
 }

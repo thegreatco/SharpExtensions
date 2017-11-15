@@ -8,7 +8,7 @@ namespace SharpExtensions
     /// <summary>
     /// A collection of extension methods to use with <see cref="Task"/>.
     /// </summary>
-    public static partial class TaskExtensions
+    public static partial class Tasktensions
     {
         /// <summary>
         /// The <see cref="EventHandler"/> that will return any exceptions thrown during any task execution.
@@ -31,7 +31,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="Task"/>.</returns>
         public static async Task WithTimeout(this Task task, TimeSpan timeout)
         {
-            if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
+            if (task != await Task.WhenAny(task, Task.Delay(timeout)))
                 throw new TimeoutException();
 
             await task;
@@ -46,7 +46,7 @@ namespace SharpExtensions
         /// <returns>A task that will throw a <see cref="TimeoutException"/> depending on the provided timeout.</returns>
         public static async Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout)
         {
-            if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
+            if (task != await Task.WhenAny(task, Task.Delay(timeout)))
                 throw new TimeoutException();
 
             return await task;
@@ -85,7 +85,7 @@ namespace SharpExtensions
         /// <returns>A <see cref="Task"/>.</returns>
         public static async Task WithTimeout(this Task task, TimeSpan timeout, Action action)
         {
-            if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
+            if (task != await Task.WhenAny(task, Task.Delay(timeout)))
                 action.Invoke();
 
             await task;
@@ -101,7 +101,7 @@ namespace SharpExtensions
         /// <returns>A task that will throw a <see cref="TimeoutException"/> depending on the provided timeout.</returns>
         public static async Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout, Action action)
         {
-            if (task != await TaskEx.WhenAny(task, TaskEx.Delay(timeout)))
+            if (task != await Task.WhenAny(task, Task.Delay(timeout)))
                 action.Invoke();
 
             return await task;
@@ -136,7 +136,7 @@ namespace SharpExtensions
             cancelTask.IgnoreExceptions();
 #pragma warning restore 4014
 
-            await TaskEx.WhenAny(task, cancelTask);
+            await Task.WhenAny(task, cancelTask);
             return task.Result;
         }
 
@@ -156,7 +156,7 @@ namespace SharpExtensions
             cancelTask.IgnoreExceptions();
 #pragma warning restore 4014
 
-            await TaskEx.WhenAny(task, cancelTask);
+            await Task.WhenAny(task, cancelTask);
         }
         
         /// <summary>
@@ -169,7 +169,7 @@ namespace SharpExtensions
             try
             {
 #pragma warning disable 4014
-                TaskEx.Run(async () =>
+                Task.Run(async () =>
 #pragma warning restore 4014
                 {
                     try
@@ -178,15 +178,13 @@ namespace SharpExtensions
                     }
                     catch (Exception ex)
                     {
-                        if (TaskErrorEventHandler != null)
-                            TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
+                        TaskErrorEventHandler?.Invoke(null, new TaskErrorEventArgs(ex, caller));
                     }
                 });
             }
             catch (AggregateException aggex)
             {
-                if (TaskErrorEventHandler != null)
-                    TaskErrorEventHandler(null, new TaskErrorEventArgs(aggex, caller));
+                TaskErrorEventHandler?.Invoke(null, new TaskErrorEventArgs(aggex, caller));
             }
         }
 
@@ -199,19 +197,14 @@ namespace SharpExtensions
         public static async Task IgnoreExceptions(this Task task, string caller = null)
         {
             await task.ContinueWith(t =>
-                                    {
-                                        if (t.Exception != null)
-                                            t.Exception.Handle(ex =>
-                                                               {
-                                                                   if (TaskErrorEventHandler != null) TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
-                                                                   // TODO: Figure out trace logging in DNX
-#if NET40 || NET45
-                                                                   else Trace.WriteLine(ex);
-#endif
-                                                                   return true;
-                                                               });
-
-                                    });
+            {
+                t.Exception?.Handle(ex =>
+                {
+                    if (TaskErrorEventHandler != null) TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
+                    else Trace.WriteLine(ex);
+                    return true;
+                });
+            });
         }
 
         /// <summary>
@@ -224,22 +217,20 @@ namespace SharpExtensions
         public static async Task<T> IgnoreExceptions<T>(this Task<T> task, string caller = null)
         {
             return await task.ContinueWith(t =>
-                                              {
-                                                  if (t.Exception != null)
-                                                  {
-                                                      t.Exception.Handle(ex =>
-                                                                        {
-                                                                            if (TaskErrorEventHandler != null) TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
-                                                                            // TODO: Figure out trace logging in DNX
-#if NET40 || NET45
-                                                                            else Trace.WriteLine(ex);
-#endif
-                                                                            return true;
-                                                                        });
-                                                      return default(T);
-                                                  }
-                                                  return t.Result;
-                                              });
+            {
+                if (t.Exception != null)
+                {
+                    t.Exception.Handle(ex =>
+                    {
+                        if (TaskErrorEventHandler != null)
+                            TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
+                        else Trace.WriteLine(ex);
+                        return true;
+                    });
+                    return default(T);
+                }
+                return t.Result;
+            });
         }
 
         /// <summary>

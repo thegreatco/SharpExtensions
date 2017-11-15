@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
     /// <summary>
     /// The assert ex.

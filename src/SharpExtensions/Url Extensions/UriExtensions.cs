@@ -145,11 +145,7 @@ namespace SharpExtensions
             if (string.IsNullOrWhiteSpace(@string)) throw new ArgumentNullException(nameof(@string));
 
             var allNull = true;
-#if NET40 || NET45
-            var props = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-#elif NETDX
             var props = obj.GetType().GetRuntimeProperties();
-#endif
             var kvps = new List<KeyValuePair<string, object>>();
             foreach (var prop in props)
             {
@@ -161,15 +157,21 @@ namespace SharpExtensions
                     : prop.Name;
 
                 allNull = false;
-                var stringArray = val as string[];
-                if (stringArray != null)
+                switch (val)
+                {
+                case string[] stringArray:
                     kvps.Add(new KeyValuePair<string, object>(propName, stringArray.ValidatedJoin(",")));
-                else if (val is Enum)
+                    break;
+                case Enum _:
                     kvps.Add(new KeyValuePair<string, object>(propName, val.ToString().ToLower()));
-                else if (val is bool)
+                    break;
+                case bool _:
                     kvps.Add(new KeyValuePair<string, object>(propName, val.ToString().ToLower()));
-                else
+                    break;
+                default:
                     kvps.Add(new KeyValuePair<string, object>(propName, val));
+                    break;
+                }
             }
 
             if (allNull) throw new ArgumentException("All the properties of the object are null.  At least one property must have a value. ");

@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SharpExtensions.Tests
+namespace SharpExtensions.Test
 {
-    [TestFixture]
+    [TestClass]
     public class UriExtensionsTests
     {
-        [Test]
+        [TestMethod]
         public void ToUri()
         {
             const string testUriString = "http://www.test.com/{0}/{1}";
-            Assert.Throws<ArgumentNullException>(() => "".ToUri("abc"));
+            Assert.ThrowsException<ArgumentNullException>(() => "".ToUri("abc"));
             Assert.IsTrue(testUriString.ToUri("abc", "def") == new UriBuilder(testUriString.With("abc", "def")).Uri);
 
             var testObj = new TestObject();
             var expectedUri = new UriBuilder(testUriString.With("abc", "def")) { Query = "stuff=foobar" };
-            Assert.Throws<ArgumentNullException>(() => "".ToUri(testObj, null));
-            Assert.Throws<ArgumentNullException>(() => testUriString.ToUri((IUrlFormatable)null));
+            Assert.ThrowsException<ArgumentNullException>(() => "".ToUri(testObj, null));
+            Assert.ThrowsException<ArgumentNullException>(() => testUriString.ToUri((IUrlFormatable)null));
             Assert.IsTrue(testUriString.ToUri(testObj, "abc", "def") == expectedUri.Uri);
         }
 
-        [Test]
+        [TestMethod]
         public void With()
         {
             const string testUriString = "http://www.test.com/";
@@ -36,7 +36,7 @@ namespace SharpExtensions.Tests
             Assert.IsTrue(testUri == (new UriBuilder(testUriString) { Query = "abc=def&ghi=jkl" }).Uri);
         }
 
-        [Test]
+        [TestMethod]
         public void Remove()
         {
             const string testUriString = "http://www.test.com/?abc=def&ghi=jkl";
