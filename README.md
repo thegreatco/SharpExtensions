@@ -11,5 +11,6 @@ There are four NuGet Packages available:
   * [SharpExtensions](https://www.nuget.org/packages/SharpExtensions/)
   * [SharpExtensions Json](https://www.nuget.org/packages/SharpExtensions.Json/)
 
-[![CircleCI](https://circleci.com/gh/thegreatco/SharpExtensions/tree/master.svg?style=svg)](https://circleci.com/gh/thegreatco/SharpExtensions/tree/master) [![CircleCI](https://circleci.com/gh/thegreatco/SharpExtensions/tree/dev.svg?style=svg)](https://circleci.com/gh/thegreatco/SharpExtensions/tree/dev)
+master: [![CircleCI](https://circleci.com/gh/thegreatco/SharpExtensions/tree/master.svg?style=svg)](https://circleci.com/gh/thegreatco/SharpExtensions/tree/master)
+dev:    [![CircleCI](https://circleci.com/gh/thegreatco/SharpExtensions/tree/dev.svg?style=svg)](https://circleci.com/gh/thegreatco/SharpExtensions/tree/dev)
 
