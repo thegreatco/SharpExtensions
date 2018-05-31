@@ -201,7 +201,7 @@ namespace SharpExtensions
                 t.Exception?.Handle(ex =>
                 {
                     if (TaskErrorEventHandler != null) TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
-                    else Trace.WriteLine(ex);
+                    else Debug.WriteLine(ex);
                     return true;
                 });
             });
@@ -224,7 +224,7 @@ namespace SharpExtensions
                     {
                         if (TaskErrorEventHandler != null)
                             TaskErrorEventHandler(null, new TaskErrorEventArgs(ex, caller));
-                        else Trace.WriteLine(ex);
+                        else Debug.WriteLine(ex);
                         return true;
                     });
                     return default(T);

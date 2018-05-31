@@ -128,7 +128,7 @@ namespace SharpExtensions
                 .Union(Enumerable.Range(58, 7))
                 .Union(Enumerable.Range(91, 6))
                 .Union(Enumerable.Range(123, 5))
-                .Select(x => ((char) x).ToString(CultureInfo.InvariantCulture));
+                .Select(x => ((char) x).ToString());
             @string = chars.Aggregate(@string, (current, x) => current.Replace(x, string.Empty));
             return @string.Trim();
         }

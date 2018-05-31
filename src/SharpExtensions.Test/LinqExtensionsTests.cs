@@ -193,5 +193,23 @@ namespace SharpExtensions.Test
             Console.WriteLine("Single vs FastSingle");
             Console.WriteLine("{0} vs {1}", times.Average(x => x.Item1), times.Average(x => x.Item2));
         }
+
+        [TestMethod]
+        public void EnumerablePartitionEvenMultiple()
+        { }
+
+        [TestMethod]
+        public void EnumerablePartitionUneven()
+        { }
+
+        [TestMethod]
+        public void SpanPartitionEvenMultiple()
+        {
+            var span = Enumerable.Range(0, 10000).ToArray().AsSpan();
+        }
+
+        [TestMethod]
+        public void SpanPartitionUneven()
+        { }
     }
 }

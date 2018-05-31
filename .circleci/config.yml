@@ -1,40 +1,46 @@
 version: 2
-
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: microsoft/dotnet:2.0.3-sdk-jessie
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
+      - image: microsoft/dotnet:sdk
     working_directory: ~/repo
     environment:
-      PACKAGE_VERSION: 1.0.0.${CIRCLE_BUILD_NUM}
-    branches:
-      only: master
-
+      - DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+      - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
     steps:
       - checkout
-      
-      # Download and cache dependencies
-      # - restore_cache:
-      #     keys:
-      #     - node_modules-{{ checksum "package.json" }}
-      #     # fallback to using the latest cache if no exact match is found
-      #     - node_modules-
-
       - run: dotnet restore SharpExtensions.sln
-      - run: dotnet test src/SharpExtensions.Test/SharpExtensions.Test.csproj
-      - run: dotnet pack src/SharpExtensions/SharpExtensions.csproj -o ../../ --include-symbols /p:Version=1.0.0.${CIRCLE_BUILD_NUM}
-      - run: dotnet pack src/SharpExtensions.Json/SharpExtensions.Json.csproj -o ../../ --include-symbols /p:Version=1.0.0.${CIRCLE_BUILD_NUM}
-      - run: dotnet nuget push SharpExtensions.1.0.0.${CIRCLE_BUILD_NUM}.symbols.nupkg -k ${NUGET_API_KEY} -s nuget.org
-      - run: dotnet nuget push SharpExtensions.Json.1.0.0.${CIRCLE_BUILD_NUM}.symbols.nupkg -k ${NUGET_API_KEY} -s nuget.org
+      - run: dotnet build src/SharpExtensions/SharpExtensions.csproj
+  deploy:
+    docker:
+      - image: microsoft/dotnet:sdk
+    environment:
+      - DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+      - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo 'export FILE_VERSION=${CIRCLE_TAG}.${CIRCLE_BUILD_NUM}' >> $BASH_ENV
+            echo 'export NUGET_VERSION=${CIRCLE_TAG}' >> $BASH_ENV
+            source $BASH_ENV
+      - run: dotnet restore SharpExtensions.sln
+      - run: dotnet pack src/SharpExtensions/SharpExtensions.csproj -o ../../nupkgs --include-symbols /p:Version=${NUGET_VERSION}
+      - run: dotnet nuget push nupkgs/SharpExtensions.${NUGET_VERSION}.symbols.nupkg -k ${NUGET_API_KEY} -s https://api.nuget.org/v3/index.json
 
-      # - persist_to_workspace:
-      #     root: ~/repo
-      #     paths:
-      #       - .
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - deploy:
+          requires: 
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(?:[0-9]+\.?)+/

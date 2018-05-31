@@ -519,5 +519,131 @@ namespace SharpExtensions
         {
             return (await task.ConfigureAwait(false)).Single();
         }
+
+        /// <summary>
+        /// Partitions an enumerable into multiple enumerables of specified size.
+        /// </summary>
+        /// <param name="memBlock"> The input Memory{T}. </param>
+        /// <param name="size"> The size of each partition. </param>
+        /// <typeparam name="T"> The type of element. </typeparam>
+        /// <returns> A enumerable of partitions. </returns>
+        public static IEnumerable<Memory<T>> Partition<T>(this Memory<T> memBlock, int size)
+        {
+            if (size <= 0) throw new ArgumentOutOfRangeException(nameof(size), "Size must be > 0");
+
+            var currentIndex = 0;
+            while (currentIndex < memBlock.Length)
+            {
+                yield return memBlock.Slice(currentIndex, size);
+                currentIndex += size;
+            }
+        }
+
+        public static TSource FirstOrDefault<TSource>(this Span<TSource> source, Func<TSource, bool> predicate)
+        {
+            foreach (var t in source)
+            {
+                if (predicate(t)) return t;
+            }
+
+            return default;
+        }
+
+        public static TSource FirstOrDefault<TSource>(this Memory<TSource> source, Func<TSource, bool> predicate)
+        {
+            return source.Span.FirstOrDefault(predicate);
+        }
+
+        public static TSource FirstOrDefault<TSource>(this Span<TSource> source)
+        {
+            return source.Length == 0 ? default : source[0];
+        }
+
+        public static TSource FirstOrDefault<TSource>(this Memory<TSource> source)
+        {
+            return source.Span.FirstOrDefault();
+        }
+
+        public static TSource First<TSource>(this Span<TSource> source, Func<TSource, bool> predicate)
+        {
+            if (source.Length == 0) throw new InvalidOperationException("Sequence contains no elements.");
+            
+            foreach (var t in source)
+            {
+                if (predicate(t)) return t;
+            }
+
+            throw new InvalidOperationException("Sequence contains no matching element.");
+        }
+
+        public static TSource First<TSource>(this Memory<TSource> source, Func<TSource, bool> predicate)
+        {
+            return source.Span.First(predicate);
+        }
+
+        public static TSource First<TSource>(this Span<TSource> source)
+        {
+            if (source.Length == 0) throw new InvalidOperationException("Sequence contains no elements.");
+
+            return source[0];
+        }
+
+        public static TSource First<TSource>(this Memory<TSource> source)
+        {
+            return source.Span.First();
+        }
+
+        public static TSource Single<TSource>(this Span<TSource> source, Func<TSource, bool> predicate)
+        {
+            if (source.Length == 0) throw new InvalidOperationException("Sequence contains no elements.");
+            object match = null;
+            foreach (var t in source)
+            {
+                if (!predicate(t)) continue;
+                if (match == null)
+                    match = t;
+                else
+                    throw new InvalidOperationException("Sequence contains more than one element");
+            }
+
+            return (TSource) match;
+        }
+
+        public static TSource Single<TSource>(this Memory<TSource> source, Func<TSource, bool> predicate)
+        {
+            return source.Span.Single(predicate);
+        }
+
+        public static TSource Single<TSource>(this Span<TSource> source)
+        {
+            if (source.Length == 0) throw new InvalidOperationException("Sequence contains no elements.");
+            if (source.Length > 1) throw new InvalidOperationException("Sequence contains more than one element");
+            return source[0];
+        }
+
+        public static TSource Single<TSource>(this Memory<TSource> source)
+        {
+            return source.Span.Single();
+        }
+
+        public static bool Any<TSource>(this Span<TSource> source, Func<TSource, bool> predicate)
+        {
+            return source.FirstOrDefault(predicate) == null;
+        }
+
+        public static bool Any<TSource>(this Memory<TSource> source, Func<TSource, bool> predicate)
+        {
+            return source.FirstOrDefault(predicate) == null;
+        }
+
+        public static bool Any<TSource>(this Span<TSource> source)
+        {
+            return source.FirstOrDefault() == null;
+        }
+
+        public static bool Any<TSource>(this Memory<TSource> source)
+        {
+            return source.FirstOrDefault() == null;
+        }
     }
 }
