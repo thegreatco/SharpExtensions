@@ -227,7 +227,7 @@ namespace SharpExtensions
                         else Debug.WriteLine(ex);
                         return true;
                     });
-                    return default(T);
+                    return default;
                 }
                 return t.Result;
             });

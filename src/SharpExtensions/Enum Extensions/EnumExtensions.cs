@@ -19,10 +19,8 @@ namespace SharpExtensions
         /// <param name="case"> A <see cref="StringCase"/> indicating which case to return.  Valid enumerations are StringCase.Lower and StringCase.Upper. </param>
         /// <exception cref="ArgumentNullException"> If the enum is null. </exception>
         /// <returns></returns>
-        public static string GetName(this Enum val, StringCase @case = StringCase.Default)
+        public static string GetName<TEnum>(this TEnum val, StringCase @case = StringCase.Default) where TEnum : struct
         {
-            if (val == null) throw new ArgumentNullException(nameof(val));
-
             var name = Enum.GetName(val.GetType(), val);
             if (name == null) return null;
 
@@ -42,9 +40,11 @@ namespace SharpExtensions
         /// </summary>
         /// <param name="val">The value for which to get the description attribute.</param>
         /// <returns>The <see cref="string"/> description.</returns>
-        public static string GetDescription(this Enum val)
+        public static string GetDescription<TEnum>(this TEnum val) where TEnum : struct
         {
-            if (val == null) throw new ArgumentNullException(nameof(val));
+            var type = typeof(TEnum);
+            if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(TEnum), $"{typeof(TEnum)} is not an Enum.");
+
             var fields = val.GetType().GetTypeInfo().GetDeclaredField(val.GetName());
 
             // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
@@ -55,50 +55,27 @@ namespace SharpExtensions
         }
 
         /// <summary>
-        /// Gets the description for the supplied Enum Value.
-        /// </summary>
-        /// <typeparam name="T">The type of Enum to get.</typeparam>
-        /// <param name="val">The value for which to get the description attribute.</param>
-        /// <returns>The <see cref="string"/> description.</returns>
-        public static string GetDescription<T>(this T val)
-        {
-            if (val == null) throw new ArgumentNullException(nameof(val));
-
-            var type = typeof (T);
-            if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(T), $"{typeof(T)} is not an Enum.");
-            var castVal = val as Enum;
-
-            var fields = type.GetTypeInfo().GetDeclaredField(castVal.GetName());
-
-            // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
-            if (fields.GetCustomAttributes(typeof(EnumMemberAttribute), false).FirstOrDefault() is EnumMemberAttribute jsonAttribute) return jsonAttribute.Value;
-
-            // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
-            return !(fields.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() is DescriptionAttribute attribute) ? castVal.GetName() : attribute.Description;
-        }
-
-        /// <summary>
         /// Gets all the description attributes in the Enum.
         /// </summary>
-        /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
+        /// <typeparam name="TEnum">The type of the <see cref="Enum"/>.</typeparam>
         /// <param name="val">The value of the Enum.</param>
         /// <returns>A Dictionary keyed on the <see cref="Enum"/> values and their descriptions.</returns>
-        public static Dictionary<T, string> GetDescriptions<T>(this Enum val)
+        public static Dictionary<TEnum, string> GetDescriptions<TEnum>(this TEnum val) where TEnum : struct
         {
-            return GetDescriptions<T>();
+            return val.GetDescriptions();
         }
 
         /// <summary>
         /// Gets all the description attributes in the Enum.
         /// </summary>
-        /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
+        /// <typeparam name="TEnum">The type of the <see cref="Enum"/>.</typeparam>
         /// <returns>A Dictionary keyed on the <see cref="Enum"/> values and their descriptions.</returns>
-        public static Dictionary<T, string> GetDescriptions<T>()
+        public static Dictionary<TEnum, string> GetDescriptions<TEnum>() where TEnum : struct
         {
-            var type = typeof(T);
-            if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(T), $"{typeof(T)} is not an Enum.");
+            var type = typeof(TEnum);
+            if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(TEnum), $"{typeof(TEnum)} is not an Enum.");
 
-            var values = Enum.GetValues(type).OfType<T>();
+            var values = Enum.GetValues(type).OfType<TEnum>();
 
             return values.ToDictionary(value => value, value => value.GetDescription());
         }
@@ -106,29 +83,29 @@ namespace SharpExtensions
         /// <summary>
         /// Get the value of an <see cref="Enum"/> based on its description attribute.
         /// </summary>
-        /// <typeparam name="T">The type of the <see cref="Enum"/>.</typeparam>
+        /// <typeparam name="TEnum">The type of the <see cref="Enum"/>.</typeparam>
         /// <param name="description">The Description attribute of the <see cref="Enum"/>.</param>
         /// <returns>The value of T or default(T) if the description is not found.</returns>
-        public static T GetValueFromDescription<T>(this string description) where T : struct
+        public static TEnum GetValueFromDescription<TEnum>(this string description) where TEnum : struct
         {
             if (string.IsNullOrWhiteSpace(description)) throw new ArgumentNullException(nameof(description));
 
-            var type = typeof(T);
-            if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(T), $"{typeof(T)} is not an Enum.");
+            var type = typeof(TEnum);
+            if (!type.GetTypeInfo().IsEnum) throw new ArgumentOutOfRangeException(nameof(TEnum), $"{typeof(TEnum)} is not an Enum.");
             var fields = type.GetRuntimeFields();
 
             foreach (var field in fields)
             {
-                if (field.Name == description) return (T) field.GetValue(null);
+                if (field.Name == description) return (TEnum) field.GetValue(null);
 
                 // first try and pull out the EnumMemberAttribute, common when using a JsonSerializer
-                if (field.GetCustomAttribute(typeof(EnumMemberAttribute), false) is EnumMemberAttribute jsonAttribute && jsonAttribute.Value == description) return (T) field.GetValue(null);
+                if (field.GetCustomAttribute(typeof(EnumMemberAttribute), false) is EnumMemberAttribute jsonAttribute && jsonAttribute.Value == description) return (TEnum) field.GetValue(null);
 
                 // If that doesn't work, do the regular description, that still fails, just return a pretty ToString().
-                if (field.GetCustomAttribute(typeof(DescriptionAttribute), false) is DescriptionAttribute attribute && attribute.Description == description) return (T) field.GetValue(null);    
+                if (field.GetCustomAttribute(typeof(DescriptionAttribute), false) is DescriptionAttribute attribute && attribute.Description == description) return (TEnum) field.GetValue(null);    
             }
 
-            return default(T);
+            throw new ArgumentException($"Unable to determine value for {description} in Enum {typeof(TEnum)}", nameof(description));
         }
 
         /// <summary>

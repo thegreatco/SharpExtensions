@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace SharpExtensions
     /// <summary>
     /// A collection of extension methods for LINQ.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static partial class LinqExtensions
     {
         /// <summary>
@@ -222,8 +224,7 @@ namespace SharpExtensions
         public static bool FastAny<TSource>(this IEnumerable<TSource> source)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
-            var collection = source as ICollection<TSource>;
-            if (collection != null)
+            if (source is ICollection<TSource> collection)
                 return collection.Count > 0;
             using (var enumerator = source.GetEnumerator())
             {

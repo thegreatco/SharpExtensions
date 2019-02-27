@@ -271,7 +271,7 @@ namespace SharpExtensions
         /// <returns>The result of the operation.</returns>
         public bool TryAdd(T item)
         {
-            return _dictionary.TryAdd(item, default(byte));
+            return _dictionary.TryAdd(item, default);
         }
 
         /// <summary>
