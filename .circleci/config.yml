@@ -37,6 +37,7 @@ workflows:
             tags:
               only: /.*/
       - deploy:
+          context: nuget_key
           requires: 
             - build
           filters:

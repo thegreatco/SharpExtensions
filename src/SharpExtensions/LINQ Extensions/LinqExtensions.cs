@@ -306,7 +306,7 @@ namespace SharpExtensions
 
             return hashSet;
         }
-
+#if NETSTANDARD2_1
         /// <summary>
         /// Partitions an enumerable into multiple enumerables of specified size.
         /// </summary>
@@ -332,6 +332,33 @@ namespace SharpExtensions
             if (partition.Count > 0)
                 yield return partition;
         }
+#else
+        /// <summary>
+        /// Partitions an enumerable into multiple enumerables of specified size.
+        /// </summary>
+        /// <param name="enumerable"> The input enumerable. </param>
+        /// <param name="size"> The size of each partition. </param>
+        /// <typeparam name="T"> The type of element. </typeparam>
+        /// <returns> A enumerable of partitions. </returns>
+        public static IEnumerable<IEnumerable<T>> Partition<T>(this IEnumerable<T> enumerable, int size)
+        {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (size <= 0) throw new ArgumentOutOfRangeException(nameof(size), "Size must be > 0");
+
+            var partition = new List<T>();
+            foreach (var item in enumerable)
+            {
+                partition.Add(item);
+                if (partition.Count != size) continue;
+
+                yield return partition;
+                partition = new List<T>();
+            }
+
+            if (partition.Count > 0)
+                yield return partition;
+        }
+#endif
 
         /// <summary>
         /// Returns the first (or default) object that is wrapped in a Task. <seealso cref="IEnumerable{T}"/>
